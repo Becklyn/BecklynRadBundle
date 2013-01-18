@@ -2,6 +2,7 @@
     "name":         "oagm/base-bundle",
     "description":  "This bundle provides basic components",
     "type":         "symfony-bundle",
+    "homepage":     "https://bitbucket.org/becklyngmbh/oagm-base-bundle",
     "authors":      [
         {
             "name":     "On Any Given Monday GmbH",
