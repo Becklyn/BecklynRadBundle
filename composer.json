@@ -1,0 +1,24 @@
+{
+    "name":         "oagm/base-bundle",
+    "description":  "This bundle provides basic components",
+    "type":         "symfony-bundle",
+    "authors":      [
+        {
+            "name":     "On Any Given Monday GmbH",
+            "homepage": "http://onanygivenmonday.com/"
+        }
+    ],
+    "require":      {
+        "symfony/framework-bundle": ">=2.0,<2.3-dev"
+    },
+    "autoload":     {
+        "psr-0": { "OAGM\\Bundle\\BaseBundle": "" }
+    },
+    "target-dir": "OAGM/Bundle/BaseBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}
