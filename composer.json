@@ -13,9 +13,9 @@
         "symfony/framework-bundle": ">=2.0,<2.3-dev"
     },
     "autoload":     {
-        "psr-0": { "OAGM\\Bundle\\BaseBundle": "" }
+        "psr-0": { "OAGM\\BaseBundle": "" }
     },
-    "target-dir": "OAGM/Bundle/BaseBundle",
+    "target-dir": "OAGM/BaseBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
