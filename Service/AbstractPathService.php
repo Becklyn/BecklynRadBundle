@@ -2,10 +2,12 @@
 
 namespace OAGM\BaseBundle\Service;
 
+use Symfony\Component\DependencyInjection\ContainerAware;
+
 /**
  * Abstract base class for path services
  */
-abstract class AbstractPathService
+abstract class AbstractPathService extends ContainerAware
 {
     /**
      * Returns the file system root path
