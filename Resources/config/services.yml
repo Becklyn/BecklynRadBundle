@@ -1,17 +1,10 @@
 parameters:
-    facebook.app_id:  397625873636877
-    facebook.app_secret: b66b26ef2d59237ad9d7569a4cb8cc9a
-    facebook.page_url: https://www.facebook.com/fonic/
-    facebook.required_permissions: ["email"]
 
 services:
-
-    facebook:
-        class: %facebook_service_class%
-        arguments: [@service_container]
-
-    twig.extension.facebook:
-        class: OAGM\CurryphaeeBundle\Service\FacebookTwigExtension
-        tags:
-            - { name: twig.extension }
-        arguments: [@service_container]
+    # override default voter
+    #knp_menu.voter.router:
+    #    class: Swatch\AdminBundle\Service\SimpleRouteMenuVoter
+    #    calls:
+    #        - [ setContainer, [@service_container] ]
+    #    tags:
+    #        - { name: knp_menu.voter}
