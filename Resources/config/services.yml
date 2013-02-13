@@ -3,7 +3,7 @@ parameters:
 services:
     # override default voter
     #knp_menu.voter.router:
-    #    class: Swatch\AdminBundle\Service\SimpleRouteMenuVoter
+    #    class: OAGM\BaseBundle\Service\SimpleRouteMenuVoter
     #    calls:
     #        - [ setContainer, [@service_container] ]
     #    tags:
