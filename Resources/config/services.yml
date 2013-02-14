@@ -3,7 +3,7 @@ parameters:
 services:
     # override default voter
     #knp_menu.voter.router:
-    #    class: OAGM\BaseBundle\Service\SimpleRouteMenuVoter
+    #    class: OAGM\BaseBundle\Service\SimpleRouteVoter
     #    calls:
     #        - [ setContainer, [@service_container] ]
     #    tags:
