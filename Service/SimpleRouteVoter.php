@@ -6,7 +6,7 @@ use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\Voter\VoterInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
-class SimpleRouteVoter extends ContainerAware
+class SimpleRouteVoter extends ContainerAware implements VoterInterface
 {
     /**
      * Checks whether an item is current.
