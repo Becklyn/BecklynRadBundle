@@ -8,3 +8,9 @@ services:
     #        - [ setContainer, [@service_container] ]
     #    tags:
     #        - { name: knp_menu.voter}
+
+
+    form.type_extension.help_message:
+        class: OAGM\BaseBundle\Type\Extension\HelpMessageTypeExtension
+        tags:
+            - { name: form.type_extension, alias: form }
