@@ -232,10 +232,10 @@ class Pagination
     public function getGroupedPaginationPages ($aroundCurrent = 1, $aroundBorder = 1)
     {
         $pages = array();
-        $self = $this;
-        $addPage = function ($page) use (&$pages, $self)
+
+        $addPage = function ($page) use (&$pages)
         {
-            if ($self->isValidPage($page))
+            if (is_int($page) && ($page >= $this->getMinPage()) && ($page <= $this->getMaxPage()))
             {
                 $pages[$page] = true;
             }
