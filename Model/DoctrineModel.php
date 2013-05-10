@@ -1,6 +1,7 @@
 <?php
 
 namespace OAGM\BaseBundle\Model;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use OAGM\BaseBundle\Helper\PaginatedList;
@@ -85,12 +86,17 @@ abstract class DoctrineModel extends ContainerAwareModel
     private function getTotalNumberOfItems (QueryBuilder $queryBuilder)
     {
         $queryBuilder = clone $queryBuilder;
-
         $table = current($queryBuilder->getRootAliases());
-        return (int) $queryBuilder->select("COUNT({$table})")
-            ->getQuery()
-            ->getSingleScalarResult();
 
+        try {
+            return (int) $queryBuilder->select("COUNT({$table})")
+                ->getQuery()
+                ->getSingleScalarResult();
+        }
+        catch (NoResultException $e)
+        {
+            return 0;
+        }
     }
 
 
