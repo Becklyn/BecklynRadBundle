@@ -1,0 +1,47 @@
+{% import _self as macros %}
+
+{% spaceless %}
+<div class="pagination">
+    <ul>
+        {% if pagination.previousPage is null %}
+            <li class="disabled"><span>&laquo;</span></li>
+        {% else %}
+            <li>
+                <a href="{{ macros.pageLink(pagination.previousPage, route, routeParameters, pageParameterName) }}">&laquo;</a>
+            </li>
+        {% endif %}
+
+        {% set previous = null %}
+        {% for page in pagination.groupedPaginationPages %}
+            {% if (previous is not null) and (previous < page - 1) %}
+                <li class="disabled"><span>&hellip;</span></li>
+            {% endif %}
+
+            {% if page == pagination.currentPage %}
+                <li class="active"><span>{{ page }}</span></li>
+            {% else %}
+                <li><a href="{{ macros.pageLink(page, route, routeParameters, pageParameterName) }}">{{ page }}</a></li>
+            {% endif %}
+            {% set previous = page %}
+        {% endfor %}
+
+        {% if pagination.nextPage is null %}
+            <li class="disabled"><span>&raquo;</span></li>
+        {% else %}
+            <li>
+                <a href="{{ macros.pageLink(pagination.nextPage, route, routeParameters, pageParameterName) }}">&raquo;</a>
+            </li>
+        {% endif %}
+    </ul>
+</div>
+{% endspaceless %}
+
+
+{% macro pageLink (page, route, routeParameters, pageParameterName) %}
+{% spaceless %}
+    {# The braces in (pageParameterName) are needed, so that the value of pageParameterName is used as key and not
+       "pageParameterName", see http://blog.twig.sensiolabs.org/post/14806524040/twig-1-5-0-rc1-released #}
+    {% set routeParameters = routeParameters|merge( {(pageParameterName): page} ) %}
+    {{ path(route, routeParameters) }}
+{% endspaceless %}
+{% endmacro %}

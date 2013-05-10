@@ -14,3 +14,10 @@ services:
         class: OAGM\BaseBundle\Type\Extension\HelpMessageTypeExtension
         tags:
             - { name: form.type_extension, alias: form }
+
+
+    twig.extension.oagm.base_bundle.pagination:
+        class: OAGM\BaseBundle\Service\PaginationTwigExtension
+        tags:
+            - { name: twig.extension }
+        arguments: [@service_container]
