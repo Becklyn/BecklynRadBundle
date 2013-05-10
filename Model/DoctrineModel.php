@@ -53,14 +53,19 @@ abstract class DoctrineModel extends ContainerAwareModel
     /**
      * Returns paginated content
      *
-     * @param QueryBuilder $queryBuilder
-     * @param Pagination $pagination
+     * If the $queryBuilder for entities does include a grouping function, the automatic counting will fail (since
+     * sub selects are not fully supported in DQL). You can pass an additional query builder just for the counting query
+     * in $countQueryBuilder then (no need to set the select("COUNT(..)"), as this will be done automatically).
+     *
+     * @param QueryBuilder $queryBuilder The query builder to retrieve the entities
+     * @param Pagination $pagination The pagination object
+     * @param QueryBuilder|null $countQueryBuilder The additional query builder, just for the count query
      *
      * @return PaginatedList
      */
-    protected function getPaginatedResults (QueryBuilder $queryBuilder, Pagination $pagination)
+    protected function getPaginatedResults (QueryBuilder $queryBuilder, Pagination $pagination, QueryBuilder $countQueryBuilder = null)
     {
-        $pagination->setNumberOfItems($this->getTotalNumberOfItems($queryBuilder));
+        $pagination->setNumberOfItems($this->getTotalNumberOfItems($queryBuilder, $countQueryBuilder));
         $offset = ($pagination->getCurrentPage() - $pagination->getMinPage()) * $pagination->getItemsPerPage();
 
         if (0 < $pagination->getNumberOfItems())
@@ -88,12 +93,13 @@ abstract class DoctrineModel extends ContainerAwareModel
      * Returns the number of total items in a query builder query
      *
      * @param QueryBuilder $queryBuilder
+     * @param QueryBuilder $countQueryBuilder
      *
      * @return int
      */
-    private function getTotalNumberOfItems (QueryBuilder $queryBuilder)
+    private function getTotalNumberOfItems (QueryBuilder $queryBuilder, QueryBuilder $countQueryBuilder = null)
     {
-        $queryBuilder = clone $queryBuilder;
+        $queryBuilder = clone ($countQueryBuilder ?: $queryBuilder);
         $table = current($queryBuilder->getRootAliases());
 
         try {
