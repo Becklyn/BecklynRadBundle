@@ -233,9 +233,12 @@ class Pagination
     {
         $pages = array();
 
-        $addPage = function ($page) use (&$pages)
+        $minPage = $this->getMinPage();
+        $maxPage = $this->getMaxPage();
+
+        $addPage = function ($page) use (&$pages, $minPage, $maxPage)
         {
-            if (is_int($page) && ($page >= $this->getMinPage()) && ($page <= $this->getMaxPage()))
+            if (is_int($page) && ($page >= $minPage) && ($page <= $maxPage))
             {
                 $pages[$page] = true;
             }
