@@ -31,7 +31,7 @@ abstract class DoctrineModel extends ContainerAwareModel
      */
     protected function getEntityManager ()
     {
-        return $this->get('doctrine')->getEntityManager();
+        return $this->get('doctrine')->getManager();
     }
 
 
@@ -63,13 +63,21 @@ abstract class DoctrineModel extends ContainerAwareModel
         $pagination->setNumberOfItems($this->getTotalNumberOfItems($queryBuilder));
         $offset = ($pagination->getCurrentPage() - $pagination->getMinPage()) * $pagination->getItemsPerPage();
 
+        if (0 < $pagination->getNumberOfItems())
+        {
+            $queryBuilder
+                ->setFirstResult($offset)
+                ->setMaxResults($pagination->getItemsPerPage());
 
-        $queryBuilder
-            ->setFirstResult($offset)
-            ->setMaxResults($pagination->getItemsPerPage());
+            $list = iterator_to_array(new Paginator($queryBuilder->getQuery()));
+        }
+        else
+        {
+            $list = array();
+        }
 
         return new PaginatedList(
-            iterator_to_array(new Paginator($queryBuilder->getQuery())),
+            $list,
             $pagination
         );
     }
