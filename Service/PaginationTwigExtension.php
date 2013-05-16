@@ -2,7 +2,7 @@
 
 namespace OAGM\BaseBundle\Service;
 
-use Bogner\AdminBundle\Service\AbstractTwigExtension;
+use OAGM\BaseBundle\Service\AbstractTwigExtension;
 use OAGM\BaseBundle\Helper\Pagination;
 
 class PaginationTwigExtension extends AbstractTwigExtension
