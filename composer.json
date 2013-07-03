@@ -10,7 +10,7 @@
         }
     ],
     "require":      {
-        "symfony/framework-bundle": ">=2.0,<2.3-dev"
+        "symfony/framework-bundle": "~2.0"
     },
     "autoload":     {
         "psr-0": { "OAGM\\BaseBundle": "" }
