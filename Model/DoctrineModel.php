@@ -1,6 +1,8 @@
 <?php
 
 namespace OAGM\BaseBundle\Model;
+
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -10,8 +12,25 @@ use OAGM\BaseBundle\Helper\Pagination;
 /**
  * Base model for database accesses
  */
-abstract class DoctrineModel extends ContainerAwareModel
+abstract class DoctrineModel
 {
+    /**
+     * @var Registry
+     */
+    private $doctrine;
+
+
+
+    /**
+     * @param Registry $doctrine
+     */
+    public function __construct (Registry $doctrine)
+    {
+        $this->doctrine = $doctrine;
+    }
+
+
+
     /**
      * Returns the repository
      *
@@ -19,7 +38,7 @@ abstract class DoctrineModel extends ContainerAwareModel
      */
     protected function getRepository ()
     {
-        return $this->get('doctrine')->getRepository($this->getFullEntityName());
+        return $this->doctrine->getRepository($this->getFullEntityName());
     }
 
 
@@ -31,7 +50,7 @@ abstract class DoctrineModel extends ContainerAwareModel
      */
     protected function getEntityManager ()
     {
-        return $this->get('doctrine')->getManager();
+        return $this->doctrine->getManager();
     }
 
 

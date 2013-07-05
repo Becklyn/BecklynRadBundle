@@ -2,13 +2,39 @@
 
 namespace OAGM\BaseBundle\Service;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  * Abstract base class for path services
  */
-abstract class AbstractPathService extends ContainerAware
+abstract class AbstractPathService
 {
+    /**
+     * @var \Symfony\Component\HttpKernel\KernelInterface
+     */
+    private $kernel;
+
+
+    /**
+     * @var \Symfony\Component\HttpFoundation\Request
+     */
+    private $request;
+
+
+
+    /**
+     * @param KernelInterface $kernel
+     * @param Request $request
+     */
+    public function __construct (KernelInterface $kernel, Request $request)
+    {
+        $this->kernel = $kernel;
+        $this->request = $request;
+    }
+
+
+
     /**
      * Returns the file system root path
      *
@@ -16,10 +42,7 @@ abstract class AbstractPathService extends ContainerAware
      */
     protected function fileSystemRoot ()
     {
-        /** @var $kernel \Symfony\Component\HttpKernel\Kernel */
-        $kernel = $this->container->get('kernel');
-
-        return dirname($kernel->getRootDir()) . '/web';
+        return dirname($this->kernel->getRootDir()) . '/web';
     }
 
 
@@ -31,9 +54,6 @@ abstract class AbstractPathService extends ContainerAware
      */
     protected function webServerRoot ()
     {
-        /** @var $request \Symfony\Component\HttpFoundation\Request */
-        $request = $this->container->get('request');
-
-        return $request->getBasePath();
+        return $this->request->getBasePath();
     }
 }
