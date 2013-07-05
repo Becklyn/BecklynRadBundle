@@ -118,8 +118,21 @@ abstract class DoctrineModel extends ContainerAwareModel
     /**
      * Returns the entity name
      *
-     * @abstract
-     * @return string
+     * @throws \Exception if the full entity name could not be guessed automatically
+     * @return string the entity reference string
      */
-    abstract protected function getFullEntityName ();
+    protected function getFullEntityName ()
+    {
+        $classNameParts = explode("\\", trim(get_class($this), "\\"));
+
+        if (count($classNameParts) !== 4)
+        {
+            throw new \Exception("Cannot automatically generate entity name");
+        }
+
+        $bundle = $classNameParts[0] . $classNameParts[1];
+        $entity = str_replace("Model", "", $classNameParts[3]);
+
+        return "{$bundle}:{$entity}";
+    }
 }
