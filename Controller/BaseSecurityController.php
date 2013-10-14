@@ -11,7 +11,7 @@ abstract class BaseSecurityController extends BaseController
      *
      * @return mixed
      */
-    protected function getTemplate()
+    protected function getLoginActionTemplate()
     {
         $namespaceParts = explode("\\", trim(get_class($this), "\\"));
         $bundle = $namespaceParts[0] . str_replace("Bundle", "", $namespaceParts[1]);
@@ -40,7 +40,7 @@ abstract class BaseSecurityController extends BaseController
         }
 
         return $this->render(
-            $this->getTemplate(),
+            $this->getLoginActionTemplate(),
             array(
                 'username' => $session->get(SecurityContext::LAST_USERNAME),
                 'error'    => $error,
