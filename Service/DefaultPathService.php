@@ -56,6 +56,11 @@ abstract class DefaultPathService extends AbstractPathService
      */
     public function hasFile (IdEntity $entity)
     {
+        if (is_null($entity->getId()))
+        {
+            return false;
+        }
+        
         return is_file($this->getFileSystemPath($entity));
     }
 
