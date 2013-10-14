@@ -8,6 +8,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use OAGM\BaseBundle\Helper\PaginatedList;
 use OAGM\BaseBundle\Helper\Pagination;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Base model for database accesses
@@ -15,16 +16,16 @@ use OAGM\BaseBundle\Helper\Pagination;
 abstract class DoctrineModel
 {
     /**
-     * @var Registry
+     * @var RegistryInterface
      */
     private $doctrine;
 
 
 
     /**
-     * @param Registry $doctrine
+     * @param RegistryInterface $doctrine
      */
-    public function __construct (Registry $doctrine)
+    public function __construct (RegistryInterface $doctrine)
     {
         $this->doctrine = $doctrine;
     }
