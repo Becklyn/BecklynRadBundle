@@ -2,7 +2,7 @@
 
 namespace OAGM\BaseBundle\Service;
 
-use OAGM\BaseBundle\Model\IdEntity;
+use OAGM\BaseBundle\Entity\IdEntity;
 
 /**
  * Implements a default path service, which eases the default use case of a file path handler
@@ -60,7 +60,7 @@ abstract class DefaultPathService extends AbstractPathService
         {
             return false;
         }
-        
+
         return is_file($this->getFileSystemPath($entity));
     }
 
