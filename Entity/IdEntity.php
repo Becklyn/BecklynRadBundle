@@ -1,6 +1,6 @@
 <?php
 
-namespace OAGM\BaseBundle\Model;
+namespace OAGM\BaseBundle\Entity;
 
 /**
  *
