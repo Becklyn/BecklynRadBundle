@@ -2,6 +2,8 @@
 
 namespace OAGM\BaseBundle\Helper;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 /**
  *
  */
@@ -56,6 +58,20 @@ class ImageHandler
     public static function loadFromFileImage ($filePath)
     {
         return new ImageHandler(imagecreatefromstring(file_get_contents($filePath)));
+    }
+
+
+
+    /**
+     * Loads a new image object from an uploaded file
+     *
+     * @static
+     * @param UploadedFile $upload
+     * @return ImageHandler
+     */
+    public static function loadFromUploadedFile (UploadedFile $upload)
+    {
+        return self::loadFromFileImage($upload->getPathname());
     }
 
 
