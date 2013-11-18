@@ -21,3 +21,10 @@ services:
         tags:
             - { name: twig.extension }
         arguments: [@service_container]
+
+
+    twig.extension.oagm.base_bundle.utils:
+        class: OAGM\BaseBundle\Service\UtilsTwigExtension
+        tags:
+            - { name: twig.extension }
+        arguments: [@service_container]
