@@ -26,6 +26,31 @@ class UtilsTwigExtension extends AbstractTwigExtension
 
 
     /**
+     * Pluralizes the text
+     *
+     * @param int $amount
+     * @param string $singleText
+     * @param string $multipleText
+     *
+     * @return string
+     */
+    public function pluralize ($amount, $singleText, $multipleText = null)
+    {
+        if (is_null($multipleText))
+        {
+            $multipleText = "{$singleText}er";
+        }
+
+        if (1 === $amount)
+        {
+            return "{$amount} {$singleText}";
+        }
+
+        return "{$amount} {$multipleText}";
+    }
+
+
+    /**
      * Returns all defined functions
      *
      * @return \Twig_SimpleFunction[]
@@ -33,7 +58,8 @@ class UtilsTwigExtension extends AbstractTwigExtension
     public function getFunctions ()
     {
         return [
-            new \Twig_SimpleFunction("renderDateTime", [$this, "renderDateTime"], ["is_safe" => ["html"]])
+            new \Twig_SimpleFunction("renderDateTime", [$this, "renderDateTime"], ["is_safe" => ["html"]]),
+            new \Twig_SimpleFunction("pluralize", [$this, "pluralize"]),
         ];
     }
 }
