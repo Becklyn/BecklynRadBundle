@@ -344,10 +344,26 @@ class ImageHandler
      *
      * @param string $newFilePath
      * @param int $quality
+     * @deprecated Use saveAsJpg() instead.
      *
      * @return void
      */
     public function saveAsJpeg ($newFilePath, $quality = 90)
+    {
+        $this->saveAsJpg($newFilePath, $quality);
+    }
+
+
+
+    /**
+     * Saves the image as jpeg file
+     *
+     * @param string $newFilePath
+     * @param int $quality
+     *
+     * @return void
+     */
+    public function saveAsJpg ($newFilePath, $quality = 90)
     {
         imagejpeg($this->resource, $newFilePath, $quality);
     }
