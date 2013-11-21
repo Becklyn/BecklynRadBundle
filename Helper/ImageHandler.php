@@ -42,7 +42,8 @@ class ImageHandler
      */
     private function prepareImageResource ()
     {
-        imagealphablending($this->resource, true);
+        // preserve alpha channels
+        imagealphablending($this->resource, false);
         imagesavealpha($this->resource, true);
     }
 
