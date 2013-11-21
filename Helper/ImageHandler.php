@@ -42,9 +42,7 @@ class ImageHandler
      */
     private function prepareImageResource ()
     {
-        // preserve alpha channels
-        imagealphablending($this->resource, false);
-        imagesavealpha($this->resource, true);
+        imagealphablending($this->resource, true);
     }
 
 
@@ -114,10 +112,7 @@ class ImageHandler
         $srcX = floor(($this->getWidth() - $srcWidth) / 2);
         $srcY = floor(($this->getHeight() - $srcHeight) / 2);
 
-        $newImage = imagecreatetruecolor($width, $height);
-        imagecopyresampled(
-            $newImage, // $dst_image,
-            $this->resource, // $src_image
+        $this->copyImageResampled(
             0, // $dst_x
             0, // $dst_y
             $srcX, // $src_x
@@ -127,8 +122,6 @@ class ImageHandler
             $srcWidth, // $src_w
             $srcHeight // $src_h
         );
-
-        $this->resource = $newImage;
     }
 
 
@@ -149,10 +142,7 @@ class ImageHandler
             throw new \InvalidArgumentException('Width and Height must be integer > 0. (is: ' . $width . ' x ' . $height . ')');
         }
 
-        $newImage = imagecreatetruecolor($width, $height);
-        imagecopyresampled(
-            $newImage, // $dst_image,
-            $this->resource, // $src_image
+        $this->copyImageResampled(
             0, // $dst_x
             0, // $dst_y
             0, // $src_x
@@ -161,6 +151,42 @@ class ImageHandler
             $height, // $dst_h
             $this->getWidth(), // $src_w
             $this->getHeight() // $src_h
+        );
+    }
+
+
+
+    /**
+     * Copies and resamples the image
+     *
+     * @param $destX
+     * @param $destY
+     * @param $srcX
+     * @param $srcY
+     * @param $destW
+     * @param $destH
+     * @param $srcW
+     * @param $srcH
+     */
+    private function copyImageResampled ($destX, $destY, $srcX, $srcY, $destW, $destH, $srcW, $srcH)
+    {
+        $newImage = imagecreatetruecolor($destW, $destH);
+
+        // preserve alpha channels
+        imagealphablending($newImage, false);
+        imagesavealpha($newImage, true);
+
+        imagecopyresampled(
+            $newImage, // $dst_image,
+            $this->resource, // $src_image
+            $destX, // $dst_x
+            $destY, // $dst_y
+            $srcX, // $src_x
+            $srcY, // $src_y
+            $destW, // $dst_w
+            $destH, // $dst_h
+            $srcW, // $src_w
+            $srcH // $src_h
         );
 
         $this->resource = $newImage;
