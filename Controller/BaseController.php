@@ -3,6 +3,8 @@
 namespace OAGM\BaseBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormInterface;
 
 class BaseController extends Controller
 {
@@ -49,5 +51,35 @@ class BaseController extends Controller
         /** @var $flashBag FlashBagInterface */
         $flashBag = $this->get('session')->getFlashBag();
         $flashBag->add("admin-general", $data);
+    }
+
+    /**
+     * Returns the form error mapping for easier marking of form errors in
+     * javascript handler code.
+     *
+     * @param FormInterface $form
+     *
+     * @return array
+     */
+    protected function getFormErrorMapping (FormInterface $form)
+    {
+        $allErrors = array();
+
+        foreach ($form->all() as $children)
+        {
+            $errors = $children->getErrors();
+            if (!empty($errors))
+            {
+                $allErrors["{$form->getName()}_{$children->getName()}"] = array_map(
+                    function (FormError $error)
+                    {
+                        return $error->getMessage();
+                    },
+                    $errors
+                );
+            }
+        }
+
+        return $allErrors;
     }
 }
