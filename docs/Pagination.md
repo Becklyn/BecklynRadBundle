@@ -60,6 +60,7 @@ $paginatedList->getPagination();  // returns the modified pagination element
 
 The `pagination()` twig function generates HTML for a generic pagination.
 The generated pagination looks like that (using the Bootstrap 3 integration):
+
 ![Generated Pagination in Boostrap 3](https://raw.github.com/Becklyn/BecklynRadBundle/master/docs/images/pagination-screenshot.png)
 
 The inactive list items are links to the corresponding list URL, the active item is no link.
