@@ -3,6 +3,7 @@
     "description":  "This bundle provides basic components",
     "type":         "symfony-bundle",
     "homepage":     "https://github.com/Becklyn/BecklynRadBundle",
+    "license":      "MIT",
     "authors":      [
         {
             "name":     "Becklyn GmbH",
