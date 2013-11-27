@@ -1,14 +1,14 @@
 <?php
 
-namespace OAGM\BaseBundle\Service;
-use OAGM\BaseBundle\Model\IdEntity;
+namespace Becklyn\RadBundle\Service;
+use Becklyn\RadBundle\Model\IdEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  * Provides a service for asset path creation
  *
- * @package OAGM\BaseBundle\Service
+ * @package Becklyn\RadBundle\Service
  */
 class SimplePathService extends AbstractPathService
 {

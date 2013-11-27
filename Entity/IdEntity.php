@@ -1,6 +1,6 @@
 <?php
 
-namespace OAGM\BaseBundle\Entity;
+namespace Becklyn\RadBundle\Entity;
 
 /**
  *

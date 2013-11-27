@@ -1,9 +1,9 @@
 <?php
 
-namespace OAGM\BaseBundle\Model;
+namespace Becklyn\RadBundle\Model;
 
 use Doctrine\ORM\EntityRepository;
-use OAGM\BaseBundle\Entity\SortableEntity;
+use Becklyn\RadBundle\Entity\SortableEntity;
 
 class SortableHandler
 {

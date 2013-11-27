@@ -1,6 +1,6 @@
 <?php
 
-namespace OAGM\BaseBundle\Service;
+namespace Becklyn\RadBundle\Service;
 
 use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\Voter\VoterInterface;

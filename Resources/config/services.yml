@@ -3,7 +3,7 @@ parameters:
 services:
     # override default voter
     #knp_menu.voter.router:
-    #    class: OAGM\BaseBundle\Service\SimpleRouteVoter
+    #    class: Becklyn\RadBundle\Service\SimpleRouteVoter
     #    calls:
     #        - [ setContainer, [@service_container] ]
     #    tags:
@@ -11,20 +11,20 @@ services:
 
 
     form.type_extension.help_message:
-        class: OAGM\BaseBundle\Type\Extension\HelpMessageTypeExtension
+        class: Becklyn\RadBundle\Type\Extension\HelpMessageTypeExtension
         tags:
             - { name: form.type_extension, alias: form }
 
 
-    twig.extension.oagm.base_bundle.pagination:
-        class: OAGM\BaseBundle\Service\PaginationTwigExtension
+    twig.extension.becklyn.rad.pagination:
+        class: Becklyn\RadBundle\Service\PaginationTwigExtension
         tags:
             - { name: twig.extension }
         arguments: [@service_container]
 
 
-    twig.extension.oagm.base_bundle.utils:
-        class: OAGM\BaseBundle\Service\UtilsTwigExtension
+    twig.extension.becklyn.rad.utils:
+        class: Becklyn\RadBundle\Service\UtilsTwigExtension
         tags:
             - { name: twig.extension }
         arguments: [@service_container]

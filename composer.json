@@ -1,12 +1,12 @@
 {
-    "name":         "oagm/base-bundle",
+    "name":         "becklyn/rad-bundle",
     "description":  "This bundle provides basic components",
     "type":         "symfony-bundle",
     "homepage":     "https://bitbucket.org/becklyn/oagm-base-bundle",
     "authors":      [
         {
-            "name":     "On Any Given Monday GmbH",
-            "homepage": "http://onanygivenmonday.com/"
+            "name":     "Becklyn GmbH",
+            "homepage": "http://becklyn.com/"
         }
     ],
     "require":      {
@@ -14,9 +14,9 @@
         "symfony/framework-bundle": "~2.0"
     },
     "autoload":     {
-        "psr-0": { "OAGM\\BaseBundle": "" }
+        "psr-0": { "Becklyn\\RadBundle": "" }
     },
-    "target-dir": "OAGM/BaseBundle",
+    "target-dir": "Becklyn/RadBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"

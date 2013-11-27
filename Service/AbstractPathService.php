@@ -1,6 +1,6 @@
 <?php
 
-namespace OAGM\BaseBundle\Service;
+namespace Becklyn\RadBundle\Service;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\KernelInterface;

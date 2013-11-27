@@ -1,8 +1,8 @@
 <?php
 
-namespace OAGM\BaseBundle\Tests\Helper;
+namespace Becklyn\RadBundle\Tests\Helper;
 
-use OAGM\BaseBundle\Helper\Pagination;
+use Becklyn\RadBundle\Helper\Pagination;
 
 class PaginationTest extends \PHPUnit_Framework_TestCase
 {

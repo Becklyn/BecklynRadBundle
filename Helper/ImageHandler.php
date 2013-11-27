@@ -1,6 +1,6 @@
 <?php
 
-namespace OAGM\BaseBundle\Helper;
+namespace Becklyn\RadBundle\Helper;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 

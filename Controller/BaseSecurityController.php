@@ -1,6 +1,6 @@
 <?php
 
-namespace OAGM\BaseBundle\Controller;
+namespace Becklyn\RadBundle\Controller;
 
 use Symfony\Component\Security\Core\SecurityContext;
 

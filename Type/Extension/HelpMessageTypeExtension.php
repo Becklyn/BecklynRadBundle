@@ -1,6 +1,6 @@
 <?php
 
-namespace OAGM\BaseBundle\Type\Extension;
+namespace Becklyn\RadBundle\Type\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,8 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class HelpMessageTypeExtension extends AbstractTypeExtension
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * {@inheritdoc}
      */
     public function buildForm (FormBuilderInterface $builder, array $options)
     {
@@ -22,9 +21,7 @@ class HelpMessageTypeExtension extends AbstractTypeExtension
 
 
     /**
-     * @param FormView $view
-     * @param FormInterface $form
-     * @param array $options
+     * {@inheritdoc}
      */
     public function buildView (FormView $view, FormInterface $form, array $options)
     {
@@ -34,7 +31,7 @@ class HelpMessageTypeExtension extends AbstractTypeExtension
 
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * {@inheritdoc}
      */
     public function setDefaultOptions (OptionsResolverInterface $resolver)
     {
@@ -46,9 +43,7 @@ class HelpMessageTypeExtension extends AbstractTypeExtension
 
 
     /**
-     * Returns the name of the type being extended.
-     *
-     * @return string The name of the type being extended
+     * {@inheritdoc}
      */
     public function getExtendedType ()
     {

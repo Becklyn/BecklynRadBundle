@@ -1,6 +1,6 @@
 <?php
 
-namespace OAGM\BaseBundle\Helper;
+namespace Becklyn\RadBundle\Helper;
 
 
 use Doctrine\ORM\QueryBuilder;

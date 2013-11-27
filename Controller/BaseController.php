@@ -1,6 +1,6 @@
 <?php
 
-namespace OAGM\BaseBundle\Controller;
+namespace Becklyn\RadBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;

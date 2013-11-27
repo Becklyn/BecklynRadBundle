@@ -1,13 +1,13 @@
 <?php
 
-namespace OAGM\BaseBundle\Service;
+namespace Becklyn\RadBundle\Service;
 
-use OAGM\BaseBundle\Entity\IdEntity;
+use Becklyn\RadBundle\Entity\IdEntity;
 
 /**
  * Implements a default path service, which eases the default use case of a file path handler
  *
- * @package OAGM\BaseBundle\Service
+ * @package Becklyn\RadBundle\Service
  */
 abstract class DefaultPathService extends AbstractPathService
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace OAGM\BaseBundle\Model;
+namespace Becklyn\RadBundle\Model;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use OAGM\BaseBundle\Helper\PaginatedList;
-use OAGM\BaseBundle\Helper\Pagination;
+use Becklyn\RadBundle\Helper\PaginatedList;
+use Becklyn\RadBundle\Helper\Pagination;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**

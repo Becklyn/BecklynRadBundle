@@ -1,9 +1,9 @@
 <?php
 
-namespace OAGM\BaseBundle\Service;
+namespace Becklyn\RadBundle\Service;
 
-use OAGM\BaseBundle\Service\AbstractTwigExtension;
-use OAGM\BaseBundle\Helper\Pagination;
+use Becklyn\RadBundle\Service\AbstractTwigExtension;
+use Becklyn\RadBundle\Helper\Pagination;
 
 class PaginationTwigExtension extends AbstractTwigExtension
 {
@@ -21,7 +21,7 @@ class PaginationTwigExtension extends AbstractTwigExtension
     public function pagination (Pagination $pagination, $route, array $additionalRouteParameters = array(), $pageParameterName = "page")
     {
         return $this->render(
-            "OAGMBaseBundle:Pagination:pagination.html.twig",
+            "@BecklynRad/Pagination/pagination.html.twig",
             array(
                 "pagination" => $pagination,
                 "route" => $route,

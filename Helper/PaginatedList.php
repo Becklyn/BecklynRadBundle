@@ -1,6 +1,6 @@
 <?php
 
-namespace OAGM\BaseBundle\Helper;
+namespace Becklyn\RadBundle\Helper;
 
 class PaginatedList
 {
@@ -15,7 +15,7 @@ class PaginatedList
     /**
      * The pagination
      *
-     * @var \OAGM\BaseBundle\Helper\Pagination
+     * @var \Becklyn\RadBundle\Helper\Pagination
      */
     private $pagination;
 
@@ -46,7 +46,7 @@ class PaginatedList
 
 
     /**
-     * @return \OAGM\BaseBundle\Helper\Pagination
+     * @return \Becklyn\RadBundle\Helper\Pagination
      */
     public function getPagination ()
     {
