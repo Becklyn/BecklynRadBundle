@@ -1,4 +1,4 @@
-Paginationw
+Pagination
 ==========
 
 Adds a Pagination Navigation

@@ -2,7 +2,7 @@
     "name":         "becklyn/rad-bundle",
     "description":  "This bundle provides basic components",
     "type":         "symfony-bundle",
-    "homepage":     "https://bitbucket.org/becklyn/oagm-base-bundle",
+    "homepage":     "https://github.com/Becklyn/BecklynRadBundle",
     "authors":      [
         {
             "name":     "Becklyn GmbH",
