@@ -1,7 +1,8 @@
 <?php
 
 namespace Becklyn\RadBundle\Service;
-use Becklyn\RadBundle\Model\IdEntity;
+
+use Becklyn\RadBundle\Entity\IdEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\KernelInterface;
 

@@ -2,7 +2,6 @@
 
 namespace Becklyn\RadBundle\Service;
 
-use Becklyn\RadBundle\Service\AbstractTwigExtension;
 use Becklyn\RadBundle\Helper\Pagination;
 
 class PaginationTwigExtension extends AbstractTwigExtension
