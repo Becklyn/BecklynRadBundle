@@ -1,6 +1,7 @@
 {
     "name":         "becklyn/rad-bundle",
     "description":  "This bundle provides basic components",
+    "keywords":     ["rad", "symfony"],
     "type":         "symfony-bundle",
     "homepage":     "https://github.com/Becklyn/BecklynRadBundle",
     "license":      "MIT",
