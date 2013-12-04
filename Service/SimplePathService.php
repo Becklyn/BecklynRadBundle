@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
  *
  * @package Becklyn\RadBundle\Service
  */
-class SimplePathService extends AbstractPathService
+class SimplePathService extends DefaultPathService
 {
     /**
      * @var string
@@ -53,36 +53,13 @@ class SimplePathService extends AbstractPathService
 
 
     /**
-     * Returns the webserver path
-     *
-     * @param IdEntity $entity
+     * Returns the path to the storage
      *
      * @return string
      */
-    public function getWebserverPath (IdEntity $entity)
+    protected function getStoragePath ()
     {
-        $cache = '';
-
-        if (is_file($filePath = $this->getFileSystemPath($entity)))
-        {
-            $cache = '?v=' . filemtime($cache);
-        }
-
-        return $this->webServerRoot() . $this->relativePath . $this->getFileName($entity) . $cache;
-    }
-
-
-
-    /**
-     * Returns the file system path
-     *
-     * @param IdEntity $entity
-     *
-     * @return string
-     */
-    public function getFileSystemPath (IdEntity $entity)
-    {
-        return $this->fileSystemRoot() . $this->relativePath . $this->getFileName($entity);
+        return $this->relativePath;
     }
 
 
@@ -94,7 +71,7 @@ class SimplePathService extends AbstractPathService
      *
      * @return string
      */
-    private function getFileName (IdEntity $entity)
+    protected function getFileName (IdEntity $entity)
     {
         if (is_null($this->hashPrefix))
         {
