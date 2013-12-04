@@ -9,6 +9,24 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class ImageHandler
 {
+    const IMAGE_TYPE_JPG = "jpg";
+    const IMAGE_TYPE_GIF = "gif";
+    const IMAGE_TYPE_PNG = "png";
+
+
+    /**
+     * All supported image types
+     *
+     * @var array
+     */
+    private static $supportedImageTypes = [
+        ImageHandler::IMAGE_TYPE_JPG,
+        ImageHandler::IMAGE_TYPE_GIF,
+        ImageHandler::IMAGE_TYPE_PNG
+    ];
+
+
+
     /**
      * The resource of the image
      * @var resource
@@ -474,4 +492,32 @@ class ImageHandler
     {
         return imagesy($this->resource);
     }
+
+
+
+    //region Image Types
+    /**
+     * Returns whether the image type is supported
+     *
+     * @param string $imageType
+     *
+     * @return array
+     */
+    public static function isSupportedImageType ($imageType)
+    {
+        return in_array($imageType, self::$supportedImageTypes, true);
+    }
+
+
+
+    /**
+     * Returns the supported image types
+     *
+     * @return array
+     */
+    public static function getSupportedImageTypes ()
+    {
+        return self::$supportedImageTypes;
+    }
+    //endregion
 }
