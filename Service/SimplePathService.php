@@ -69,10 +69,16 @@ class SimplePathService extends DefaultPathService
      *
      * @param IdEntity $entity
      *
+     * @throws \InvalidArgumentException
      * @return string
      */
     protected function getFileName (IdEntity $entity)
     {
+        if (is_null($entity->getId()))
+        {
+            throw new \InvalidArgumentException("Entity id must be set");
+        }
+
         if (is_null($this->hashPrefix))
         {
             return "{$entity->getId()}.{$this->fileExtension}";
