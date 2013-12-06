@@ -176,44 +176,6 @@ class ImageHandler
 
 
     /**
-     * Copies and resamples the image
-     *
-     * @param $destX
-     * @param $destY
-     * @param $srcX
-     * @param $srcY
-     * @param $destW
-     * @param $destH
-     * @param $srcW
-     * @param $srcH
-     */
-    private function copyImageResampled ($destX, $destY, $srcX, $srcY, $destW, $destH, $srcW, $srcH)
-    {
-        $newImage = imagecreatetruecolor($destW, $destH);
-
-        // preserve alpha channels
-        imagealphablending($newImage, false);
-        imagesavealpha($newImage, true);
-
-        imagecopyresampled(
-            $newImage, // $dst_image,
-            $this->resource, // $src_image
-            $destX, // $dst_x
-            $destY, // $dst_y
-            $srcX, // $src_x
-            $srcY, // $src_y
-            $destW, // $dst_w
-            $destH, // $dst_h
-            $srcW, // $src_w
-            $srcH // $src_h
-        );
-
-        $this->resource = $newImage;
-    }
-
-
-
-    /**
      * Scales the image to maximum dimensions
      *
      * @param int $width
@@ -286,17 +248,6 @@ class ImageHandler
 
 
     /**
-     * Returns the original handler
-     * @return resource
-     */
-    public function getResource ()
-    {
-        return $this->resource;
-    }
-
-
-
-    /**
      * Fits the image in the size and fills the background with a specific color
      *
      * @param int $width
@@ -315,16 +266,18 @@ class ImageHandler
 
         $this->scaleToMaximumDimensions($width, $height);
 
-        $newImage = imagecreatetruecolor($width, $height);
-        $backgroundColor = imagecolorallocate($newImage, $backgroundColor->getRedByte(), $backgroundColor->getGreenByte(), $backgroundColor->getBlueByte());
-        imagefill($newImage, 0, 0, $backgroundColor);
-
         $dstX = floor(($width - $this->getWidth()) / 2);
         $dstY = floor(($height - $this->getHeight()) / 2);
 
-        imagecopyresampled(
-            $newImage, // $dst_image,
-            $this->resource, // $src_image
+        // prepares the image after generation
+        $imagePreparation = function ($newImage) use ($backgroundColor)
+        {
+            /** @var Color $backgroundColor */
+            $color = imagecolorallocate($newImage, $backgroundColor->getRedByte(), $backgroundColor->getGreenByte(), $backgroundColor->getBlueByte());
+            imagefill($newImage, 0, 0, $color);
+        };
+
+        $this->copyImageResampled(
             $dstX, // $dst_x
             $dstY, // $dst_y
             0, // $src_x
@@ -332,10 +285,9 @@ class ImageHandler
             $this->getWidth(), // $dst_w
             $this->getHeight(), // $dst_h
             $this->getWidth(), // $src_w
-            $this->getHeight() // $src_h
+            $this->getHeight(), // $src_h
+            $imagePreparation
         );
-
-        $this->resource = $newImage;
     }
 
 
@@ -362,22 +314,62 @@ class ImageHandler
             throw new \LogicException("Image dimensions do not fit the image");
         }
 
-
-        $width = $xRight - $xLeft;
+        $width  = $xRight - $xLeft;
         $height = $yBottom - $yTop;
-        $newImage = imagecreatetruecolor($width, $height);
+
+        $this->copyImageResampled(
+            0,
+            0,
+            $xLeft,
+            $yTop,
+            $width,
+            $height,
+            $width,
+            $height
+        );
+    }
+
+
+
+
+
+    /**
+     * Copies and resamples the image
+     *
+     * @param $destX
+     * @param $destY
+     * @param $srcX
+     * @param $srcY
+     * @param $destW
+     * @param $destH
+     * @param $srcW
+     * @param $srcH
+     * @param callable $imagePreparation
+     */
+    private function copyImageResampled ($destX, $destY, $srcX, $srcY, $destW, $destH, $srcW, $srcH, callable $imagePreparation = null)
+    {
+        $newImage = imagecreatetruecolor($destW, $destH);
+
+        // preserve alpha channels
+        imagealphablending($newImage, false);
+        imagesavealpha($newImage, true);
+
+        if (!is_null($imagePreparation))
+        {
+            $imagePreparation($newImage);
+        }
 
         imagecopyresampled(
             $newImage, // $dst_image,
             $this->resource, // $src_image
-            0, // $dst_x
-            0, // $dst_y
-            $xLeft, // $src_x
-            $yTop, // $src_y
-            $width, // $dst_w
-            $height, // $dst_h
-            $width, // $src_w
-            $height // $src_h
+            $destX, // $dst_x
+            $destY, // $dst_y
+            $srcX, // $src_x
+            $srcY, // $src_y
+            $destW, // $dst_w
+            $destH, // $dst_h
+            $srcW, // $src_w
+            $srcH // $src_h
         );
 
         $this->resource = $newImage;
@@ -385,6 +377,7 @@ class ImageHandler
 
 
 
+    //region Storage methods
     /**
      * Saves the image as jpeg
      *
@@ -447,6 +440,27 @@ class ImageHandler
 
 
     /**
+     * Saves the image as WebP
+     *
+     * @param string $newFilePath
+     *
+     * @throws \BadFunctionCallException
+     */
+    public function saveAsWebP ($newFilePath)
+    {
+        if (!file_exists('imagewebp'))
+        {
+            throw new \BadFunctionCallException("Storing images as WebP is not supported (you need to use PHP 5.5.)");
+        }
+
+        imagewebp($this->resource, $newFilePath);
+    }
+    //endregion
+
+
+
+    //region Validation
+    /**
      * Returns, if the size is a valid image dimension
      * @static
      *
@@ -469,9 +483,11 @@ class ImageHandler
 
         return 0 < (int) $size;
     }
+    //endregion
 
 
 
+    //region Getters for image characteristics
     /**
      * Returns the width of the image
      *
@@ -493,6 +509,18 @@ class ImageHandler
     {
         return imagesy($this->resource);
     }
+
+
+
+    /**
+     * Returns the original handler
+     * @return resource
+     */
+    public function getResource ()
+    {
+        return $this->resource;
+    }
+    //endregion
 
 
 
