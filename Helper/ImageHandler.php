@@ -60,7 +60,8 @@ class ImageHandler
      */
     private function prepareImageResource ()
     {
-        imagealphablending($this->resource, true);
+        imagealphablending($this->resource, false);
+        imagesavealpha($this->resource, true);
     }
 
 
