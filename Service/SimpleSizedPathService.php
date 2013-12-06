@@ -75,10 +75,16 @@ class SimpleSizedPathService extends SizedPathService
      * @param IdEntity $entity
      * @param string $size
      *
+     * @throws \InvalidArgumentException
      * @return string
      */
     protected function getFileName (IdEntity $entity, $size)
     {
+        if (is_null($entity->getId()))
+        {
+            throw new \InvalidArgumentException("No entity id given");
+        }
+
         if (is_null($this->hashPrefix))
         {
             return "{$size}-{$entity->getId()}.{$this->imageType}";
