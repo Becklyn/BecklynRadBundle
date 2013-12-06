@@ -82,7 +82,7 @@ class SimpleSizedPathService extends SizedPathService
     {
         if (is_null($entity->getId()))
         {
-            throw new \InvalidArgumentException("No entity id given");
+            throw new \InvalidArgumentException("Entity id must be set");
         }
 
         if (is_null($this->hashPrefix))
