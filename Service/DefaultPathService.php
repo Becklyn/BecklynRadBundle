@@ -67,6 +67,27 @@ abstract class DefaultPathService extends AbstractPathService
 
 
     /**
+     * Returns the image HTML properties
+     *
+     * @param IdEntity $entity
+     *
+     * @return string|null
+     */
+    public function getImageProperties (IdEntity $entity)
+    {
+        $imageSize = @getimagesize($this->getFileSystemPath($entity));
+
+        if (!is_array($imageSize))
+        {
+            return null;
+        }
+
+        return $imageSize[3];
+    }
+
+
+
+    /**
      * Returns the path to the storage
      *
      * @return string
@@ -82,5 +103,5 @@ abstract class DefaultPathService extends AbstractPathService
      *
      * @return string
      */
-     abstract protected function getFilename (IdEntity $entity);
+    abstract protected function getFilename (IdEntity $entity);
 }

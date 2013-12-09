@@ -69,6 +69,28 @@ abstract class SizedPathService extends AbstractPathService
 
 
     /**
+     * Returns the image HTML properties
+     *
+     * @param IdEntity $entity
+     * @param string $size
+     *
+     * @return string|null
+     */
+    public function getImageProperties (IdEntity $entity, $size)
+    {
+        $imageSize = @getimagesize($this->getFileSystemPath($entity, $size));
+
+        if (!is_array($imageSize))
+        {
+            return null;
+        }
+
+        return $imageSize[3];
+    }
+
+
+
+    /**
      * Returns the path to the storage
      *
      * @param string $size
@@ -87,5 +109,5 @@ abstract class SizedPathService extends AbstractPathService
      *
      * @return string
      */
-     abstract protected function getFilename (IdEntity $entity, $size);
+    abstract protected function getFilename (IdEntity $entity, $size);
 }
