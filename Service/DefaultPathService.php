@@ -82,7 +82,45 @@ abstract class DefaultPathService extends AbstractPathService
             return null;
         }
 
-        return $imageSize[3];
+        return [
+            "width"  => $imageSize[0],
+            "height" => $imageSize[1]
+        ];
+    }
+
+
+
+    /**
+     * Generates the full HTML tag
+     *
+     * @param IdEntity $entity
+     * @param array $htmlAttributes
+     *
+     * @return string
+     */
+    public function generateImageHtmlTag (IdEntity $entity, array $htmlAttributes = [])
+    {
+        $defaultAttributes = [
+            "src" => $this->getWebServerPath($entity)
+        ];
+
+        if (!is_null($imageProperties = $this->getImageProperties($entity)))
+        {
+            $defaultAttributes["width"]  = $imageProperties["width"];
+            $defaultAttributes["height"] = $imageProperties["height"];
+        }
+
+        $htmlAttributes = array_merge($htmlAttributes, $defaultAttributes);
+        $html = "<img ";
+
+        foreach ($htmlAttributes as $key => $value)
+        {
+            // simple call to directly escape html attributes' content
+            $html .= "{$key}=\"" . _twig_escape_html_attr_callback([$value]) . "\" ";
+        }
+
+        $html .= '/>';
+        return $html;
     }
 
 
