@@ -3,6 +3,7 @@
 namespace Becklyn\RadBundle\Service;
 
 use Becklyn\RadBundle\Entity\IdEntity;
+use Symfony\Bundle\TwigBundle\TwigEngine;
 
 /**
  * Implements a default path service, which eases the default use case of a file path handler
@@ -116,7 +117,7 @@ abstract class DefaultPathService extends AbstractPathService
         foreach ($htmlAttributes as $key => $value)
         {
             // simple call to directly escape html attributes' content
-            $html .= "{$key}=\"" . _twig_escape_html_attr_callback([$value]) . "\" ";
+            $html .= "{$key}=\"" . htmlspecialchars($value, ENT_QUOTES, "UTF-8") . "\" ";
         }
 
         $html .= '/>';

@@ -120,7 +120,7 @@ abstract class SizedPathService extends AbstractPathService
         foreach ($htmlAttributes as $key => $value)
         {
             // simple call to directly escape html attributes' content
-            $html .= "{$key}=\"" . _twig_escape_html_attr_callback([$value]) . "\" ";
+            $html .= "{$key}=\"" . htmlspecialchars($value, ENT_QUOTES, "UTF-8") . "\" ";
         }
 
         $html .= '/>';
