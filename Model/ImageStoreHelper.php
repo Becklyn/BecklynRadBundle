@@ -31,9 +31,11 @@ class ImageStoreHelper
 
 
     /**
+     * The default image quality
+     *
      * @var int
      */
-    private $imageQuality;
+    private $defaultImageQuality;
 
 
 
@@ -43,21 +45,21 @@ class ImageStoreHelper
      * @param array $imageSizes
      * @param SizedPathService $pathService
      * @param string $imageType
-     * @param int $imageQuality
+     * @param int $defaultImageQuality
      *
      * @throws \InvalidArgumentException if an invalid image type is given
      */
-    public function __construct (array $imageSizes, SizedPathService $pathService, $imageType = "jpg", $imageQuality = 85)
+    public function __construct (array $imageSizes, SizedPathService $pathService, $imageType = "jpg", $defaultImageQuality = 85)
     {
         if (!ImageHandler::isSupportedImageType($imageType))
         {
             throw new \InvalidArgumentException("Image type not supported: {$imageType}. Supported image types are: " . implode(", ", ImageHandler::getSupportedImageTypes()));
         }
 
-        $this->imageSizes   = $imageSizes;
-        $this->pathService  = $pathService;
-        $this->imageType    = $imageType;
-        $this->imageQuality = $imageQuality;
+        $this->imageSizes          = $imageSizes;
+        $this->pathService         = $pathService;
+        $this->imageType           = $imageType;
+        $this->defaultImageQuality = $defaultImageQuality;
     }
 
 
@@ -81,9 +83,12 @@ class ImageStoreHelper
             // check for the image directory
             $this->ensureDirectoryExistence(dirname($filePath));
 
+            // image quality
+            $imageQuality = isset($maximumDimensions["quality"]) ? $maximumDimensions["quality"] : $this->defaultImageQuality;
+
             // store image there
             $saveMethod = "saveAs" . ucwords($this->imageType);
-            $image->{$saveMethod}($filePath, $this->imageQuality);
+            $image->{$saveMethod}($filePath, $imageQuality);
         }
     }
 
