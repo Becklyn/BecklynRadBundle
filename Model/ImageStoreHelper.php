@@ -74,7 +74,7 @@ class ImageStoreHelper
     {
         foreach ($this->imageSizes as $size => $maximumDimensions)
         {
-            $image = new ImageHandler($sourceFilePath);
+            $image = ImageHandler::loadFromFileImage($sourceFilePath);
             $this->modifyImage($image, $maximumDimensions);
 
             // generate the filename
