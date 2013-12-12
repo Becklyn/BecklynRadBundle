@@ -68,27 +68,27 @@ class ImageStoreHelper
      * Stores all image versions
      *
      * @param IdEntity $entity
-     * @param string $filePath
+     * @param string $sourceFilePath
      */
-    public function storeImageVersions (IdEntity $entity, $filePath)
+    public function storeImageVersions (IdEntity $entity, $sourceFilePath)
     {
         foreach ($this->imageSizes as $size => $maximumDimensions)
         {
-            $image = ImageHandler::loadFromFileImage($filePath);
+            $image = new ImageHandler($sourceFilePath);
             $this->modifyImage($image, $maximumDimensions);
 
             // generate the filename
-            $filePath = $this->pathService->getFileSystemPath($entity, $size);
+            $destinationFilePath = $this->pathService->getFileSystemPath($entity, $size);
 
             // check for the image directory
-            $this->ensureDirectoryExistence(dirname($filePath));
+            $this->ensureDirectoryExistence(dirname($destinationFilePath));
 
             // image quality
             $imageQuality = isset($maximumDimensions["quality"]) ? $maximumDimensions["quality"] : $this->defaultImageQuality;
 
             // store image there
             $saveMethod = "saveAs" . ucwords($this->imageType);
-            $image->{$saveMethod}($filePath, $imageQuality);
+            $image->{$saveMethod}($destinationFilePath, $imageQuality);
         }
     }
 
@@ -131,6 +131,10 @@ class ImageStoreHelper
         else if (isset($imageData["maxHeight"]))
         {
             $image->scaleToHeight($imageData["maxHeight"]);
+        }
+        else if (isset($imageData["cropWidth"], $imageData["cropHeight"]))
+        {
+            $image->cropToSize($imageData["cropWidth"], $imageData["cropHeight"]);
         }
     }
 
