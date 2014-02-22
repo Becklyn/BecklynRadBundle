@@ -33,9 +33,18 @@ class SimpleRouteVoter extends ContainerAware implements VoterInterface
             return null;
         }
 
-        if (in_array($route, (array) $item->getExtra('routes', array()), true))
+        $itemRoutes = (array) $item->getExtra('routes', array());
+        if (in_array($route, $itemRoutes, true))
         {
             return true;
+        }
+
+        foreach ($itemRoutes as $itemRoute)
+        {
+            if (is_array($itemRoute) && isset($itemRoute["route"]) && ($route === $itemRoute["route"]))
+            {
+                return true;
+            }
         }
 
         return null;
