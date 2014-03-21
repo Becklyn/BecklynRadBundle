@@ -13,11 +13,25 @@ class SearchHelper
 
 
     /**
-     * @param string[] $searchFields
+     * Flag, whether the search is strict or not.
+     *
+     * strict     = must match ALL query tokens
+     * not strict = must match ANY query token
+     *
+     * @var bool
      */
-    public function __construct (array $searchFields)
+    private $strictSearch;
+
+
+
+    /**
+     * @param string[] $searchFields
+     * @param bool $strictSearch
+     */
+    public function __construct (array $searchFields, $strictSearch = true)
     {
         $this->searchFields = $searchFields;
+        $this->strictSearch = (bool) $strictSearch;
     }
 
 
@@ -36,21 +50,28 @@ class SearchHelper
 
         foreach ($tables as $table)
         {
-            foreach ($this->searchFields as $searchField)
+            foreach ($tokens as $tokenId => $token)
             {
-                foreach ($tokens as $tokenId => $token)
+                $alternativeFields = [];
+
+                foreach ($this->searchFields as $searchField)
                 {
-                    $where[] = $queryBuilder->expr()->like("{$table}.{$searchField}", ":token{$tokenId}");
+                    $alternativeFields[] = $queryBuilder->expr()->like("{$table}.{$searchField}", ":token{$tokenId}");
                 }
+
+                $where[] = call_user_func_array([$queryBuilder->expr(), 'orX'], $alternativeFields);
             }
         }
 
+        // bind parameters
         foreach ($tokens as $tokenId => $token)
         {
             $queryBuilder->setParameter(":token{$tokenId}", "%{$token}%");
         }
 
-        $queryBuilder->andWhere( call_user_func_array([$queryBuilder->expr(), "orX"], $where) );
+
+        $globalOperator = $this->strictSearch ? 'andX' : 'orX';
+        $queryBuilder->andWhere( call_user_func_array([$queryBuilder->expr(), $globalOperator], $where) );
     }
 
 
