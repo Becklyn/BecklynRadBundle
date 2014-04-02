@@ -38,7 +38,7 @@ class BaseController extends Controller
      */
     protected function addFlash ($message, $title = null, $type = "warning")
     {
-        $this->addFlashMessage($message, $type, $title);
+        $this->addFlashMessage($message, $type, "admin-general", $title);
     }
 
 
@@ -48,28 +48,25 @@ class BaseController extends Controller
      *
      * @param string $message
      * @param string $type
+     * @param string $flashBagName
      * @param null|string $title
      *
      * @throws \InvalidArgumentException
      */
-    protected function addFlashMessage ($message, $type = "success", $title = null)
+    protected function addFlashMessage ($message, $type = "success", $flashBagName = "messages", $title = null)
     {
-        $allowedTypes = ["warning", "error", "success", "info"];
+        $allowedTypes = ["warning", "error", "success", "info", "danger"];
 
         if (!in_array($type, $allowedTypes, true))
         {
             throw new \InvalidArgumentException("Unknown flash type: {$type}");
         }
 
-        $data = [
+        $this->get('session')->getFlashBag()->add($flashBagName, [
             "message" => $message,
             "title"   => $title,
             "type"    => $type
-        ];
-
-        /** @var $flashBag FlashBagInterface */
-        $flashBag = $this->get('session')->getFlashBag();
-        $flashBag->add("admin-general", $data);
+        ]);
     }
 
 
