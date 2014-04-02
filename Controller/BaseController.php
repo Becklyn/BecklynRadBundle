@@ -28,6 +28,8 @@ class BaseController extends Controller
     /**
      * Adds a flash message
      *
+     * @deprecated use {@link self::addFlashMessage()} instead
+     *
      * @param string $title
      * @param string $message
      * @param string $type
@@ -36,22 +38,41 @@ class BaseController extends Controller
      */
     protected function addFlash ($message, $title = null, $type = "warning")
     {
-        $allowedTypes = array("warning", "error", "success", "info");
+        $this->addFlashMessage($message, $type, $title);
+    }
+
+
+
+    /**
+     * Adds a flash message
+     *
+     * @param string $message
+     * @param string $type
+     * @param null|string $title
+     *
+     * @throws \InvalidArgumentException
+     */
+    protected function addFlashMessage ($message, $type = "success", $title = null)
+    {
+        $allowedTypes = ["warning", "error", "success", "info"];
+
         if (!in_array($type, $allowedTypes, true))
         {
             throw new \InvalidArgumentException("Unknown flash type: {$type}");
         }
 
-        $data = array(
+        $data = [
             "message" => $message,
             "title"   => $title,
             "type"    => $type
-        );
+        ];
 
         /** @var $flashBag FlashBagInterface */
         $flashBag = $this->get('session')->getFlashBag();
         $flashBag->add("admin-general", $data);
     }
+
+
 
     /**
      * Returns the form error mapping for easier marking of form errors in
@@ -81,5 +102,20 @@ class BaseController extends Controller
         }
 
         return $allErrors;
+    }
+
+
+
+    /**
+     * Wrapper for isGranted by the security context
+     *
+     * @param mixed      $attributes
+     * @param mixed|null $object
+     *
+     * @return bool
+     */
+    protected function isGranted ($attributes, $object = null)
+    {
+        return $this->get("security.context")->isGranted($attributes, $object = null);
     }
 }
