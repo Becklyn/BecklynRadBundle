@@ -124,6 +124,8 @@ abstract class DoctrineModel
 
         try {
             return (int) $queryBuilder->select("COUNT({$table})")
+                // reset parts which we don't need
+                ->resetDQLPart('orderBy')
                 ->getQuery()
                 ->getSingleScalarResult();
         }
