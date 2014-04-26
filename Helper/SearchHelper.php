@@ -56,7 +56,8 @@ class SearchHelper
 
                 foreach ($this->searchFields as $searchField)
                 {
-                    $alternativeFields[] = $queryBuilder->expr()->like("{$table}.{$searchField}", ":token{$tokenId}");
+                    $fieldName = (false !== strpos($searchField, ".")) ? $searchField : "{$table}.{$searchField}";
+                    $alternativeFields[] = $queryBuilder->expr()->like($fieldName, ":token{$tokenId}");
                 }
 
                 $where[] = call_user_func_array([$queryBuilder->expr(), 'orX'], $alternativeFields);
