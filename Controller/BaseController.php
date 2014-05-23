@@ -81,14 +81,16 @@ class BaseController extends Controller
      */
     protected function getFormErrorMapping (FormInterface $form)
     {
-        $allErrors = array();
+        $allErrors   = array();
+        $formName    = $form->getName();
+        $fieldPrefix = !empty($formName) ? "{$formName}_" : "";
 
         foreach ($form->all() as $children)
         {
             $errors = $children->getErrors();
             if (!empty($errors))
             {
-                $allErrors["{$form->getName()}_{$children->getName()}"] = array_map(
+                $allErrors["{$fieldPrefix}{$children->getName()}"] = array_map(
                     function (FormError $error)
                     {
                         return $error->getMessage();
