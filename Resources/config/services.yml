@@ -11,7 +11,7 @@ services:
 
 
     form.type_extension.help_message:
-        class: Becklyn\RadBundle\Type\Extension\HelpMessageTypeExtension
+        class: Becklyn\RadBundle\Type\Extension\GenericTypeExtension
         tags:
             - { name: form.type_extension, alias: form }
 
