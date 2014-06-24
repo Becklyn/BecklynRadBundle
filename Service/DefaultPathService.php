@@ -51,13 +51,13 @@ abstract class DefaultPathService extends AbstractPathService
     /**
      * Returns whether the file exists
      *
-     * @param IdEntity $entity
+     * @param IdEntity|null $entity
      *
      * @return bool
      */
-    public function hasFile (IdEntity $entity)
+    public function hasFile (IdEntity $entity = null)
     {
-        if (is_null($entity->getId()))
+        if ((null === $entity) || (null === $entity->getId()))
         {
             return false;
         }

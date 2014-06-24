@@ -51,14 +51,14 @@ abstract class SizedPathService extends AbstractPathService
     /**
      * Returns whether the file exists
      *
-     * @param IdEntity $entity
+     * @param IdEntity|null $entity
      * @param string $size
      *
      * @return bool
      */
-    public function hasFile (IdEntity $entity, $size)
+    public function hasFile (IdEntity $entity = null, $size)
     {
-        if (is_null($entity->getId()))
+        if ((null === $entity) || (null === $entity->getId()))
         {
             return false;
         }
