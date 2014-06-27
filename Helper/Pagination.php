@@ -5,8 +5,10 @@ namespace Becklyn\RadBundle\Helper;
 
 use Doctrine\ORM\QueryBuilder;
 
-class Pagination
+class Pagination implements \JsonSerializable
 {
+
+
     /**
      * The total number of items
      *
@@ -39,7 +41,6 @@ class Pagination
     private $minPage;
 
 
-
     /**
      * @param int $currentPage
      * @param int $itemsPerPage
@@ -53,7 +54,6 @@ class Pagination
     }
 
 
-
     /**
      * @return int
      */
@@ -61,7 +61,6 @@ class Pagination
     {
         return $this->itemsPerPage;
     }
-
 
 
     /**
@@ -73,7 +72,6 @@ class Pagination
     }
 
 
-
     /**
      * @param int $itemsPerPage
      *
@@ -81,7 +79,7 @@ class Pagination
      */
     public function setItemsPerPage ($itemsPerPage)
     {
-        $itemsPerPage = (int) $itemsPerPage;
+        $itemsPerPage = (int)$itemsPerPage;
 
         if (0 >= $itemsPerPage)
         {
@@ -92,7 +90,6 @@ class Pagination
     }
 
 
-
     /**
      * @param int $numberOfItems
      *
@@ -100,7 +97,7 @@ class Pagination
      */
     public function setNumberOfItems ($numberOfItems)
     {
-        $numberOfItems = (int) $numberOfItems;
+        $numberOfItems = (int)$numberOfItems;
 
         if ($numberOfItems < 0)
         {
@@ -109,7 +106,6 @@ class Pagination
 
         $this->numberOfItems = $numberOfItems;
     }
-
 
 
     /**
@@ -122,9 +118,8 @@ class Pagination
             return $this->minPage;
         }
 
-        return (int) (ceil($this->numberOfItems / $this->itemsPerPage) - 1 + $this->minPage);
+        return (int)(ceil($this->numberOfItems / $this->itemsPerPage) - 1 + $this->minPage);
     }
-
 
 
     /**
@@ -132,9 +127,8 @@ class Pagination
      */
     public function setMinPage ($minPage)
     {
-        $this->minPage = (int) $minPage;
+        $this->minPage = (int)$minPage;
     }
-
 
 
     /**
@@ -146,15 +140,13 @@ class Pagination
     }
 
 
-
     /**
      * @param int $currentPage
      */
     public function setCurrentPage ($currentPage)
     {
-        $this->currentPage = (int) $currentPage;
+        $this->currentPage = (int)$currentPage;
     }
-
 
 
     /**
@@ -171,7 +163,6 @@ class Pagination
     }
 
 
-
     /**
      * Returns, whether the given page is valid
      *
@@ -182,10 +173,9 @@ class Pagination
     private function isValidPage ($page)
     {
         return is_int($page)
-            && ($page >= $this->getMinPage())
-            && ($page <= $this->getMaxPage());
+        && ($page >= $this->getMinPage())
+        && ($page <= $this->getMaxPage());
     }
-
 
 
     /**
@@ -206,7 +196,6 @@ class Pagination
     }
 
 
-
     /**
      * Returns the previous page
      *
@@ -223,7 +212,6 @@ class Pagination
 
         return null;
     }
-
 
 
     /**
@@ -263,9 +251,9 @@ class Pagination
         }
 
         ksort($pages);
+
         return array_keys($pages);
     }
-
 
 
     /**
@@ -276,5 +264,22 @@ class Pagination
     public function getAllPaginationPages ()
     {
         return range($this->getMinPage(), $this->getMaxPage(), 1);
+    }
+
+
+    /**
+     * {@inheritdoc}
+     */
+    function jsonSerialize ()
+    {
+        return [
+            "itemsPerPage"  => $this->getItemsPerPage(),
+            "numberOfItems" => $this->getNumberOfItems(),
+            "nextPage"      => $this->getNextPage(),
+            "prevPage"      => $this->getPreviousPage(),
+            "maxPage"       => $this->getMaxPage(),
+            "minPage"       => $this->getMinPage(),
+            "currentPage"   => $this->getCurrentPage()
+        ];
     }
 }
