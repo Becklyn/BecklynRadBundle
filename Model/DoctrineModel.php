@@ -15,11 +15,12 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 abstract class DoctrineModel
 {
+
+
     /**
      * @var RegistryInterface
      */
     private $doctrine;
-
 
 
     /**
@@ -29,7 +30,6 @@ abstract class DoctrineModel
     {
         $this->doctrine = $doctrine;
     }
-
 
 
     /**
@@ -43,7 +43,6 @@ abstract class DoctrineModel
     }
 
 
-
     /**
      * Returns the entity manager
      *
@@ -53,7 +52,6 @@ abstract class DoctrineModel
     {
         return $this->doctrine->getManager();
     }
-
 
 
     /**
@@ -69,7 +67,6 @@ abstract class DoctrineModel
     }
 
 
-
     /**
      * Returns paginated content
      *
@@ -77,15 +74,16 @@ abstract class DoctrineModel
      * sub selects are not fully supported in DQL). You can pass an additional query builder just for the counting query
      * in $countQueryBuilder then (no need to set the select("COUNT(..)"), as this will be done automatically).
      *
-     * @param QueryBuilder $queryBuilder The query builder to retrieve the entities
-     * @param Pagination $pagination The pagination object
+     * @param QueryBuilder      $queryBuilder      The query builder to retrieve the entities
+     * @param Pagination        $pagination        The pagination object
      * @param QueryBuilder|null $countQueryBuilder The additional query builder, just for the count query
+     * @param int|null          $forceCount        if given, forces the count to be this exact value
      *
      * @return PaginatedList
      */
-    protected function getPaginatedResults (QueryBuilder $queryBuilder, Pagination $pagination, QueryBuilder $countQueryBuilder = null)
+    protected function getPaginatedResults (QueryBuilder $queryBuilder, Pagination $pagination, QueryBuilder $countQueryBuilder = null, $forceCount = null)
     {
-        $pagination->setNumberOfItems($this->getTotalNumberOfItems($queryBuilder, $countQueryBuilder));
+        $pagination->setNumberOfItems($this->getTotalNumberOfItems($queryBuilder, $countQueryBuilder, $forceCount));
         $offset = ($pagination->getCurrentPage() - $pagination->getMinPage()) * $pagination->getItemsPerPage();
 
         if (0 < $pagination->getNumberOfItems())
@@ -108,33 +106,38 @@ abstract class DoctrineModel
     }
 
 
-
     /**
      * Returns the number of total items in a query builder query
      *
      * @param QueryBuilder $queryBuilder
      * @param QueryBuilder $countQueryBuilder
+     * @param int|null     $forceCount if given, forces the count to be this exact value
      *
      * @return int
      */
-    private function getTotalNumberOfItems (QueryBuilder $queryBuilder, QueryBuilder $countQueryBuilder = null)
+    private function getTotalNumberOfItems (QueryBuilder $queryBuilder, QueryBuilder $countQueryBuilder = null, $forceCount = null)
     {
-        $queryBuilder = clone ($countQueryBuilder ?: $queryBuilder);
-        $table = current($queryBuilder->getRootAliases());
+        if (null !== $forceCount)
+        {
+            return (int) $forceCount;
+        }
 
-        try {
-            return (int) $queryBuilder->select("COUNT({$table})")
+        $queryBuilder = clone ($countQueryBuilder ?: $queryBuilder);
+        $table        = current($queryBuilder->getRootAliases());
+
+        try
+        {
+            return (int)$queryBuilder->select("COUNT({$table})")
                 // reset parts which we don't need
-                ->resetDQLPart('orderBy')
-                ->getQuery()
-                ->getSingleScalarResult();
+                                     ->resetDQLPart('orderBy')
+                                     ->getQuery()
+                                     ->getSingleScalarResult();
         }
         catch (NoResultException $e)
         {
             return 0;
         }
     }
-
 
 
     /**
