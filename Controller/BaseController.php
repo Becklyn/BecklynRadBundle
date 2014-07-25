@@ -63,10 +63,10 @@ class BaseController extends Controller
         }
 
         $this->get('session')->getFlashBag()->add($flashBagName, [
-            "message" => $message,
-            "title"   => $title,
-            "type"    => $type
-        ]);
+                "message" => $message,
+                "title"   => $title,
+                "type"    => $type
+            ]);
     }
 
 
@@ -95,8 +95,16 @@ class BaseController extends Controller
                     {
                         return $error->getMessage();
                     },
-                    $errors
+                    is_array($errors) ? $errors : iterator_to_array($errors)
                 );
+            }
+        }
+
+        if ($form->getErrors()->count() > 0)
+        {
+            foreach ($form->getErrors() as $topLevelError)
+            {
+                $allErrors["__global"][] = $topLevelError->getMessage();
             }
         }
 
