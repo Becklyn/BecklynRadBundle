@@ -5,6 +5,8 @@ namespace Becklyn\RadBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class BaseController extends Controller
 {
@@ -124,5 +126,33 @@ class BaseController extends Controller
     protected function isGranted ($attributes, $object = null)
     {
         return $this->get("security.context")->isGranted($attributes, $object = null);
+    }
+
+
+
+    /**
+     * Authenticates as the given user.
+     *
+     * @param UserInterface $user       the user to authenticate
+     * @param string        $firewall   the firewall to authenticate against
+     */
+    protected function authenticateUser (UserInterface $user, $firewall = "secured_area")
+    {
+        $token = new UsernamePasswordToken($user, null, "profile_area", $user->getRoles());
+        $this->get("security.context")->setToken($token);
+        $this->get("session")->set('_security_secured_area', serialize($token));
+    }
+
+
+
+    /**
+     * Deauthenticates the current user.
+     *
+     * Warning: it removes the complete session.
+     */
+    protected function deauthenticateUser ()
+    {
+        $this->get("security.context")->setToken(null);
+        $this->get("session")->invalidate();
     }
 }
