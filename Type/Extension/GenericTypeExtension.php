@@ -27,6 +27,7 @@ class GenericTypeExtension extends AbstractTypeExtension
     public function buildView (FormView $view, FormInterface $form, array $options)
     {
         $view->vars['cancelUrl'] = $form->getConfig()->getAttribute('cancelUrl');
+        $view->vars['help']      = $form->getConfig()->getAttribute('help');
     }
 
 
