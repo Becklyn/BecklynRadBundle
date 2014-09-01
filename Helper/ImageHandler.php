@@ -89,7 +89,21 @@ class ImageHandler
      */
     public static function loadFromUploadedFile (UploadedFile $upload)
     {
-        return self::loadFromFileImage($upload->getPathname());
+        return self::loadFromFileInfo($upload);
+    }
+
+
+
+    /**
+     * Loads a new image object from an uploaded file
+     *
+     * @static
+     * @param \SplFileInfo $file
+     * @return ImageHandler
+     */
+    public static function loadFromFileInfo (\SplFileInfo $file)
+    {
+        return self::loadFromFileImage($file->getPathname());
     }
 
 
