@@ -239,7 +239,9 @@ class Pagination implements \JsonSerializable
         }
 
         // add pages around current
-        for ($i = -$aroundCurrent; $i <= $aroundCurrent; $i++)
+        $fromCurrent = max($minPage, $this->getCurrentPage() - $aroundCurrent);
+        $toCurrent   = min($maxPage, $this->getCurrentPage() + $aroundCurrent);
+        for ($i = $fromCurrent; $i <= $toCurrent; $i++)
         {
             $addPage($this->getCurrentPage() + $i);
         }
