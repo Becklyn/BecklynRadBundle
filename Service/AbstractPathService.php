@@ -13,13 +13,13 @@ abstract class AbstractPathService
     /**
      * @var \Symfony\Component\HttpKernel\KernelInterface
      */
-    private $kernel;
+    protected $kernel;
 
 
     /**
      * @var \Symfony\Component\HttpFoundation\Request
      */
-    private $request;
+    protected $request;
 
 
 
