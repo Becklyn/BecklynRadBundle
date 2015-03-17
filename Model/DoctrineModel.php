@@ -2,6 +2,7 @@
 
 namespace Becklyn\RadBundle\Model;
 
+use Becklyn\RadBundle\Helper\ClassNameTransformer;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
@@ -15,12 +16,16 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 abstract class DoctrineModel
 {
-
-
     /**
      * @var RegistryInterface
      */
     private $doctrine;
+
+
+    /**
+     * @var ClassNameTransformer
+     */
+    private $classNameTransformer;
 
 
     /**
@@ -29,6 +34,7 @@ abstract class DoctrineModel
     public function __construct (RegistryInterface $doctrine)
     {
         $this->doctrine = $doctrine;
+        $this->classNameTransformer = new ClassNameTransformer();
     }
 
 
@@ -148,16 +154,14 @@ abstract class DoctrineModel
      */
     protected function getFullEntityName ()
     {
-        $classNameParts = explode("\\", trim(get_class($this), "\\"));
+        $modelClassName = get_class($this);
+        $entityClass = $this->classNameTransformer->transformModelToEntity($modelClassName);
 
-        if (count($classNameParts) !== 4)
+        if (!class_exists($entityClass))
         {
-            throw new \Exception("Cannot automatically generate entity name");
+            throw new \Exception("Cannot automatically generate entity name for model '{$modelClassName}'");
         }
 
-        $bundle = $classNameParts[0] . $classNameParts[1];
-        $entity = str_replace("Model", "", $classNameParts[3]);
-
-        return "{$bundle}:{$entity}";
+        return $entityClass;
     }
 }
