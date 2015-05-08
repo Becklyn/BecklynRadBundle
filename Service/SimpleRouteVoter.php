@@ -20,7 +20,8 @@ class SimpleRouteVoter extends ContainerAware implements VoterInterface
      */
     public function matchItem (ItemInterface $item)
     {
-        $request = $this->container->get("request");
+        $requestStack = $this->container->get("request_stack");
+        $request      = $requestStack->getCurrentRequest();
 
         if (is_null($request))
         {

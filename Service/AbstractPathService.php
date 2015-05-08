@@ -2,7 +2,7 @@
 
 namespace Becklyn\RadBundle\Service;
 
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
@@ -11,26 +11,26 @@ use Symfony\Component\HttpKernel\KernelInterface;
 abstract class AbstractPathService
 {
     /**
-     * @var \Symfony\Component\HttpKernel\KernelInterface
+     * @var KernelInterface
      */
     protected $kernel;
 
 
     /**
-     * @var \Symfony\Component\HttpFoundation\Request
+     * @var RequestStack
      */
-    protected $request;
+    protected $requestStack;
 
 
 
     /**
      * @param KernelInterface $kernel
-     * @param Request $request
+     * @param RequestStack    $requestStack
      */
-    public function __construct (KernelInterface $kernel, Request $request)
+    public function __construct (KernelInterface $kernel, RequestStack $requestStack)
     {
         $this->kernel = $kernel;
-        $this->request = $request;
+        $this->requestStack = $requestStack;
     }
 
 
@@ -54,6 +54,6 @@ abstract class AbstractPathService
      */
     protected function webServerRoot ()
     {
-        return $this->request->getBasePath();
+        return $this->requestStack->getCurrentRequest()->getBasePath();
     }
 }

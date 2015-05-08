@@ -4,9 +4,13 @@ namespace Becklyn\RadBundle\Service;
 
 use Becklyn\RadBundle\Entity\IdEntity;
 use Becklyn\RadBundle\Helper\ImageHandler;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
 
+
+/**
+ *
+ */
 class SimpleSizedPathService extends SizedPathService
 {
     /**
@@ -31,17 +35,17 @@ class SimpleSizedPathService extends SizedPathService
     /**
      * Constructs a new simple sized path service
      *
-     * @param \Symfony\Component\HttpKernel\KernelInterface $kernel
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param KernelInterface $kernel
+     * @param RequestStack $requestStack
      * @param string $relativePath the relative path from the web dir
      * @param string $imageType the image type, on of the ImageHandler::IMAGE_TYPE_* constants
      * @param string|null $hashPrefix prefix for file name hashing. No hashing is applied to the filename, if $hashPrefix is null
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct (KernelInterface $kernel, Request $request, $relativePath, $imageType, $hashPrefix = null)
+    public function __construct (KernelInterface $kernel, RequestStack $requestStack, $relativePath, $imageType, $hashPrefix = null)
     {
-        parent::__construct($kernel, $request);
+        parent::__construct($kernel, $requestStack);
 
         if (!ImageHandler::isSupportedImageType($imageType))
         {

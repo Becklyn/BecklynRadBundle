@@ -3,7 +3,7 @@
 namespace Becklyn\RadBundle\Service;
 
 use Becklyn\RadBundle\Entity\IdEntity;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
@@ -31,19 +31,18 @@ class SimplePathService extends DefaultPathService
     private $hashPrefix;
 
 
-
     /**
      *
      *
-     * @param \Symfony\Component\HttpKernel\KernelInterface $kernel
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param KernelInterface $kernel
+     * @param RequestStack $requestStack
      * @param string $relativePath the relative path from the web dir
      * @param string $fileExtension the file extension
      * @param string|null $hashPrefix prefix for file name hashing. No hashing is applied to the filename, if $hashPrefix is null
      */
-    public function __construct (KernelInterface $kernel, Request $request, $relativePath, $fileExtension, $hashPrefix = null)
+    public function __construct (KernelInterface $kernel, RequestStack $requestStack, $relativePath, $fileExtension, $hashPrefix = null)
     {
-        parent::__construct($kernel, $request);
+        parent::__construct($kernel, $requestStack);
 
         $this->fileExtension = ltrim($fileExtension, ".");
         $this->hashPrefix    = $hashPrefix;
