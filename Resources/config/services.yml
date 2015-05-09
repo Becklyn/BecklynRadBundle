@@ -10,20 +10,20 @@ services:
     #        - { name: knp_menu.voter}
 
 
-    form.type_extension.help_message:
+    becklyn_rad.form.type_extension.help_message:
         class: Becklyn\RadBundle\Type\Extension\GenericTypeExtension
         tags:
             - { name: form.type_extension, alias: form }
 
 
-    twig.extension.becklyn.rad.pagination:
+    becklyn_rad.twig.pagination:
         class: Becklyn\RadBundle\Service\PaginationTwigExtension
         tags:
             - { name: twig.extension }
         arguments: [@service_container]
 
 
-    twig.extension.becklyn.rad.utils:
+    becklyn_rad.twig.utils:
         class: Becklyn\RadBundle\Service\UtilsTwigExtension
         tags:
             - { name: twig.extension }
@@ -35,6 +35,7 @@ services:
         tags:
             - { name: kernel.event_subscriber }
         arguments: [@service_container]
+
 
     becklyn_rad.view.root_template_guesser:
         class: Becklyn\RadBundle\View\RootTemplateGuesser
