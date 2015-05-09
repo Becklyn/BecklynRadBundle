@@ -18,23 +18,23 @@ services:
 
     becklyn_rad.twig.pagination:
         class: Becklyn\RadBundle\Service\PaginationTwigExtension
+        arguments: [@service_container]
         tags:
             - { name: twig.extension }
-        arguments: [@service_container]
 
 
     becklyn_rad.twig.utils:
         class: Becklyn\RadBundle\Service\UtilsTwigExtension
+        arguments: [@service_container]
         tags:
             - { name: twig.extension }
-        arguments: [@service_container]
 
 
     becklyn_rad.listener.root_template:
         class: Becklyn\RadBundle\EventListener\RootTemplateListener
+        arguments: [@service_container]
         tags:
             - { name: kernel.event_subscriber }
-        arguments: [@service_container]
 
 
     becklyn_rad.view.root_template_guesser:
