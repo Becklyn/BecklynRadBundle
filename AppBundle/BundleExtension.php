@@ -3,6 +3,7 @@
 namespace Becklyn\RadBundle\AppBundle;
 
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -61,5 +62,25 @@ class BundleExtension extends Extension
 
         // build container content
         $this->bundle->buildContainer($processedConfig, $container);
+    }
+
+
+
+    /**
+     * @inheritdoc
+     *
+     * @return string
+     * @throws BadMethodCallException
+     */
+    public function getAlias ()
+    {
+        $className = get_class($this->bundle);
+        if (substr($className, -6) != 'Bundle') {
+            throw new BadMethodCallException('This extension does not follow the naming convention; you must overwrite the getAlias() method.');
+        }
+
+        $classBaseName = substr(strrchr($className, '\\'), 1, -6);
+
+        return Container::underscore($classBaseName);
     }
 }
