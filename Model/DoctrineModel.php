@@ -180,4 +180,42 @@ abstract class DoctrineModel
 
         return $entityClass;
     }
+
+
+
+    /**
+     * Adds the given entity
+     *
+     * @param object $entity
+     */
+    protected function addEntity ($entity)
+    {
+        $this->getEntityManager()->persist($entity);
+        $this->flushEntity($entity);
+    }
+
+
+
+    /**
+     * Removes the given entity
+     *
+     * @param object $entity
+     */
+    protected function removeEntity ($entity)
+    {
+        $this->getEntityManager()->remove($entity);
+        $this->flushEntity($entity);
+    }
+
+
+
+    /**
+     * Flushes the given entity
+     *
+     * @param object $entity
+     */
+    protected function flushEntity ($entity)
+    {
+        $this->getEntityManager()->flush($entity);
+    }
 }
