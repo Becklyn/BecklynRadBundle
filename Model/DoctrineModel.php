@@ -44,11 +44,19 @@ abstract class DoctrineModel
     /**
      * Returns the repository
      *
+     * @param null|string $persistentObject you can specify which repository you want to load. Defaults to the automatically derived one
+     *
      * @return \Doctrine\ORM\EntityRepository
+     * @throws \Exception
      */
-    protected function getRepository ()
+    protected function getRepository ($persistentObject = null)
     {
-        return $this->doctrine->getRepository($this->getFullEntityName());
+        if (null === $persistentObject)
+        {
+            $persistentObject = $this->getFullEntityName();
+        }
+
+        return $this->doctrine->getRepository($persistentObject);
     }
 
 
