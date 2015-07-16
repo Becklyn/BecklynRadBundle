@@ -11,6 +11,7 @@ use Becklyn\RadBundle\Helper\PaginatedList;
 use Becklyn\RadBundle\Helper\Pagination;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+
 /**
  * Base model for database accesses
  */
@@ -28,14 +29,16 @@ abstract class DoctrineModel
     private $classNameTransformer;
 
 
+
     /**
      * @param RegistryInterface $doctrine
      */
     public function __construct (RegistryInterface $doctrine)
     {
-        $this->doctrine = $doctrine;
+        $this->doctrine             = $doctrine;
         $this->classNameTransformer = new ClassNameTransformer();
     }
+
 
 
     /**
@@ -49,6 +52,7 @@ abstract class DoctrineModel
     }
 
 
+
     /**
      * Returns the entity manager
      *
@@ -58,6 +62,7 @@ abstract class DoctrineModel
     {
         return $this->doctrine->getManager();
     }
+
 
 
     /**
@@ -71,6 +76,7 @@ abstract class DoctrineModel
     {
         return is_int($id) || ctype_digit($id);
     }
+
 
 
     /**
@@ -102,7 +108,7 @@ abstract class DoctrineModel
         }
         else
         {
-            $list = array();
+            $list = [];
         }
 
         return new PaginatedList(
@@ -110,6 +116,7 @@ abstract class DoctrineModel
             $pagination
         );
     }
+
 
 
     /**
@@ -125,7 +132,7 @@ abstract class DoctrineModel
     {
         if (null !== $forceCount)
         {
-            return (int) $forceCount;
+            return (int)$forceCount;
         }
 
         $queryBuilder = clone ($countQueryBuilder ?: $queryBuilder);
@@ -146,6 +153,7 @@ abstract class DoctrineModel
     }
 
 
+
     /**
      * Returns the entity name
      *
@@ -155,7 +163,7 @@ abstract class DoctrineModel
     protected function getFullEntityName ()
     {
         $modelClassName = get_class($this);
-        $entityClass = $this->classNameTransformer->transformModelToEntity($modelClassName);
+        $entityClass    = $this->classNameTransformer->transformModelToEntity($modelClassName);
 
         if (!class_exists($entityClass))
         {
