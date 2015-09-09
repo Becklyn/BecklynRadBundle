@@ -6,8 +6,12 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
+/**
+ *
+ */
 class GenericTypeExtension extends AbstractTypeExtension
 {
     /**
@@ -33,9 +37,9 @@ class GenericTypeExtension extends AbstractTypeExtension
 
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
-    public function setDefaultOptions (OptionsResolverInterface $resolver)
+    public function configureOptions (OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'help'      => null,
