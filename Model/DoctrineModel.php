@@ -133,7 +133,7 @@ abstract class DoctrineModel
 
         try
         {
-            return (int)$queryBuilder->select("COUNT({$table})")
+            return (int) $queryBuilder->select($queryBuilder->expr()->countDistinct($table))
                 // reset parts which we don't need
                                      ->resetDQLPart('orderBy')
                                      ->getQuery()
