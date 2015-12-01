@@ -54,6 +54,7 @@ class SortableHandler
             {
                 $queryParts[] = "t.{$key} = :where_value_{$index}";
                 $queryBuild->setParameter("where_value_{$index}", $value);
+                $index++;
             }
 
             $queryBuild->where(implode(" AND ", $queryParts));
