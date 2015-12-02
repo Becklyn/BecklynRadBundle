@@ -24,20 +24,7 @@ class BaseController extends Controller
         $formName    = $form->getName();
         $fieldPrefix = !empty($formName) ? "{$formName}_" : "";
 
-        foreach ($form->all() as $children)
-        {
-            $errors = $children->getErrors();
-            if (!empty($errors))
-            {
-                $allErrors["{$fieldPrefix}{$children->getName()}"] = array_map(
-                    function (FormError $error)
-                    {
-                        return $error->getMessage();
-                    },
-                    is_array($errors) ? $errors : iterator_to_array($errors)
-                );
-            }
-        }
+        $this->addChildErrors($form, $fieldPrefix, $allErrors);
 
         if ($form->getErrors()->count() > 0)
         {
@@ -48,6 +35,37 @@ class BaseController extends Controller
         }
 
         return $allErrors;
+    }
+
+
+
+    /**
+     * Adds all child errors to the mapping of errors
+     *
+     * @param FormInterface $form
+     * @param string        $fieldPrefix
+     * @param array         $allErrors
+     */
+    private function addChildErrors (FormInterface $form, $fieldPrefix, array &$allErrors)
+    {
+        foreach ($form->all() as $children)
+        {
+            $childErrors = $children->getErrors();
+            $fieldName = ltrim("{$fieldPrefix}{$children->getName()}");
+
+            if (0 < count($childErrors))
+            {
+                $allErrors[$fieldName] = array_map(
+                    function (FormError $error)
+                    {
+                        return $error->getMessage();
+                    },
+                    is_array($childErrors) ? $childErrors : iterator_to_array($childErrors)
+                );
+            }
+
+            $this->addChildErrors($children, "{$fieldName}_", $allErrors);
+        }
     }
 
 
