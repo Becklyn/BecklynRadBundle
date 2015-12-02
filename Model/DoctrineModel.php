@@ -175,7 +175,9 @@ abstract class DoctrineModel
 
         if (!class_exists($entityClass))
         {
-            throw new \Exception("Cannot automatically generate entity name for model '{$modelClassName}'");
+            throw new \Exception(
+                sprintf("Cannot automatically generate entity name for model '%s', guessed '%s'.", $modelClassName, $entityClass)
+            );
         }
 
         return $entityClass;
