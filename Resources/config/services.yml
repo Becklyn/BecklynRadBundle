@@ -5,7 +5,7 @@ services:
     #knp_menu.voter.router:
     #    class: Becklyn\RadBundle\Service\SimpleRouteVoter
     #    calls:
-    #        - [ setContainer, [@service_container] ]
+    #        - [ setContainer, ["@service_container"] ]
     #    tags:
     #        - { name: knp_menu.voter}
 
@@ -18,21 +18,21 @@ services:
 
     becklyn_rad.twig.pagination:
         class: Becklyn\RadBundle\Service\PaginationTwigExtension
-        arguments: [@service_container]
+        arguments: ["@service_container"]
         tags:
             - { name: twig.extension }
 
 
     becklyn_rad.twig.utils:
         class: Becklyn\RadBundle\Service\UtilsTwigExtension
-        arguments: [@service_container]
+        arguments: ["@service_container"]
         tags:
             - { name: twig.extension }
 
 
     becklyn_rad.listener.root_template:
         class: Becklyn\RadBundle\EventListener\RootTemplateListener
-        arguments: [@service_container]
+        arguments: ["@service_container"]
         tags:
             - { name: kernel.event_subscriber }
 
