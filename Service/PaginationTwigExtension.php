@@ -38,7 +38,7 @@ class PaginationTwigExtension extends AbstractTwigExtension
     public function getFunctions ()
     {
         return array(
-            "pagination" => new \Twig_SimpleFunction(array($this, "pagination"), array("is_safe" => array("html")))
+            new \Twig_SimpleFunction("pagination", array($this, "pagination"), array("is_safe" => array("html"))),
         );
     }
 }
