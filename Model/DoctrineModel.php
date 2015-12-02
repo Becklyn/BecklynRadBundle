@@ -150,9 +150,9 @@ abstract class DoctrineModel
         {
             return (int) $queryBuilder->select($queryBuilder->expr()->countDistinct($table))
                 // reset parts which we don't need
-                                     ->resetDQLPart('orderBy')
-                                     ->getQuery()
-                                     ->getSingleScalarResult();
+                ->resetDQLPart('orderBy')
+                ->getQuery()
+                ->getSingleScalarResult();
         }
         catch (NoResultException $e)
         {
