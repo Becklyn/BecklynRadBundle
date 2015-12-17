@@ -13,7 +13,7 @@ services:
     becklyn_rad.form.type_extension.help_message:
         class: Becklyn\RadBundle\Type\Extension\GenericTypeExtension
         tags:
-            - { name: form.type_extension, extended_type: form }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
 
 
     becklyn_rad.twig.pagination:
