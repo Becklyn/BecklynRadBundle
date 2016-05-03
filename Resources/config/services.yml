@@ -9,8 +9,7 @@ services:
 
 
     becklyn_rad.twig.utils:
-        class: Becklyn\RadBundle\Service\UtilsTwigExtension
-        arguments: ["@service_container"]
+        class: Becklyn\RadBundle\Twig\UtilsTwigExtension
         tags:
             - { name: twig.extension }
 

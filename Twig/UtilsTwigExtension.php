@@ -1,6 +1,6 @@
 <?php
 
-namespace Becklyn\RadBundle\Service;
+namespace Becklyn\RadBundle\Twig;
 
 class UtilsTwigExtension extends AbstractTwigExtension
 {
