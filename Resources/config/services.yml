@@ -16,13 +16,6 @@ services:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
 
 
-    becklyn_rad.twig.pagination:
-        class: Becklyn\RadBundle\Service\PaginationTwigExtension
-        arguments: ["@service_container"]
-        tags:
-            - { name: twig.extension }
-
-
     becklyn_rad.twig.utils:
         class: Becklyn\RadBundle\Service\UtilsTwigExtension
         arguments: ["@service_container"]
