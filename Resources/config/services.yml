@@ -2,12 +2,14 @@ parameters:
 
 services:
 
+    # Form
     becklyn_rad.form.type_extension.help_message:
         class: Becklyn\RadBundle\Form\Type\HelpMessageFormTypeExtension
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
 
 
+    # Twig
     becklyn_rad.twig.utils:
         class: Becklyn\RadBundle\Twig\UtilsTwigExtension
         tags:
