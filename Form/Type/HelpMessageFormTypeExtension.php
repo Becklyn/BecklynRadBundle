@@ -1,8 +1,8 @@
 <?php
 
-namespace Becklyn\RadBundle\Type\Extension;
+namespace Becklyn\RadBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -13,16 +13,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  *
  */
-class GenericTypeExtension extends AbstractTypeExtension
+class HelpMessageFormTypeExtension extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm (FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
         $builder->setAttribute('help', $options['help']);
-        $builder->setAttribute('cancelUrl', $options['cancelUrl']);
-        $builder->setAttribute('cancelLabel', $options['cancelLabel']);
     }
 
 
@@ -32,22 +31,22 @@ class GenericTypeExtension extends AbstractTypeExtension
      */
     public function buildView (FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['cancelUrl']   = $form->getConfig()->getAttribute('cancelUrl');
-        $view->vars['cancelLabel'] = $form->getConfig()->getAttribute('cancelLabel');
-        $view->vars['help']        = $form->getConfig()->getAttribute('help');
+        parent::buildView($view, $form, $options);
+
+        $view->vars['help'] = $form->getConfig()->getAttribute('help');
     }
 
 
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function configureOptions (OptionsResolver $resolver)
     {
+        parent::configureOptions($resolver);
+
         $resolver->setDefaults([
             'help'        => null,
-            'cancelUrl'   => null,
-            'cancelLabel' => null,
         ]);
     }
 
