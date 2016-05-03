@@ -23,12 +23,3 @@ services:
             - { name: twig.extension }
 
 
-    becklyn_rad.listener.root_template:
-        class: Becklyn\RadBundle\EventListener\RootTemplateListener
-        arguments: ["@service_container"]
-        tags:
-            - { name: kernel.event_subscriber }
-
-
-    becklyn_rad.view.root_template_guesser:
-        class: Becklyn\RadBundle\View\RootTemplateGuesser
