@@ -1,14 +1,6 @@
 parameters:
 
 services:
-    # override default voter
-    #knp_menu.voter.router:
-    #    class: Becklyn\RadBundle\Service\SimpleRouteVoter
-    #    calls:
-    #        - [ setContainer, ["@service_container"] ]
-    #    tags:
-    #        - { name: knp_menu.voter}
-
 
     becklyn_rad.form.type_extension.help_message:
         class: Becklyn\RadBundle\Form\Type\HelpMessageFormTypeExtension
