@@ -1,9 +1,13 @@
 <?php
 
-namespace Becklyn\RadBundle\Helper;
+namespace Becklyn\RadBundle\Search;
 
 use Doctrine\ORM\QueryBuilder;
 
+
+/**
+ * 
+ */
 class SearchHelper
 {
     /**

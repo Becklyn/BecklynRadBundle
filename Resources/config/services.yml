@@ -1,30 +1,33 @@
 parameters:
 
 services:
-    # override default voter
-    #knp_menu.voter.router:
-    #    class: Becklyn\RadBundle\Service\SimpleRouteVoter
-    #    calls:
-    #        - [ setContainer, [@service_container] ]
-    #    tags:
-    #        - { name: knp_menu.voter}
 
-
-    form.type_extension.help_message:
-        class: Becklyn\RadBundle\Type\Extension\GenericTypeExtension
+    # Form
+    becklyn_rad.form.type_extension.help_message:
+        class: Becklyn\RadBundle\Form\Type\HelpMessageFormTypeExtension
         tags:
-            - { name: form.type_extension, alias: form }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
 
 
-    twig.extension.becklyn.rad.pagination:
-        class: Becklyn\RadBundle\Service\PaginationTwigExtension
+    # Twig
+    becklyn_rad.twig.utils:
+        class: Becklyn\RadBundle\Twig\UtilsTwigExtension
+        arguments:
+            - "@becklyn_rad.monitoring"
         tags:
             - { name: twig.extension }
-        arguments: [@service_container]
 
 
-    twig.extension.becklyn.rad.utils:
-        class: Becklyn\RadBundle\Service\UtilsTwigExtension
-        tags:
-            - { name: twig.extension }
-        arguments: [@service_container]
+    # Security / Authentication
+    becklyn_rad.authentication_helper:
+        class: Becklyn\RadBundle\Security\AuthenticationHelper
+        arguments:
+            - "@security.token_storage"
+            - "@session"
+
+
+    # Monitoring
+    becklyn_rad.monitoring:
+        class: Becklyn\RadBundle\Monitoring\MonitoringHandler
+        arguments:
+            - ~

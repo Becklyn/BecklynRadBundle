@@ -1,9 +1,28 @@
 <?php
 
-namespace Becklyn\RadBundle\Service;
+namespace Becklyn\RadBundle\Twig;
+
+use Becklyn\RadBundle\Monitoring\MonitoringHandler;
+
 
 class UtilsTwigExtension extends AbstractTwigExtension
 {
+    /**
+     * @var MonitoringHandler
+     */
+    private $monitoringHandler;
+
+
+
+    /**
+     * @param MonitoringHandler $monitoringHandler
+     */
+    public function __construct (MonitoringHandler $monitoringHandler)
+    {
+        $this->monitoringHandler = $monitoringHandler;
+    }
+
+
     /**
      * Renders a date as a HTML5 <time> tag
      *
@@ -24,32 +43,6 @@ class UtilsTwigExtension extends AbstractTwigExtension
     }
 
 
-
-    /**
-     * Pluralizes the text
-     *
-     * @param int $amount
-     * @param string $singleText
-     * @param string $multipleText
-     *
-     * @return string
-     */
-    public function pluralize ($amount, $singleText, $multipleText = null)
-    {
-        if (is_null($multipleText))
-        {
-            $multipleText = "{$singleText}er";
-        }
-
-        if (1 === $amount)
-        {
-            return "{$amount} {$singleText}";
-        }
-
-        return "{$amount} {$multipleText}";
-    }
-
-
     /**
      * Returns all defined functions
      *
@@ -59,7 +52,7 @@ class UtilsTwigExtension extends AbstractTwigExtension
     {
         return [
             new \Twig_SimpleFunction("renderDateTime", [$this, "renderDateTime"], ["is_safe" => ["html"]]),
-            new \Twig_SimpleFunction("pluralize", [$this, "pluralize"]),
+            new \Twig_SimpleFunction("monitoringCode", [$this->monitoringHandler, "generateMonitoringHtml"], ["is_safe" => ["html"]]),
         ];
     }
 }

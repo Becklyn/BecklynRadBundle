@@ -1,24 +1,21 @@
 {
-    "name":         "becklyn/rad-bundle",
-    "description":  "This bundle provides basic components",
-    "keywords":     ["rad", "symfony"],
-    "type":         "symfony-bundle",
-    "homepage":     "https://github.com/Becklyn/BecklynRadBundle",
-    "license":      "BSD-3-Clause",
-    "authors":      [
+    "name": "becklyn/rad-bundle",
+    "description": "This bundle provides basic components",
+    "type": "symfony-bundle",
+    "homepage": "https://github.com/Becklyn/BecklynRadBundle",
+    "license": "BSD-3-Clause",
+    "authors": [
         {
-            "name":     "Becklyn GmbH",
+            "name":     "Becklyn Studios",
             "homepage": "http://becklyn.com/"
         }
     ],
-    "require":      {
-        "php": ">=5.4.0",
-        "symfony/framework-bundle": "^2.0|^3.0",
-        "twig/twig": "~1.15"
+    "require": {
+        "php": "^5.4|^7.0",
+        "symfony/symfony": "^2.8|^3.0",
+        "twig/twig": "^1.15"
     },
-    "autoload":     {
-        "psr-0": { "Becklyn\\RadBundle": "" }
-    },
-    "target-dir": "Becklyn/RadBundle",
-    "minimum-stability": "dev"
+    "autoload": {
+        "psr-4": { "Becklyn\\RadBundle\\": "" }
+    }
 }
