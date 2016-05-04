@@ -35,6 +35,11 @@ trait RenderTwigTrait
      */
     public function render ($name, array $context = [])
     {
+        if (null === $this->twig)
+        {
+            throw new \RuntimeException("No twig instance set for rendering templates.");
+        }
+
         return $this->twig->render($name, $context);
     }
 }
