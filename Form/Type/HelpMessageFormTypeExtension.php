@@ -2,7 +2,7 @@
 
 namespace Becklyn\RadBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  *
  */
-class HelpMessageFormTypeExtension extends AbstractType
+class HelpMessageFormTypeExtension extends AbstractTypeExtension
 {
     /**
      * {@inheritdoc}
