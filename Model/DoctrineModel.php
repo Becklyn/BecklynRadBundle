@@ -130,14 +130,15 @@ abstract class DoctrineModel
      */
     protected function removeEntity ($entity)
     {
-        $this->getEntityManager()->remove($entity);
-        $this->flushEntity($entity);
+        $entityManager = $this->getEntityManager();
+        $entityManager->remove($entity);
+        $entityManager->flush($entity);
     }
 
 
 
     /**
-     * Flushes the given entity
+     * Flushes the given entity, only called for adding and updating entities
      *
      * @param object $entity
      */
