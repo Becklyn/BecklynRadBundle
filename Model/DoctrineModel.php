@@ -130,6 +130,22 @@ abstract class DoctrineModel
      */
     protected function removeEntity ($entity)
     {
+        // skip if the item was already removed
+        if (null === $entity)
+        {
+            return;
+        }
+
+        if (is_array($entity))
+        {
+            foreach ($entity as $singleEntity)
+            {
+                $this->removeEntity($singleEntity);
+            }
+
+            return;
+        }
+
         $entityManager = $this->getEntityManager();
         $entityManager->remove($entity);
         $entityManager->flush($entity);
