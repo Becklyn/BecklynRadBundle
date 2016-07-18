@@ -4,6 +4,7 @@ namespace Becklyn\RadBundle\Entity\Extension;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  *
  */
@@ -11,7 +12,6 @@ trait EntityTimestamps
 {
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="time_created", type="datetime")
      */
     private $timeCreated;
@@ -19,7 +19,6 @@ trait EntityTimestamps
 
     /**
      * @var \DateTime|null
-     *
      * @ORM\Column(name="time_modified", type="datetime", nullable=true)
      */
     private $timeModified;
