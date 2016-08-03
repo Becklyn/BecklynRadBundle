@@ -1,6 +1,6 @@
 <?php
 
-namespace Becklyn\RadBundle\Entity\Extension;
+namespace Becklyn\RadBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  *
  */
-trait EntityTimestamps
+trait TimestampsTrait
 {
     /**
      * @var \DateTime
@@ -26,9 +26,9 @@ trait EntityTimestamps
 
 
     /**
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
-    public function getTimeCreated ()
+    public function getTimeCreated () : \DateTimeInterface
     {
         return $this->timeCreated;
     }
@@ -36,7 +36,7 @@ trait EntityTimestamps
 
 
     /**
-     * @return \DateTime|null
+     * @return \DateTimeInterface|null
      */
     public function getTimeModified ()
     {
@@ -51,5 +51,17 @@ trait EntityTimestamps
     public function setTimeModified (\DateTime $timeModified)
     {
         $this->timeModified = $timeModified;
+    }
+
+
+
+    /**
+     * Returns the most recent modification time
+     *
+     * @return \DateTimeInterface
+     */
+    public function getLastModificationTime () : \DateTimeInterface
+    {
+        return $this->getTimeModified() ?? $this->getTimeCreated();
     }
 }
