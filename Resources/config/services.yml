@@ -12,8 +12,6 @@ services:
     # Twig
     becklyn_rad.twig.utils:
         class: Becklyn\RadBundle\Twig\UtilsTwigExtension
-        arguments:
-            - "@becklyn_rad.monitoring"
         tags:
             - { name: twig.extension }
 
@@ -24,10 +22,3 @@ services:
         arguments:
             - "@security.token_storage"
             - "@session"
-
-
-    # Monitoring
-    becklyn_rad.monitoring:
-        class: Becklyn\RadBundle\Monitoring\MonitoringHandler
-        arguments:
-            - ~

@@ -2,27 +2,12 @@
 
 namespace Becklyn\RadBundle\Twig;
 
-use Becklyn\RadBundle\Monitoring\MonitoringHandler;
 
-
+/**
+ *
+ */
 class UtilsTwigExtension extends AbstractTwigExtension
 {
-    /**
-     * @var MonitoringHandler
-     */
-    private $monitoringHandler;
-
-
-
-    /**
-     * @param MonitoringHandler $monitoringHandler
-     */
-    public function __construct (MonitoringHandler $monitoringHandler)
-    {
-        $this->monitoringHandler = $monitoringHandler;
-    }
-
-
     /**
      * Renders a date as a HTML5 <time> tag
      *
@@ -52,7 +37,6 @@ class UtilsTwigExtension extends AbstractTwigExtension
     {
         return [
             new \Twig_SimpleFunction("renderDateTime", [$this, "renderDateTime"], ["is_safe" => ["html"]]),
-            new \Twig_SimpleFunction("monitoringCode", [$this->monitoringHandler, "generateMonitoringHtml"], ["is_safe" => ["html"]]),
         ];
     }
 }
