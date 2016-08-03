@@ -1,6 +1,6 @@
 <?php
 
-namespace Becklyn\RadBundle\Entity\Extension;
+namespace Becklyn\RadBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,13 +8,14 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  *
  */
-trait EntityId
+trait IdTrait
 {
     /**
-     * @var int
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(name="id", type="integer")
+     *
+     * @var int
      */
     private $id;
 
@@ -23,7 +24,7 @@ trait EntityId
     /**
      * @return int
      */
-    public function getId ()
+    public function getId () : int
     {
         return $this->id;
     }

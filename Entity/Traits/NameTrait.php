@@ -1,6 +1,6 @@
 <?php
 
-namespace Becklyn\RadBundle\Entity\Extension;
+namespace Becklyn\RadBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  *
  */
-trait EntityName
+trait NameTrait
 {
     /**
      * @var string
