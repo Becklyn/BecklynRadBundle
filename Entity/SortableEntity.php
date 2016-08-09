@@ -9,7 +9,7 @@ interface SortableEntity extends IdEntity
      *
      * @return int
      */
-    public function getSortOrder ();
+    public function getSortOrder () : int;
 
 
 
@@ -18,5 +18,5 @@ interface SortableEntity extends IdEntity
      *
      * @param int $sortOrder
      */
-    public function setSortOrder ($sortOrder);
+    public function setSortOrder (int $sortOrder);
 }
