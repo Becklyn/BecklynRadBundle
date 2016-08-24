@@ -2,7 +2,6 @@
 
 namespace Becklyn\RadBundle\Twig;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  *

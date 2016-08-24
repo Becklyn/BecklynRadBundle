@@ -3,12 +3,6 @@
 namespace Becklyn\RadBundle\Model;
 
 use Becklyn\RadBundle\Helper\ClassNameTransformer;
-use Doctrine\Bundle\DoctrineBundle\Registry;
-use Doctrine\ORM\NoResultException;
-use Doctrine\ORM\QueryBuilder;
-use Doctrine\ORM\Tools\Pagination\Paginator;
-use Becklyn\RadBundle\Helper\PaginatedList;
-use Becklyn\RadBundle\Helper\Pagination;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 
