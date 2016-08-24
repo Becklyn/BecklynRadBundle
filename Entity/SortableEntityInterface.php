@@ -2,7 +2,11 @@
 
 namespace Becklyn\RadBundle\Entity;
 
-interface SortableEntity extends IdEntity
+
+/**
+ *
+ */
+interface SortableEntityInterface extends IdEntityInterface
 {
     /**
      * Returns the sort order

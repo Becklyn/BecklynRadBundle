@@ -2,10 +2,11 @@
 
 namespace Becklyn\RadBundle\Entity;
 
+
 /**
  *
  */
-interface IdEntity
+interface IdEntityInterface
 {
     /**
      * Returns the id of the entity

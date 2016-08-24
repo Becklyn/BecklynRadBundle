@@ -3,7 +3,7 @@
 namespace Becklyn\RadBundle\Model;
 
 use Doctrine\ORM\EntityRepository;
-use Becklyn\RadBundle\Entity\SortableEntity;
+use Becklyn\RadBundle\Entity\SortableEntityInterface;
 
 class SortableHandler
 {
@@ -71,10 +71,12 @@ class SortableHandler
 
     /**
      * Returns all entities in the correct order
+
      *
-     * @param array $where
+*@param array $where
+
      *
-     * @return SortableEntity[]
+*@return SortableEntityInterface[]
      */
     private function getAllEntities (array $where = array())
     {
@@ -95,9 +97,10 @@ class SortableHandler
 
     /**
      * Prepends the given entities to the list
+
      *
-     * @param SortableEntity[] $prepended
-     * @param array $where
+*@param SortableEntityInterface[] $prepended
+     * @param array               $where
      */
     public function prependEntities (array $prepended, array $where = array())
     {
@@ -156,7 +159,7 @@ class SortableHandler
         }
 
         // check item ids
-        $allIds = array_map(function (SortableEntity $entity) { return $entity->getId(); }, $all);
+        $allIds = array_map(function (SortableEntityInterface $entity) { return $entity->getId(); }, $all);
         if (!$this->arraysAreIdentical($allIds, array_keys($sortMapping)))
         {
             // the given item ids are wrong
