@@ -12,8 +12,11 @@
     ],
     "require": {
         "php": "^7.0",
-        "symfony/symfony": "^2.8|^3.0",
-        "twig/twig": "^1.15"
+        "twig/twig": "^1.15",
+        "symfony/config": "^2.8|^3.0",
+        "symfony/dependency-injection": "^2.8|^3.0",
+        "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/orm": "^2.4"
     },
     "autoload": {
         "psr-4": { "Becklyn\\RadBundle\\": "" }
