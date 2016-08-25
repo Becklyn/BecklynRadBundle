@@ -16,6 +16,13 @@ services:
             - { name: twig.extension }
 
 
+    # Google Analytics
+    becklyn_rad.twig.google_analytics:
+        class: Becklyn\RadBundle\Twig\GoogleAnalyticsTwigExtension
+        tags:
+            - { name: twig.extension }
+
+
     # Security / Authentication
     becklyn_rad.authentication_helper:
         class: Becklyn\RadBundle\Security\AuthenticationHelper
