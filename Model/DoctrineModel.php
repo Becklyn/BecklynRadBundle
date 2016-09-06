@@ -3,8 +3,8 @@
 namespace Becklyn\RadBundle\Model;
 
 use Becklyn\RadBundle\Helper\ClassNameTransformer;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 
@@ -42,7 +42,7 @@ abstract class DoctrineModel
      *
      * @param null|string $persistentObject you can specify which repository you want to load. Defaults to the automatically derived one
      *
-     * @return ObjectRepository
+     * @return EntityRepository
      * @throws \Exception
      */
     protected function getRepository ($persistentObject = null)
@@ -60,7 +60,7 @@ abstract class DoctrineModel
     /**
      * Returns the entity manager
      *
-     * @return ObjectManager
+     * @return EntityManager
      */
     protected function getEntityManager ()
     {
