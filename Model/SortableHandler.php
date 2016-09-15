@@ -52,8 +52,15 @@ class SortableHandler
 
             foreach ($completeWhere as $key => $value)
             {
-                $queryParts[] = "t.{$key} = :where_value_{$index}";
-                $queryBuild->setParameter("where_value_{$index}", $value);
+                if (null === $value)
+                {
+                    $queryParts[] = "t.{$key} IS NULL";
+                }
+                else
+                {
+                    $queryParts[] = "t.{$key} = :where_value_{$index}";
+                    $queryBuild->setParameter("where_value_{$index}", $value);
+                }
                 $index++;
             }
 
