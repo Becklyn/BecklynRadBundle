@@ -114,37 +114,28 @@ abstract class DoctrineModel
     protected function addEntity ($entity)
     {
         $this->getEntityManager()->persist($entity);
-        $this->flushEntity($entity);
+        $this->flushEntity();
     }
 
 
 
     /**
-     * Removes the given entity
+     * Removes the given entities
      *
-     * @param object $entity
+     * @param object[] ...$entities
      */
-    protected function removeEntity ($entity)
+    protected function removeEntity (...$entities)
     {
-        // skip if the item was already removed
-        if (null === $entity)
+        $entities = array_filter($entities);
+        
+        if (empty($entities))
         {
-            return;
-        }
-
-        if (is_array($entity))
-        {
-            foreach ($entity as $singleEntity)
-            {
-                $this->removeEntity($singleEntity);
-            }
-
             return;
         }
 
         $entityManager = $this->getEntityManager();
-        $entityManager->remove($entity);
-        $entityManager->flush($entity);
+        array_map([$entityManager, "remove"], $entities);
+        $entityManager->flush();
     }
 
 
@@ -156,6 +147,6 @@ abstract class DoctrineModel
      */
     protected function flushEntity ($entity)
     {
-        $this->getEntityManager()->flush($entity);
+        $this->getEntityManager()->flush();
     }
 }
