@@ -114,7 +114,7 @@ abstract class DoctrineModel
     protected function addEntity ($entity)
     {
         $this->getEntityManager()->persist($entity);
-        $this->flushEntity();
+        $this->flush();
     }
 
 
@@ -127,7 +127,7 @@ abstract class DoctrineModel
     protected function removeEntity (...$entities)
     {
         $entities = array_filter($entities);
-        
+
         if (empty($entities))
         {
             return;
@@ -144,8 +144,20 @@ abstract class DoctrineModel
      * Flushes the given entity, only called for adding and updating entities
      *
      * @param object $entity
+     *
+     * @deprecated use {@see DoctrineModel::flush()} instead
      */
     protected function flushEntity ($entity)
+    {
+        $this->getEntityManager()->flush();
+    }
+
+
+
+    /**
+     * Flushes all changes
+     */
+    protected function flush ()
     {
         $this->getEntityManager()->flush();
     }
