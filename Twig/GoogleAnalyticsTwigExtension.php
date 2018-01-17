@@ -6,7 +6,7 @@ namespace Becklyn\RadBundle\Twig;
 /**
  *
  */
-class GoogleAnalyticsTwigExtension extends AbstractTwigExtension
+class GoogleAnalyticsTwigExtension extends \Twig_Extension
 {
     /**
      * Renders all blocks of code required to initialize Google Analytics tracking
