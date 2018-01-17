@@ -6,7 +6,7 @@ namespace Becklyn\RadBundle\Twig;
 /**
  *
  */
-class UtilsTwigExtension extends AbstractTwigExtension
+class UtilsTwigExtension extends \Twig_Extension
 {
     /**
      * Renders a date as a HTML5 <time> tag

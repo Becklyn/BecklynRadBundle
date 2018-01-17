@@ -11,10 +11,10 @@
         }
     ],
     "require": {
-        "php": "^7.0",
-        "twig/twig": "^1.15",
-        "symfony/config": "^2.8|^3.0",
-        "symfony/dependency-injection": "^2.8|^3.0",
+        "php": "^7.1",
+        "twig/twig": "^1.26|^2.0",
+        "symfony/config": "^3.4|^4.0",
+        "symfony/dependency-injection": "^3.4|^4.0",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.4"
     },
