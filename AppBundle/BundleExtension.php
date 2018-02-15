@@ -39,30 +39,39 @@ class BundleExtension extends Extension
         $configuration = new BundleConfiguration($this->bundle, $this->getAlias());
         $processedConfig = $this->processConfiguration($configuration, $config);
 
-        // check for the yaml file
-        $fileLocator = new FileLocator("{$this->bundle->getPath()}/Resources/config");
-        $loader = new YamlFileLoader($container, $fileLocator);
-        $environment = $container->getParameter('kernel.environment');
-
-        try {
-            // check for environment suffixed services yml
-            $loader->load("services_{$environment}.yml");
-        }
-        catch (\InvalidArgumentException $e)
-        {
-            // environment suffixed file not found, try regular file
-            try {
-                $loader->load("services.yml");
-            }
-            catch (\InvalidArgumentException $e)
-            {
-                // no services file found
-                // just ignore
-            }
-        }
+        // load services file
+        $this->loadServicesDefinitions($container);
 
         // build container content
         $this->bundle->buildContainer($processedConfig, $container);
+    }
+
+
+    /**
+     * Loads the services definition files
+     *
+     * @param string $environment
+     */
+    private function loadServicesDefinitions (ContainerBuilder $container) : void
+    {
+        $environment = $container->getParameter("kernel.environment");
+        $possibleServiceFiles = [
+            "services_{$environment}.yaml",
+            "services.yaml",
+            "services_{$environment}.yml",
+            "services.yml",
+        ];
+        $configPath = "{$this->bundle->getPath()}/Resources/config";
+        $fileLocator = new FileLocator($configPath);
+        $loader = new YamlFileLoader($container, $fileLocator);
+
+        foreach ($possibleServiceFiles as $servicesFile)
+        {
+            if (\is_file("{$configPath}/{$servicesFile}"))
+            {
+                $loader->load($servicesFile);
+            }
+        }
     }
 
 
