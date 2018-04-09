@@ -86,7 +86,6 @@ abstract class DoctrineModel
     /**
      * Returns the entity name
      *
-     * @throws \Exception if the full entity name could not be guessed automatically
      * @return string the entity reference string
      */
     protected function getFullEntityName ()
