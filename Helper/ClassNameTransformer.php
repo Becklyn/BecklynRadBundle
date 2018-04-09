@@ -18,7 +18,7 @@ class ClassNameTransformer
     public function transformModelToEntity ($modelClassName)
     {
         $className = trim($modelClassName, "\\");
-        $className = preg_replace("~Bundle\\\\Model\\\\(.+)Model$~", "Bundle\\\\Entity\\\\\\1", $className);
+        $className = preg_replace("~\\Model\\\\(.+)Model$~", "\\Entity\\\\\\1", $className);
         return $className;
     }
 }
