@@ -12,11 +12,12 @@
     ],
     "require": {
         "php": "^7.1",
-        "twig/twig": "^1.26|^2.0",
+        "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/orm": "^2.6",
         "symfony/config": "^3.4|^4.0",
         "symfony/dependency-injection": "^3.4|^4.0",
-        "doctrine/doctrine-bundle": "^1.6",
-        "doctrine/orm": "^2.6"
+        "symfony/http-kernel": "^3.4|^4.0",
+        "twig/twig": "^1.26|^2.0"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "^4.0"
@@ -28,5 +29,8 @@
         "psr-4": {
             "Tests\\Becklyn\\RadBundle\\": "tests/"
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
