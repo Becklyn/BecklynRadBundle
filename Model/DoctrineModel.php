@@ -27,22 +27,21 @@ abstract class DoctrineModel
     private $classNameTransformer;
 
 
-
     /**
      * @param RegistryInterface $doctrine
      */
     public function __construct (RegistryInterface $doctrine)
     {
-        $this->doctrine             = $doctrine;
+        $this->doctrine = $doctrine;
         $this->classNameTransformer = new ClassNameTransformer();
     }
-
 
 
     /**
      * Returns the repository
      *
-     * @param null|string $persistentObject you can specify which repository you want to load. Defaults to the automatically derived one
+     * @param null|string $persistentObject you can specify which repository you want to load. Defaults to the
+     *                                      automatically derived one
      *
      * @return ObjectRepository|EntityRepository
      */
@@ -57,7 +56,6 @@ abstract class DoctrineModel
     }
 
 
-
     /**
      * Returns the entity manager
      *
@@ -67,7 +65,6 @@ abstract class DoctrineModel
     {
         return $this->doctrine->getEntityManager();
     }
-
 
 
     /**
@@ -92,18 +89,19 @@ abstract class DoctrineModel
     protected function getFullEntityName () : string
     {
         $modelClassName = get_class($this);
-        $entityClass    = $this->classNameTransformer->transformModelToEntity($modelClassName);
+        $entityClass = $this->classNameTransformer->transformModelToEntity($modelClassName);
 
         if (!class_exists($entityClass))
         {
-            throw new AutoConfigurationFailedException(
-                sprintf("Cannot automatically generate entity name for model '%s', guessed '%s'.", $modelClassName, $entityClass)
-            );
+            throw new AutoConfigurationFailedException(sprintf(
+                "Cannot automatically generate entity name for model '%s', guessed '%s'.",
+                $modelClassName,
+                $entityClass
+            ));
         }
 
         return $entityClass;
     }
-
 
 
     /**
@@ -116,7 +114,6 @@ abstract class DoctrineModel
         $this->getEntityManager()->persist($entity);
         $this->flush();
     }
-
 
 
     /**
@@ -137,7 +134,6 @@ abstract class DoctrineModel
         array_map([$entityManager, "remove"], $entities);
         $entityManager->flush();
     }
-
 
 
     /**
