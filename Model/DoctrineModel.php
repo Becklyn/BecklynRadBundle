@@ -2,7 +2,9 @@
 
 namespace Becklyn\RadBundle\Model;
 
+use Becklyn\RadBundle\Exception\AutoConfigurationFailedException;
 use Becklyn\RadBundle\Helper\ClassNameTransformer;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -42,10 +44,9 @@ abstract class DoctrineModel
      *
      * @param null|string $persistentObject you can specify which repository you want to load. Defaults to the automatically derived one
      *
-     * @return EntityRepository
-     * @throws \Exception
+     * @return ObjectRepository|EntityRepository
      */
-    protected function getRepository ($persistentObject = null)
+    protected function getRepository ($persistentObject = null) : EntityRepository
     {
         if (null === $persistentObject)
         {
@@ -62,9 +63,9 @@ abstract class DoctrineModel
      *
      * @return EntityManager
      */
-    protected function getEntityManager ()
+    protected function getEntityManager () : EntityManager
     {
-        return $this->doctrine->getManager();
+        return $this->doctrine->getEntityManager();
     }
 
 
@@ -76,26 +77,26 @@ abstract class DoctrineModel
      *
      * @return bool
      */
-    protected function isId ($id)
+    protected function isId ($id) : bool
     {
         return is_int($id) || ctype_digit($id);
     }
-
 
 
     /**
      * Returns the entity name
      *
      * @return string the entity reference string
+     * @throws AutoConfigurationFailedException
      */
-    protected function getFullEntityName ()
+    protected function getFullEntityName () : string
     {
         $modelClassName = get_class($this);
         $entityClass    = $this->classNameTransformer->transformModelToEntity($modelClassName);
 
         if (!class_exists($entityClass))
         {
-            throw new \Exception(
+            throw new AutoConfigurationFailedException(
                 sprintf("Cannot automatically generate entity name for model '%s', guessed '%s'.", $modelClassName, $entityClass)
             );
         }
@@ -110,7 +111,7 @@ abstract class DoctrineModel
      *
      * @param object $entity
      */
-    protected function addEntity ($entity)
+    protected function addEntity ($entity) : void
     {
         $this->getEntityManager()->persist($entity);
         $this->flush();
@@ -123,7 +124,7 @@ abstract class DoctrineModel
      *
      * @param object[] ...$entities
      */
-    protected function removeEntity (...$entities)
+    protected function removeEntity (...$entities) : void
     {
         $entities = array_filter($entities);
 
@@ -140,23 +141,9 @@ abstract class DoctrineModel
 
 
     /**
-     * Flushes the given entity, only called for adding and updating entities
-     *
-     * @param object $entity
-     *
-     * @deprecated use {@see DoctrineModel::flush()} instead
-     */
-    protected function flushEntity ($entity)
-    {
-        $this->getEntityManager()->flush();
-    }
-
-
-
-    /**
      * Flushes all changes
      */
-    protected function flush ()
+    protected function flush () : void
     {
         $this->getEntityManager()->flush();
     }
