@@ -5,6 +5,4 @@ services:
 
     # Form
     Becklyn\RadBundle\Form\Type\HelpMessageFormTypeExtension: ~
-    Becklyn\RadBundle\Security\AuthenticationHelper: ~
     Becklyn\RadBundle\Twig\GoogleAnalyticsTwigExtension: ~
-    Becklyn\RadBundle\Twig\UtilsTwigExtension: ~
