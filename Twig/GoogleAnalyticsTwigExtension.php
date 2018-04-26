@@ -11,13 +11,13 @@ class GoogleAnalyticsTwigExtension extends \Twig_Extension
     /**
      * Renders all blocks of code required to initialize Google Analytics tracking
      *
-     * @param string $trackingCode
+     * @param string $property  the GA property code
      *
      * @return string
      */
-    public function analyticsTracking (string $trackingCode) : string
+    public function googleAnalyticsCode (string $property) : string
     {
-        if (empty($trackingCode))
+        if (empty($property))
         {
             return "";
         }
@@ -38,7 +38,7 @@ ga('create', gaProperty, 'auto'); ga('set', 'anonymizeIp', true); ga('send', 'pa
 </script>
 EOD;
 
-        return sprintf($analyticsScript, $trackingCode);
+        return sprintf($analyticsScript, $property);
     }
 
 
@@ -50,7 +50,7 @@ EOD;
     public function getFunctions ()
     {
         return [
-            new \Twig_SimpleFunction("analyticsTracking", [$this, "analyticsTracking"], ["is_safe" => ["html"]]),
+            new \Twig_SimpleFunction("googleAnalyticsCode", [$this, "googleAnalyticsCode"], ["is_safe" => ["html"]]),
         ];
     }
 }
