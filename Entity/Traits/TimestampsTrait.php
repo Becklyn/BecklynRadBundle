@@ -48,7 +48,7 @@ trait TimestampsTrait
     /**
      * @param \DateTimeImmutable $timeModified
      */
-    public function markAsModified ()
+    public function markAsModified () : void
     {
         $this->timeModified = new \DateTimeImmutable();
     }

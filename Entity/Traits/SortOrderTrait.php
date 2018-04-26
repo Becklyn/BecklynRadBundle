@@ -21,7 +21,7 @@ trait SortOrderTrait
     /**
      * @return int
      */
-    public function getSortOrder () : int
+    public function getSortOrder () : ?int
     {
         return $this->sortOrder;
     }
@@ -31,7 +31,7 @@ trait SortOrderTrait
     /**
      * @param int $sortOrder
      */
-    public function setSortOrder (int $sortOrder)
+    public function setSortOrder (int $sortOrder) : void
     {
         $this->sortOrder = $sortOrder;
     }
