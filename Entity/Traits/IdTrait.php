@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Becklyn\RadBundle\Entity\Traits;
 
@@ -24,7 +24,7 @@ trait IdTrait
     /**
      * @return int
      */
-    public function getId ()
+    public function getId () : ?int
     {
         return $this->id;
     }
