@@ -2,6 +2,3 @@ services:
     _defaults:
         autoconfigure: true
         autowire: true
-
-    # Form
-    Becklyn\RadBundle\Twig\GoogleAnalyticsTwigExtension: ~
