@@ -4,5 +4,4 @@ services:
         autowire: true
 
     # Form
-    Becklyn\RadBundle\Form\Type\HelpMessageFormTypeExtension: ~
     Becklyn\RadBundle\Twig\GoogleAnalyticsTwigExtension: ~
