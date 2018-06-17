@@ -2,3 +2,5 @@ services:
     _defaults:
         autoconfigure: true
         autowire: true
+
+    Becklyn\RadBundle\Form\FormErrorMapper: ~

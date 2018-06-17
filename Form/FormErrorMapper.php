@@ -4,6 +4,7 @@ namespace Becklyn\RadBundle\Form;
 
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 
 /**
@@ -12,23 +13,38 @@ use Symfony\Component\Form\FormInterface;
 class FormErrorMapper
 {
     /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+
+    /**
+     * @param TranslatorInterface $translator
+     */
+    public function __construct (TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
+
+    /**
      * @param FormInterface $form
      *
      * @return string[][]
      */
-    private function generateMapping (FormInterface $form) : array
+    private function generateMapping (FormInterface $form, string $translationDomain) : array
     {
         $allErrors   = array();
         $formName    = $form->getName();
         $fieldPrefix = !empty($formName) ? "{$formName}_" : "";
 
-        $this->addChildErrors($form, $fieldPrefix, $allErrors);
+        $this->addChildErrors($form, $fieldPrefix, $translationDomain, $allErrors);
 
         if ($form->getErrors()->count() > 0)
         {
             foreach ($form->getErrors() as $topLevelError)
             {
-                $allErrors["__global"][] = $topLevelError->getMessage();
+                $allErrors["__global"][] = $this->translator->trans($topLevelError->getMessage(), [], $translationDomain);
             }
         }
 
@@ -43,7 +59,7 @@ class FormErrorMapper
      * @param string        $fieldPrefix
      * @param array         $allErrors
      */
-    private function addChildErrors (FormInterface $form, $fieldPrefix, array &$allErrors) : void
+    private function addChildErrors (FormInterface $form, string $fieldPrefix, string $translationDomain, array &$allErrors) : void
     {
         foreach ($form->all() as $children)
         {
@@ -53,24 +69,28 @@ class FormErrorMapper
             if (0 < count($childErrors))
             {
                 $allErrors[$fieldName] = array_map(
-                    function (FormError $error)
+                    function (FormError $error) use ($translationDomain)
                     {
-                        return $error->getMessage();
+                        return $this->translator->trans($error->getMessage(), [], $translationDomain);
                     },
                     is_array($childErrors) ? $childErrors : iterator_to_array($childErrors)
                 );
             }
 
-            $this->addChildErrors($children, "{$fieldName}_", $allErrors);
+            $this->addChildErrors($children, "{$fieldName}_", $translationDomain, $allErrors);
         }
     }
 
 
     /**
-     * @return \string[][]
+     * Generates the form error mapping
+     *
+     * @param FormInterface $form
+     * @param string        $translationDomain
+     * @return string[][]
      */
-    public function generate (FormInterface $form) : array
+    public function generate (FormInterface $form, string $translationDomain = "data") : array
     {
-        return $this->generateMapping($form);
+        return $this->generateMapping($form, $translationDomain);
     }
 }
