@@ -10,28 +10,28 @@ namespace Becklyn\RadBundle\Exception;
 class EntityRemovalBlockedException extends \DomainException
 {
     /**
-     * @var object
+     * @var object[]
      */
-    private $entity;
+    private $entities;
 
 
     /**
      * @inheritDoc
      *
-     * @param object Entity
+     * @param object|object[] Entity
      */
-    public function __construct ($entity, string $message, \Throwable $previous = null)
+    public function __construct ($entities, string $message, \Throwable $previous = null)
     {
         parent::__construct($message, 0, $previous);
-        $this->entity = $entity;
+        $this->entities = \is_array($entities) ? $entities : [$entities];
     }
 
 
     /**
      * @return object
      */
-    public function getEntity ()
+    public function getEntities ()
     {
-        return $this->entity;
+        return $this->entities;
     }
 }
