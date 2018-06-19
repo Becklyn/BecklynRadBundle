@@ -3,8 +3,10 @@
 namespace Becklyn\RadBundle\Model;
 
 use Becklyn\RadBundle\Exception\AutoConfigurationFailedException;
+use Becklyn\RadBundle\Exception\EntityRemovalBlockedException;
 use Becklyn\RadBundle\Helper\ClassNameTransformer;
 use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -123,16 +125,27 @@ abstract class DoctrineModel
      */
     protected function removeEntity (...$entities) : void
     {
-        $entities = array_filter($entities);
-
-        if (empty($entities))
+        try
         {
-            return;
-        }
+            $entities = array_filter($entities);
 
-        $entityManager = $this->getEntityManager();
-        array_map([$entityManager, "remove"], $entities);
-        $entityManager->flush();
+            if (empty($entities))
+            {
+                return;
+            }
+
+            $entityManager = $this->getEntityManager();
+            array_map([$entityManager, "remove"], $entities);
+            $entityManager->flush();
+        }
+        catch (ForeignKeyConstraintViolationException $foreignKeyException)
+        {
+            throw new EntityRemovalBlockedException(
+                $entities,
+                "Can't remove entities as a foreign key constraint failed.",
+                $foreignKeyException
+            );
+        }
     }
 
 
