@@ -10,7 +10,7 @@ interface SortableEntityInterface extends EntityInterface
      *
      * @return int
      */
-    public function getSortOrder () : int;
+    public function getSortOrder () : ?int;
 
 
     /**
