@@ -17,7 +17,7 @@ trait SortableModelTrait
      *
      * @return bool
      */
-    protected function flushSortOrderMapping ($sortMapping, array $where) : bool
+    protected function flushSortOrderMapping ($sortMapping, array $where = []) : bool
     {
         if ($this->sortableHandler->applySorting($sortMapping, $where))
         {
