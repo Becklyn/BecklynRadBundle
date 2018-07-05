@@ -12,14 +12,15 @@ trait SortableModelTrait
      *
      * The model should wrap this method and use type hints on the $where parameter entries.
      *
-     * @param array|mixed $sortMapping
-     * @param array $where
+     * @param SortableHelper $sortableHelper
+     * @param array|mixed    $sortMapping
+     * @param array          $where
      *
      * @return bool
      */
-    protected function flushSortOrderMapping ($sortMapping, array $where = []) : bool
+    protected function flushSortOrderMapping (SortableHelper $sortableHelper, $sortMapping, array $where = []) : bool
     {
-        if ($this->sortableHandler->applySorting($sortMapping, $where))
+        if ($sortableHelper->applySorting($sortMapping, $where))
         {
             $this->flush();
             return true;
