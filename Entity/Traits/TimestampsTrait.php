@@ -28,7 +28,7 @@ trait TimestampsTrait
     /**
      * @return \DateTimeImmutable
      */
-    public function getTimeCreated () : \DateTimeImmutable
+    public function getTimeCreated () : \DateTimeInterface
     {
         return $this->timeCreated;
     }
@@ -38,7 +38,7 @@ trait TimestampsTrait
     /**
      * @return \DateTimeImmutable|null
      */
-    public function getTimeModified () : ?\DateTimeImmutable
+    public function getTimeModified () : ?\DateTimeInterface
     {
         return $this->timeModified;
     }
@@ -60,7 +60,7 @@ trait TimestampsTrait
      *
      * @return \DateTimeImmutable
      */
-    public function getLastModificationTime () : \DateTimeImmutable
+    public function getLastModificationTime () : \DateTimeInterface
     {
         return $this->getTimeModified() ?? $this->getTimeCreated();
     }
