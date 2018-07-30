@@ -11,14 +11,14 @@ use Doctrine\ORM\Mapping as ORM;
 trait TimestampsTrait
 {
     /**
-     * @var \DateTimeInterface
+     * @var \DateTimeImmutable
      * @ORM\Column(name="time_created", type="datetime_immutable")
      */
     private $timeCreated;
 
 
     /**
-     * @var \DateTimeInterface|null
+     * @var \DateTimeImmutable|null
      * @ORM\Column(name="time_modified", type="datetime_immutable", nullable=true)
      */
     private $timeModified;
@@ -26,9 +26,9 @@ trait TimestampsTrait
 
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeImmutable
      */
-    public function getTimeCreated () : \DateTimeInterface
+    public function getTimeCreated () : \DateTimeImmutable
     {
         return $this->timeCreated;
     }
@@ -36,9 +36,9 @@ trait TimestampsTrait
 
 
     /**
-     * @return \DateTimeInterface|null
+     * @return \DateTimeImmutable|null
      */
-    public function getTimeModified () : ?\DateTimeInterface
+    public function getTimeModified () : ?\DateTimeImmutable
     {
         return $this->timeModified;
     }
@@ -58,9 +58,9 @@ trait TimestampsTrait
     /**
      * Returns the most recent modification time
      *
-     * @return \DateTimeInterface
+     * @return \DateTimeImmutable
      */
-    public function getLastModificationTime () : \DateTimeInterface
+    public function getLastModificationTime () : \DateTimeImmutable
     {
         return $this->getTimeModified() ?? $this->getTimeCreated();
     }
