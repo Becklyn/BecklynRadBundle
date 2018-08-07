@@ -90,14 +90,13 @@ abstract class DoctrineModel
      */
     protected function getFullEntityName () : string
     {
-        $modelClassName = get_class($this);
-        $entityClass = $this->classNameTransformer->transformModelToEntity($modelClassName);
+        $entityClass = $this->classNameTransformer->transformModelToEntity(static::class);
 
         if (!class_exists($entityClass))
         {
             throw new AutoConfigurationFailedException(sprintf(
                 "Cannot automatically generate entity name for model '%s', guessed '%s'.",
-                $modelClassName,
+                static::class,
                 $entityClass
             ));
         }
