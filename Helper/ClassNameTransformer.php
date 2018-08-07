@@ -5,6 +5,8 @@ namespace Becklyn\RadBundle\Helper;
 
 /**
  * Helps with class name transformations
+ *
+ * @internal
  */
 class ClassNameTransformer
 {
