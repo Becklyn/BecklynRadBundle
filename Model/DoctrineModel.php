@@ -70,19 +70,6 @@ abstract class DoctrineModel
 
 
     /**
-     * Returns, whether it is a valid id
-     *
-     * @param int $id
-     *
-     * @return bool
-     */
-    protected function isId ($id) : bool
-    {
-        return is_int($id) || ctype_digit($id);
-    }
-
-
-    /**
      * Returns the entity name
      *
      * @return string the entity reference string
