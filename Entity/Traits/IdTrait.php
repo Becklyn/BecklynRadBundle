@@ -15,14 +15,14 @@ trait IdTrait
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(name="id", type="integer")
      *
-     * @var int
+     * @var int|null
      */
     private $id;
 
 
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getId ()
     {
