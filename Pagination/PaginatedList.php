@@ -9,7 +9,7 @@ namespace Becklyn\RadBundle\Pagination;
 class PaginatedList
 {
     /**
-     * @var array
+     * @var iterable
      */
     private $list;
 
@@ -20,7 +20,7 @@ class PaginatedList
     private $pagination;
 
 
-    public function __construct (array $list, Pagination $pagination)
+    public function __construct (iterable $list, Pagination $pagination)
     {
         $this->list = $list;
         $this->pagination = $pagination;
@@ -28,9 +28,9 @@ class PaginatedList
 
 
     /**
-     * @return array
+     * @return iterable
      */
-    public function getList () : array
+    public function getList () : iterable
     {
         return $this->list;
     }
