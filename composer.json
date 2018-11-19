@@ -22,7 +22,8 @@
         "twig/twig": "^1.26 | ^2.0"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "^4.0"
+        "roave/security-advisories": "dev-master",
+        "becklyn/php-cs": "^1.0.9"
     },
     "autoload": {
         "psr-4": { "Becklyn\\RadBundle\\": "" }

@@ -41,6 +41,6 @@ class ClassNameTransformerTest extends TestCase
     {
         $transformer = new ClassNameTransformer();
         $actual = $transformer->transformModelToEntity($modelClassName);
-        return $this->assertEquals($expectedEntityClassName, $actual, $message);
+        self::assertSame($expectedEntityClassName, $actual, $message);
     }
 }
