@@ -30,7 +30,7 @@ class Pagination
      * @param int $currentPage
      * @param int $maxPage
      */
-    public function __construct (int $currentPage, int $numberOfItems, int $itemsPerPage)
+    public function __construct (int $currentPage, int $numberOfItems, int $itemsPerPage = 50)
     {
         if ($itemsPerPage <= 0)
         {
