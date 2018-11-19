@@ -114,7 +114,7 @@ class Pagination
     {
         return [
             "current" => $this->currentPage,
-            "min" => 1,
+            "min" => $this->getMinPage(),
             "max" => $this->maxPage,
             "next" => $this->getNextPage(),
             "prev" => $this->getPreviousPage(),
