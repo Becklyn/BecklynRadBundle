@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\tests\Pagination;
+namespace Tests\Becklyn\RadBundle\Pagination;
 
 use Becklyn\RadBundle\Pagination\Pagination;
 use PHPUnit\Framework\TestCase;
