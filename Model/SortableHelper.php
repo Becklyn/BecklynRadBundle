@@ -149,9 +149,9 @@ class SortableHelper
      */
     public function applySorting ($sortMapping, array $where = array()) : bool
     {
-        if (!is_array($sortMapping))
+        if (!is_array($sortMapping) || empty($sortMapping))
         {
-            // if value is not in correct format
+            // if value is not in correct format or an empty array.
             return false;
         }
 
