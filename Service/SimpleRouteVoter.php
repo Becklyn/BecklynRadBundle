@@ -4,10 +4,26 @@ namespace Becklyn\RadBundle\Service;
 
 use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\Voter\VoterInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\RequestStack;
 
-class SimpleRouteVoter extends ContainerAware implements VoterInterface
+
+class SimpleRouteVoter implements VoterInterface
 {
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
+
+
+    /**
+     * @param RequestStack $requestStack
+     */
+    public function __construct (RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack;
+    }
+
+
     /**
      * Checks whether an item is current.
      *
@@ -20,8 +36,7 @@ class SimpleRouteVoter extends ContainerAware implements VoterInterface
      */
     public function matchItem (ItemInterface $item)
     {
-        $requestStack = $this->container->get("request_stack");
-        $request      = $requestStack->getCurrentRequest();
+        $request = $this->requestStack->getCurrentRequest();
 
         if (is_null($request))
         {

@@ -16,6 +16,12 @@ services:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
 
 
+    becklyn_rad.service.simple_route_voter:
+        class: Becklyn\RadBundle\Service\SimpleRouteVoter
+        arguments:
+            - "@request_stack"
+
+
     becklyn_rad.twig.pagination:
         class: Becklyn\RadBundle\Service\PaginationTwigExtension
         arguments: ["@service_container"]
