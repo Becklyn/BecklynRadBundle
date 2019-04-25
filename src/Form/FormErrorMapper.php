@@ -72,7 +72,7 @@ class FormErrorMapper
                     {
                         return $this->translator->trans($error->getMessage(), [], $translationDomain);
                     },
-                    \is_array($childErrors) ? $childErrors : \iterator_to_array($childErrors)
+                    \iterator_to_array($childErrors)
                 );
             }
 

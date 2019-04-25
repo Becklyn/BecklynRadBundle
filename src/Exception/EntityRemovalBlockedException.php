@@ -17,7 +17,7 @@ class EntityRemovalBlockedException extends \DomainException
     /**
      * @inheritDoc
      *
-     * @param object|object[] Entity
+     * @param object|object[] $entities
      */
     public function __construct ($entities, string $message, \Throwable $previous = null)
     {
@@ -27,9 +27,9 @@ class EntityRemovalBlockedException extends \DomainException
 
 
     /**
-     * @return object
+     * @return object[]
      */
-    public function getEntities ()
+    public function getEntities () : array
     {
         return $this->entities;
     }
