@@ -33,6 +33,6 @@ class PathHelperTest extends TestCase
     public function testVariations (array $segments, string $expected) : void
     {
         $actual = PathHelper::join(...$segments);
-        static::assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 }

@@ -14,7 +14,7 @@ class RadTwigExtensionTest extends TestCase
             "existing" => "abc",
         ];
 
-        static::assertSame("abc 123", $extension->appendToKey($array, "existing", "123")["existing"]);
-        static::assertSame("123", $extension->appendToKey($array, "missing", "123")["missing"]);
+        self::assertSame("abc 123", $extension->appendToKey($array, "existing", "123")["existing"]);
+        self::assertSame("123", $extension->appendToKey($array, "missing", "123")["missing"]);
     }
 }

@@ -34,7 +34,7 @@ class PaginationTest extends TestCase
     public function testValidMaxPage (int $numberOfItems, int $itemsPerPage, int $expectedMaxPage) : void
     {
         $pagination = new Pagination(1, $numberOfItems, $itemsPerPage);
-        static::assertSame($expectedMaxPage, $pagination->getMaxPage());
+        self::assertSame($expectedMaxPage, $pagination->getMaxPage());
     }
 
 

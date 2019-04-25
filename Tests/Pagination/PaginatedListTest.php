@@ -15,8 +15,8 @@ class PaginatedListTest extends TestCase
 
         $paginatedList = new PaginatedList($list, $pagination);
 
-        static::assertSame($list, $paginatedList->getList());
-        static::assertSame($pagination, $paginatedList->getPagination());
+        self::assertSame($list, $paginatedList->getList());
+        self::assertSame($pagination, $paginatedList->getPagination());
     }
 
 
@@ -26,6 +26,6 @@ class PaginatedListTest extends TestCase
         $list = new \ArrayIterator([1, 2, 3]);
 
         $paginatedList = new PaginatedList($list, $pagination);
-        static::assertSame($pagination, $paginatedList->getPagination());
+        self::assertSame($pagination, $paginatedList->getPagination());
     }
 }

@@ -20,7 +20,7 @@
         "twig/twig": "^1.26 || ^2.0"
     },
     "require-dev": {
-        "becklyn/php-cs": "^1.0.9",
+        "becklyn/php-cs": "^1.0.13",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.6",
         "roave/security-advisories": "dev-master"
