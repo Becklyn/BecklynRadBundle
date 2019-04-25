@@ -4,3 +4,4 @@ services:
         autowire: true
 
     Becklyn\RadBundle\Form\FormErrorMapper: ~
+    Becklyn\RadBundle\Twig\RadTwigExtension: ~
