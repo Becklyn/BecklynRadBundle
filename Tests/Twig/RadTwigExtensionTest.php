@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\tests\Twig;
+namespace Tests\Becklyn\RadBundle\Twig;
 
 use Becklyn\RadBundle\Twig\RadTwigExtension;
 use PHPUnit\Framework\TestCase;

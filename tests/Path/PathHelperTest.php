@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\tests\Path;
+namespace Tests\Becklyn\RadBundle\Path;
 
 use Becklyn\RadBundle\Path\PathHelper;
 use PHPUnit\Framework\TestCase;
