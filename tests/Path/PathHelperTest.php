@@ -5,7 +5,6 @@ namespace Tests\Becklyn\RadBundle\Path;
 use Becklyn\RadBundle\Path\PathHelper;
 use PHPUnit\Framework\TestCase;
 
-
 class PathHelperTest extends TestCase
 {
     /**
@@ -31,9 +30,9 @@ class PathHelperTest extends TestCase
     /**
      * @dataProvider providerVariations
      */
-    public function testVariations (array $segments, string $expected)
+    public function testVariations (array $segments, string $expected) : void
     {
         $actual = PathHelper::join(...$segments);
-        self::assertSame($expected, $actual);
+        static::assertSame($expected, $actual);
     }
 }

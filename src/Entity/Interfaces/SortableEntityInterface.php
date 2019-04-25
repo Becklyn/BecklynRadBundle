@@ -2,11 +2,10 @@
 
 namespace Becklyn\RadBundle\Entity\Interfaces;
 
-
 interface SortableEntityInterface extends EntityInterface
 {
     /**
-     * Returns the sort order
+     * Returns the sort order.
      *
      * @return int
      */
@@ -14,7 +13,7 @@ interface SortableEntityInterface extends EntityInterface
 
 
     /**
-     * Sets the sort order
+     * Sets the sort order.
      *
      * @param int $sortOrder
      */

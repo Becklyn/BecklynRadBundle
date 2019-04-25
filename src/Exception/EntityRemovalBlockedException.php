@@ -2,7 +2,6 @@
 
 namespace Becklyn\RadBundle\Exception;
 
-
 /**
  * Generic exception that marks, that the entity removal may be blocked by database (foreign keys, etc..) or
  * semantic constraints (e.g. "can't remove main category").

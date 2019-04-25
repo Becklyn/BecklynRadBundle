@@ -5,7 +5,6 @@ namespace Becklyn\RadBundle;
 use Becklyn\RadBundle\DependencyInjection\BecklynRadExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-
 /**
  *
  */

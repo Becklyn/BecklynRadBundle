@@ -5,7 +5,6 @@ namespace Tests\Becklyn\RadBundle\Helper;
 use Becklyn\RadBundle\Helper\ClassNameTransformer;
 use PHPUnit\Framework\TestCase;
 
-
 /**
  *
  */
@@ -37,10 +36,10 @@ class ClassNameTransformerTest extends TestCase
      * @param string $expectedEntityClassName
      * @param string $message
      */
-    public function testValue ($modelClassName, $expectedEntityClassName, $message)
+    public function testValue ($modelClassName, $expectedEntityClassName, $message) : void
     {
         $transformer = new ClassNameTransformer();
         $actual = $transformer->transformModelToEntity($modelClassName);
-        self::assertSame($expectedEntityClassName, $actual, $message);
+        static::assertSame($expectedEntityClassName, $actual, $message);
     }
 }

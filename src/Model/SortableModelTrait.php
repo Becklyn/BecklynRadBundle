@@ -3,7 +3,7 @@
 namespace Becklyn\RadBundle\Model;
 
 /**
- * Trait for doctrine models that use a sortable handler
+ * Trait for doctrine models that use a sortable handler.
  */
 trait SortableModelTrait
 {

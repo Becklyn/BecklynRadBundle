@@ -11,9 +11,8 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-
 /**
- * Base model for database accesses
+ * Base model for database accesses.
  */
 abstract class DoctrineModel
 {
@@ -40,9 +39,9 @@ abstract class DoctrineModel
 
 
     /**
-     * Returns the repository
+     * Returns the repository.
      *
-     * @param null|string $persistentObject you can specify which repository you want to load. Defaults to the
+     * @param string|null $persistentObject you can specify which repository you want to load. Defaults to the
      *                                      automatically derived one
      *
      * @return ObjectRepository|EntityRepository
@@ -59,7 +58,7 @@ abstract class DoctrineModel
 
 
     /**
-     * Returns the entity manager
+     * Returns the entity manager.
      *
      * @return EntityManager
      */
@@ -70,18 +69,19 @@ abstract class DoctrineModel
 
 
     /**
-     * Returns the entity name
+     * Returns the entity name.
+     *
+     * @throws AutoConfigurationFailedException
      *
      * @return string the entity reference string
-     * @throws AutoConfigurationFailedException
      */
     protected function getFullEntityName () : string
     {
         $entityClass = $this->classNameTransformer->transformModelToEntity(static::class);
 
-        if (!class_exists($entityClass))
+        if (!\class_exists($entityClass))
         {
-            throw new AutoConfigurationFailedException(sprintf(
+            throw new AutoConfigurationFailedException(\sprintf(
                 "Cannot automatically generate entity name for model '%s', guessed '%s'.",
                 static::class,
                 $entityClass
@@ -93,7 +93,7 @@ abstract class DoctrineModel
 
 
     /**
-     * Adds the given entity
+     * Adds the given entity.
      *
      * @param object $entity
      */
@@ -105,7 +105,7 @@ abstract class DoctrineModel
 
 
     /**
-     * Removes the given entities
+     * Removes the given entities.
      *
      * @param object[] ...$entities
      */
@@ -113,7 +113,7 @@ abstract class DoctrineModel
     {
         try
         {
-            $entities = array_filter($entities);
+            $entities = \array_filter($entities);
 
             if (empty($entities))
             {
@@ -121,7 +121,7 @@ abstract class DoctrineModel
             }
 
             $entityManager = $this->getEntityManager();
-            array_map([$entityManager, "remove"], $entities);
+            \array_map([$entityManager, "remove"], $entities);
             $entityManager->flush();
         }
         catch (ForeignKeyConstraintViolationException $foreignKeyException)
@@ -136,7 +136,7 @@ abstract class DoctrineModel
 
 
     /**
-     * Flushes all changes
+     * Flushes all changes.
      */
     protected function flush () : void
     {

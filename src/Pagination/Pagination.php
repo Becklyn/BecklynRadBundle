@@ -2,9 +2,8 @@
 
 namespace Becklyn\RadBundle\Pagination;
 
-
 /**
- * Generic pagination calculator
+ * Generic pagination calculator.
  */
 class Pagination
 {
@@ -81,7 +80,7 @@ class Pagination
      */
     public function isValidCurrentPage () : bool
     {
-        return (1 <= $this->currentPage && $this->currentPage <= $this->maxPage);
+        return 1 <= $this->currentPage && $this->currentPage <= $this->maxPage;
     }
 
 

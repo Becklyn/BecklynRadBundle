@@ -5,7 +5,6 @@ namespace Tests\Becklyn\RadBundle\Pagination;
 use Becklyn\RadBundle\Pagination\Pagination;
 use PHPUnit\Framework\TestCase;
 
-
 class PaginationTest extends TestCase
 {
     /**
@@ -35,7 +34,7 @@ class PaginationTest extends TestCase
     public function testValidMaxPage (int $numberOfItems, int $itemsPerPage, int $expectedMaxPage) : void
     {
         $pagination = new Pagination(1, $numberOfItems, $itemsPerPage);
-        self::assertSame($expectedMaxPage, $pagination->getMaxPage());
+        static::assertSame($expectedMaxPage, $pagination->getMaxPage());
     }
 
 
@@ -56,6 +55,7 @@ class PaginationTest extends TestCase
      * @dataProvider provideInvalid
      *
      * @expectedException \InvalidArgumentException
+     *
      * @param int $numberOfItems
      * @param int $itemsPerPage
      */

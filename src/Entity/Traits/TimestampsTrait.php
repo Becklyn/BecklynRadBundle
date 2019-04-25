@@ -4,7 +4,6 @@ namespace Becklyn\RadBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  *
  */
@@ -56,7 +55,7 @@ trait TimestampsTrait
 
 
     /**
-     * Returns the most recent modification time
+     * Returns the most recent modification time.
      *
      * @return \DateTimeImmutable
      */

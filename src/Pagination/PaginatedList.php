@@ -2,9 +2,8 @@
 
 namespace Becklyn\RadBundle\Pagination;
 
-
 /**
- * Generic value object for returning paginated lists
+ * Generic value object for returning paginated lists.
  */
 class PaginatedList
 {
