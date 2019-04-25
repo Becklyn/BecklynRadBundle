@@ -3,5 +3,6 @@ services:
         autoconfigure: true
         autowire: true
 
-    Becklyn\RadBundle\Form\FormErrorMapper: ~
-    Becklyn\RadBundle\Twig\RadTwigExtension: ~
+    Becklyn\RadBundle\:
+        resource: ../../*
+        exclude: ../../{Entity,Exception,Pagination,Resources,BecklynRadBundle.php}
