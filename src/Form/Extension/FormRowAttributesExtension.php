@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Adds a new form option "row_attr", that acts like "attr" but is rendered as
+ * Adds a new form option "attr_row", that acts like "attr" but is rendered as
  * attributes on the form row and not the form widget.
  */
 class FormRowAttributesExtension extends AbstractTypeExtension
@@ -20,7 +20,7 @@ class FormRowAttributesExtension extends AbstractTypeExtension
      */
     public function buildForm (FormBuilderInterface $builder, array $options)
     {
-        $builder->setAttribute("row_attr", $options["row_attr"]);
+        $builder->setAttribute("attr_row", $options["attr_row"]);
     }
 
 
@@ -29,7 +29,7 @@ class FormRowAttributesExtension extends AbstractTypeExtension
      */
     public function buildView (FormView $view, FormInterface $form, array $options)
     {
-        $view->vars["row_attr"] = $form->getConfig()->getAttribute("row_attr");
+        $view->vars["attr_row"] = $form->getConfig()->getAttribute("attr_row");
     }
 
 
@@ -39,10 +39,10 @@ class FormRowAttributesExtension extends AbstractTypeExtension
     public function configureOptions (OptionsResolver $resolver)
     {
         $resolver
-            ->setDefined(["row_attr"])
-            ->setAllowedTypes("row_attr", "array")
+            ->setDefined(["attr_row"])
+            ->setAllowedTypes("attr_row", "array")
             ->setDefaults([
-                "row_attr" => [],
+                "attr_row" => [],
             ]);
     }
 
