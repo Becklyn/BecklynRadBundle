@@ -3,14 +3,15 @@
 namespace Becklyn\RadBundle\Path;
 
 /**
- * Several utility functions for manipulation paths
+ * Several utility functions for manipulation paths.
  */
 class PathHelper
 {
     /**
-     * Joins path segments to one full path
+     * Joins path segments to one full path.
      *
      * @param string[] ...$paths
+     *
      * @return string
      */
     public static function join (...$paths) : string
@@ -21,17 +22,17 @@ class PathHelper
         {
             if (0 !== $index)
             {
-                $path = ltrim($path, "/");
+                $path = \ltrim($path, "/");
             }
 
-            if ($index !== count($paths) - 1)
+            if ($index !== \count($paths) - 1)
             {
-                $path = rtrim($path, "/");
+                $path = \rtrim($path, "/");
             }
 
             $normalized[] = $path;
         }
 
-        return implode("/", $normalized);
+        return \implode("/", $normalized);
     }
 }

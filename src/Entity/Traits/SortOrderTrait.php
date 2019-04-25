@@ -4,7 +4,6 @@ namespace Becklyn\RadBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  *
  */

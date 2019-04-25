@@ -2,7 +2,6 @@
 
 namespace Becklyn\RadBundle\Entity\Interfaces;
 
-
 interface EntityInterface
 {
     /**

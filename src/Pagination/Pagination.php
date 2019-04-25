@@ -2,9 +2,8 @@
 
 namespace Becklyn\RadBundle\Pagination;
 
-
 /**
- * Generic pagination calculator
+ * Generic pagination calculator.
  */
 class Pagination
 {
@@ -27,8 +26,15 @@ class Pagination
 
 
     /**
+     * @var int
+     */
+    private $maxPage;
+
+
+    /**
      * @param int $currentPage
-     * @param int $maxPage
+     * @param int $numberOfItems
+     * @param int $itemsPerPage
      */
     public function __construct (int $currentPage, int $numberOfItems, int $itemsPerPage = 50)
     {
@@ -45,7 +51,7 @@ class Pagination
         $this->currentPage = $currentPage;
         $this->numberOfItems = $numberOfItems;
         $this->itemsPerPage = $itemsPerPage;
-        $this->maxPage = \max(1, (int) \ceil($numberOfItems / $itemsPerPage));
+        $this->maxPage = (int) \max(1, (int) \ceil($numberOfItems / $itemsPerPage));
     }
 
 
@@ -81,7 +87,7 @@ class Pagination
      */
     public function isValidCurrentPage () : bool
     {
-        return (1 <= $this->currentPage && $this->currentPage <= $this->maxPage);
+        return 1 <= $this->currentPage && $this->currentPage <= $this->maxPage;
     }
 
 

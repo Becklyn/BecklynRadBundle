@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class RadTwigExtensionTest extends TestCase
 {
-    public function testAppendToKey ()
+    public function testAppendToKey () : void
     {
         $extension = new RadTwigExtension();
         $array = [

@@ -5,7 +5,6 @@ namespace Becklyn\RadBundle\Model;
 use Becklyn\RadBundle\Entity\Interfaces\SortableEntityInterface;
 use Doctrine\ORM\EntityRepository;
 
-
 class SortableHelper
 {
     /**
@@ -23,9 +22,9 @@ class SortableHelper
 
     /**
      * @param EntityRepository $repository
-     * @param array $globalWhere
+     * @param array            $globalWhere
      */
-    public function __construct (EntityRepository $repository, array $globalWhere = array())
+    public function __construct (EntityRepository $repository, array $globalWhere = [])
     {
         $this->repository = $repository;
         $this->globalWhere = $globalWhere;
@@ -34,21 +33,21 @@ class SortableHelper
 
 
     /**
-     * Returns the next sort order value
+     * Returns the next sort order value.
      *
      * @param array $where
      *
      * @return int
      */
-    public function getNextSortOrder (array $where = array()) : int
+    public function getNextSortOrder (array $where = []) : int
     {
         $queryBuild = $this->repository->createQueryBuilder("t")
             ->select("MAX(t.sortOrder)");
 
         // apply the where clauses
-        if (0 < count($completeWhere = $this->getCompleteWhere($where)))
+        if (0 < \count($completeWhere = $this->getCompleteWhere($where)))
         {
-            $queryParts = array();
+            $queryParts = [];
             $index = 0;
 
             foreach ($completeWhere as $key => $value)
@@ -63,10 +62,10 @@ class SortableHelper
                     $queryBuild->setParameter("where_value_{$index}", $value);
                 }
 
-                $index++;
+                ++$index;
             }
 
-            $queryBuild->where(implode(" AND ", $queryParts));
+            $queryBuild->where(\implode(" AND ", $queryParts));
         }
 
         $currentMaxValue = $queryBuild
@@ -80,36 +79,36 @@ class SortableHelper
 
 
     /**
-     * Returns all entities in the correct order
+     * Returns all entities in the correct order.
      *
      * @param array $where
      *
      * @return SortableEntityInterface[]
      */
-    private function getAllEntities (array $where = array()) : array
+    private function getAllEntities (array $where = []) : array
     {
-        return $this->repository->findBy($this->getCompleteWhere($where), array("sortOrder" => "asc"));
+        return $this->repository->findBy($this->getCompleteWhere($where), ["sortOrder" => "asc"]);
     }
 
 
 
     /**
-     * Fixes the sort ordering
+     * Fixes the sort ordering.
      */
-    public function fixSortOrdering (array $where = array()) : void
+    public function fixSortOrdering (array $where = []) : void
     {
-        $this->prependEntities(array(), $where);
+        $this->prependEntities([], $where);
     }
 
 
 
     /**
-     * Prepends the given entities to the list
+     * Prepends the given entities to the list.
      *
      * @param SortableEntityInterface[] $prepended
      * @param array                     $where
      */
-    public function prependEntities (array $prepended, array $where = array()) : void
+    public function prependEntities (array $prepended, array $where = []) : void
     {
         $all = $this->getAllEntities($where);
         $index = 0;
@@ -118,26 +117,26 @@ class SortableHelper
         foreach ($prepended as $prependedEntity)
         {
             $prependedEntity->setSortOrder($index);
-            $index++;
+            ++$index;
         }
 
         // then sort the rest
         foreach ($all as $entity)
         {
-            if (in_array($entity, $prepended, true))
+            if (\in_array($entity, $prepended, true))
             {
                 continue;
             }
 
             $entity->setSortOrder($index);
-            $index++;
+            ++$index;
         }
     }
 
 
 
     /**
-     * Applies the sorting
+     * Applies the sorting.
      *
      * Sort Mapping:
      *  entity-id => position (0-based)
@@ -147,9 +146,9 @@ class SortableHelper
      *
      * @return bool
      */
-    public function applySorting ($sortMapping, array $where = array()) : bool
+    public function applySorting ($sortMapping, array $where = []) : bool
     {
-        if (!is_array($sortMapping) || empty($sortMapping))
+        if (!\is_array($sortMapping) || empty($sortMapping))
         {
             // if value is not in correct format or an empty array.
             return false;
@@ -158,16 +157,18 @@ class SortableHelper
         $all = $this->getAllEntities($where);
 
         // check sort values
-        $possibleSortValues = range(0, count($all) - 1);
-        if (!$this->arraysAreIdentical($possibleSortValues, array_values($sortMapping)))
+        $possibleSortValues = \range(0, \count($all) - 1);
+
+        if (!$this->arraysAreIdentical($possibleSortValues, \array_values($sortMapping)))
         {
             // the given sort values are wrong
             return false;
         }
 
         // check item ids
-        $allIds = array_map(function (SortableEntityInterface $entity) { return $entity->getId(); }, $all);
-        if (!$this->arraysAreIdentical($allIds, array_keys($sortMapping)))
+        $allIds = \array_map(function (SortableEntityInterface $entity) { return $entity->getId(); }, $all);
+
+        if (!$this->arraysAreIdentical($allIds, \array_keys($sortMapping)))
         {
             // the given item ids are wrong
             return false;
@@ -184,7 +185,7 @@ class SortableHelper
 
 
     /**
-     * Returns the complete where
+     * Returns the complete where.
      *
      * @param array $where
      *
@@ -198,7 +199,7 @@ class SortableHelper
 
 
     /**
-     * Returns whether two arrays are identical
+     * Returns whether two arrays are identical.
      *
      * @param array $array1
      * @param array $array2
@@ -207,7 +208,7 @@ class SortableHelper
      */
     private function arraysAreIdentical (array $array1, array $array2) : bool
     {
-        return (0 === count(array_diff($array1, $array2)))
-            && (0 === count(array_diff($array2, $array1)));
+        return (0 === \count(\array_diff($array1, $array2)))
+            && (0 === \count(\array_diff($array2, $array1)));
     }
 }

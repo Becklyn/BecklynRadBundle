@@ -2,7 +2,6 @@
 
 namespace Becklyn\RadBundle\Exception;
 
-
 class AutoConfigurationFailedException extends \DomainException
 {
     /**

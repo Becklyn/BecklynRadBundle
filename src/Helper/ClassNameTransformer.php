@@ -2,9 +2,8 @@
 
 namespace Becklyn\RadBundle\Helper;
 
-
 /**
- * Helps with class name transformations
+ * Helps with class name transformations.
  *
  * @internal
  */
@@ -19,8 +18,7 @@ class ClassNameTransformer
      */
     public function transformModelToEntity (string $modelClassName) : string
     {
-        $className = trim($modelClassName, "\\");
-        $className = preg_replace("~\\\\Model\\\\(.+)Model$~", "\\\\Entity\\\\\\1", $className);
-        return $className;
+        $className = \trim($modelClassName, "\\");
+        return \preg_replace("~\\\\Model\\\\(.+)Model$~", "\\\\Entity\\\\\\1", $className);
     }
 }

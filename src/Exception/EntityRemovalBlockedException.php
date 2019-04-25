@@ -2,7 +2,6 @@
 
 namespace Becklyn\RadBundle\Exception;
 
-
 /**
  * Generic exception that marks, that the entity removal may be blocked by database (foreign keys, etc..) or
  * semantic constraints (e.g. "can't remove main category").
@@ -18,7 +17,7 @@ class EntityRemovalBlockedException extends \DomainException
     /**
      * @inheritDoc
      *
-     * @param object|object[] Entity
+     * @param object|object[] $entities
      */
     public function __construct ($entities, string $message, \Throwable $previous = null)
     {
@@ -28,9 +27,9 @@ class EntityRemovalBlockedException extends \DomainException
 
 
     /**
-     * @return object
+     * @return object[]
      */
-    public function getEntities ()
+    public function getEntities () : array
     {
         return $this->entities;
     }

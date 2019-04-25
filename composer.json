@@ -1,43 +1,45 @@
 {
     "name": "becklyn/rad-bundle",
-    "description": "This bundle provides basic components",
     "type": "symfony-bundle",
+    "description": "This bundle provides basic components",
     "homepage": "https://github.com/Becklyn/RadBundle",
     "license": "BSD-3-Clause",
     "authors": [
         {
-            "name":     "Becklyn Studios",
+            "name": "Becklyn Studios",
             "homepage": "http://becklyn.com/"
         }
     ],
     "require": {
         "php": "^7.1",
-        "symfony/config": "^3.4 | ^4.0",
-        "symfony/dependency-injection": "^3.4 | ^4.0",
-        "symfony/form": "^3.4 | ^4.0",
-        "symfony/http-kernel": "^3.4 | ^4.0",
-        "symfony/translation": "^3.4 | ^4.0",
-        "twig/twig": "^1.26 | ^2.0"
+        "symfony/config": "^3.4 || ^4.0",
+        "symfony/dependency-injection": "^3.4 || ^4.0",
+        "symfony/form": "^3.4 || ^4.0",
+        "symfony/http-kernel": "^3.4 || ^4.0",
+        "symfony/translation": "^3.4 || ^4.0",
+        "twig/twig": "^1.26 || ^2.0"
+    },
+    "require-dev": {
+        "becklyn/php-cs": "^1.0.13",
+        "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/orm": "^2.6",
+        "roave/security-advisories": "dev-master"
     },
     "suggest": {
         "doctrine/doctrine-bundle": "To use the DoctrineModel.",
         "doctrine/orm": "To use the DoctrineModel, the SortableHelper and the entity traits."
     },
-    "require-dev": {
-        "doctrine/doctrine-bundle": "^1.6",
-        "doctrine/orm": "^2.6",
-        "roave/security-advisories": "dev-master",
-        "becklyn/php-cs": "^1.0.9"
+    "config": {
+        "sort-packages": true
     },
     "autoload": {
-        "psr-4": { "Becklyn\\RadBundle\\": "src/" }
+        "psr-4": {
+            "Becklyn\\RadBundle\\": "src/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\Becklyn\\RadBundle\\": "tests/"
         }
-    },
-    "config": {
-        "sort-packages": true
     }
 }
