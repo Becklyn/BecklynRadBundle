@@ -26,7 +26,7 @@
         "becklyn/php-cs": "^1.0.9"
     },
     "autoload": {
-        "psr-4": { "Becklyn\\RadBundle\\": "" }
+        "psr-4": { "Becklyn\\RadBundle\\": "src/" }
     },
     "autoload-dev": {
         "psr-4": {
