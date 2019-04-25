@@ -12,8 +12,6 @@
     ],
     "require": {
         "php": "^7.1",
-        "doctrine/doctrine-bundle": "^1.6",
-        "doctrine/orm": "^2.6",
         "symfony/config": "^3.4 | ^4.0",
         "symfony/dependency-injection": "^3.4 | ^4.0",
         "symfony/form": "^3.4 | ^4.0",
@@ -21,7 +19,13 @@
         "symfony/translation": "^3.4 | ^4.0",
         "twig/twig": "^1.26 | ^2.0"
     },
+    "suggest": {
+        "doctrine/doctrine-bundle": "To use the DoctrineModel.",
+        "doctrine/orm": "To use the DoctrineModel, the SortableHelper and the entity traits."
+    },
     "require-dev": {
+        "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/orm": "^2.6",
         "roave/security-advisories": "dev-master",
         "becklyn/php-cs": "^1.0.9"
     },
