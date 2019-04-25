@@ -13,11 +13,11 @@ php:
     - 7.3
 
 before_install:
-    - composer require php-coveralls/php-coveralls --no-interaction --no-progress
-    - composer global require localheinz/composer-normalize --no-interaction --prefer-dist --no-progress
+    - composer require php-coveralls/php-coveralls --prefer-dist --no-interaction --no-progress
+    - composer global require localheinz/composer-normalize --prefer-dist --no-interaction --no-progress
 
 install:
-    - composer install --no-interaction --prefer-dist --no-progress
+    - composer install --prefer-dist --no-interaction --no-progress
 
 script:
     - mkdir -p build/logs
