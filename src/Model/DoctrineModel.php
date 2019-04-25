@@ -5,7 +5,6 @@ namespace Becklyn\RadBundle\Model;
 use Becklyn\RadBundle\Exception\AutoConfigurationFailedException;
 use Becklyn\RadBundle\Exception\EntityRemovalBlockedException;
 use Becklyn\RadBundle\Helper\ClassNameTransformer;
-use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
@@ -42,9 +41,9 @@ abstract class DoctrineModel
      * Returns the repository.
      *
      * @param string|null $persistentObject you can specify which repository you want to load. Defaults to the
-     *                                      automatically derived one
+     *                                      automatically derived one.
      *
-     * @return ObjectRepository|EntityRepository
+     * @return EntityRepository
      */
     protected function getRepository ($persistentObject = null) : EntityRepository
     {
