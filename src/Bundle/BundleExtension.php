@@ -3,9 +3,11 @@
 namespace Becklyn\RadBundle\Bundle;
 
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
 /**
  * Base class to use in your bundle to easily create an extension.
@@ -13,25 +15,18 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 class BundleExtension extends Extension
 {
     /**
-     * @var string
+     * @var BundleInterface
      */
-    private $bundlePath;
+    private $bundle;
 
 
     /**
-     * @var string
+     * @param string $bundlePath    the path where your bundle is located.
+     * @param string $alias         the alias of your bundle.
      */
-    private $alias;
-
-
-    /**
-     * @param string $bundlePath
-     * @param string $alias
-     */
-    public function __construct (string $bundlePath, string $alias)
+    public function __construct (BundleInterface $bundle)
     {
-        $this->bundlePath = $bundlePath;
-        $this->alias = $alias;
+        $this->bundle = $bundle;
     }
 
     /**
@@ -39,7 +34,7 @@ class BundleExtension extends Extension
      */
     public function load (array $configs, ContainerBuilder $container)
     {
-        $configDir = "{$this->bundlePath}/Resources/config";
+        $configDir = "{$this->bundle->getPath()}/Resources/config";
 
         if (\is_file("{$configDir}/services.yaml"))
         {
@@ -54,6 +49,8 @@ class BundleExtension extends Extension
      */
     public function getAlias ()
     {
-        return $this->alias;
+        // use default naming convention
+        $basename = preg_replace('/Bundle$/', '', $this->bundle->getName());
+        return Container::underscore($basename);
     }
 }
