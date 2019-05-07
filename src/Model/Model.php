@@ -55,7 +55,7 @@ abstract class Model
      *
      * @param object $entity
      */
-    public function remove (object $entity)
+    public function remove (object $entity) : void
     {
         $this->entityManager->remove($entity);
     }
