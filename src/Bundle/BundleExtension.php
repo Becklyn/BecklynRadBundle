@@ -21,8 +21,7 @@ class BundleExtension extends Extension
 
 
     /**
-     * @param string $bundlePath    the path where your bundle is located.
-     * @param string $alias         the alias of your bundle.
+     * @param BundleInterface $bundle
      */
     public function __construct (BundleInterface $bundle)
     {
@@ -32,7 +31,7 @@ class BundleExtension extends Extension
     /**
      * @inheritDoc
      */
-    public function load (array $configs, ContainerBuilder $container)
+    public function load (array $configs, ContainerBuilder $container) : void
     {
         $configDir = "{$this->bundle->getPath()}/Resources/config";
 
@@ -50,7 +49,7 @@ class BundleExtension extends Extension
     public function getAlias ()
     {
         // use default naming convention
-        $basename = preg_replace('/Bundle$/', '', $this->bundle->getName());
+        $basename = \preg_replace('/Bundle$/', '', $this->bundle->getName());
         return Container::underscore($basename);
     }
 }
