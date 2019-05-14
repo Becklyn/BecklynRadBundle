@@ -28,7 +28,7 @@ class RadTwigExtension extends AbstractExtension
      *
      * @return string
      */
-    public function formatClassNames (array $classes)
+    public function formatClassNames (array $classes) : string
     {
         $result = [];
 
