@@ -19,7 +19,7 @@ class LabeledEntityRemovalBlockedException extends EntityRemovalBlockedException
      *
      * @param object|object[] $entities
      * @param string          $message
-     * @param string          $frontendMessage
+     * @param string          $frontendMessage the #TranslationKey to use
      * @param \Throwable|null $previous
      */
     public function __construct ($entities, string $message, string $frontendMessage, \Throwable $previous = null)
