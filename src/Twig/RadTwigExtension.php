@@ -4,6 +4,7 @@ namespace Becklyn\RadBundle\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class RadTwigExtension extends AbstractExtension
 {
@@ -23,7 +24,44 @@ class RadTwigExtension extends AbstractExtension
 
 
     /**
-     * @return array|\Twig_Filter[]
+     * @param array $classes
+     *
+     * @return string
+     */
+    public function formatClassNames (array $classes)
+    {
+        $result = [];
+
+        foreach ($classes as $class => $enabled)
+        {
+            // support key less values
+            if (\is_int($class))
+            {
+                $result[] = $enabled;
+            }
+            elseif ($enabled)
+            {
+                $result[] = $class;
+            }
+        }
+
+        return \implode(" ", $result);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getFunctions () : array
+    {
+        return [
+            new TwigFunction("classnames", [$this, "formatClassNames"]),
+        ];
+    }
+
+
+    /**
+     * @inheritDoc
      */
     public function getFilters () : array
     {
