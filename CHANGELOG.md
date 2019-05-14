@@ -5,3 +5,4 @@ Changelog for 6.0
 *   Added `LabeledEntityRemovalBlockedException`
 *   Added `Model`
 *   Bumped all dependencies. PHP 7.2+ and Symfony 4.2+ are now required.
+*   Added `classnames()` twig function.
