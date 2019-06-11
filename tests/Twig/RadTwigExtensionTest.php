@@ -60,4 +60,18 @@ class RadTwigExtensionTest extends TestCase
         $extension = new RadTwigExtension();
         self::assertSame($extension->formatClassNames($classnames), $expected);
     }
+
+
+    /**
+     * 
+     */
+    public function testDataContainer () : void
+    {
+        $extension = new RadTwigExtension();
+
+        self::assertSame(
+            '<script class="_data-container test" type="application/json">{"&lt;b&gt;":2}</script>',
+            $extension->renderDataContainer(["<b>" => 2], "test")
+        );
+    }
 }

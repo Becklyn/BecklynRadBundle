@@ -50,12 +50,31 @@ class RadTwigExtension extends AbstractExtension
 
 
     /**
+     * @param array  $data
+     * @param string $className
+     *
+     * @return string
+     */
+    public function renderDataContainer (array $data, string $className) : string
+    {
+        return \sprintf(
+            '<script class="_data-container %s" type="application/json">%s</script>',
+            \htmlspecialchars($className, \ENT_QUOTES),
+            \htmlspecialchars(\json_encode($data), \ENT_NOQUOTES)
+        );
+    }
+
+
+    /**
      * @inheritDoc
      */
     public function getFunctions () : array
     {
+        $safeHtml = ["is_safe" => ["html"]];
+
         return [
             new TwigFunction("classnames", [$this, "formatClassNames"]),
+            new TwigFunction("data_container", [$this, "renderDataContainer"], $safeHtml),
         ];
     }
 
