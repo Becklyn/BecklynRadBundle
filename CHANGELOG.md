@@ -8,3 +8,4 @@ Changelog for 6.0
 *   Added `classnames()` twig function.
 *   Added a custom `Profiler` wrapper, that is always available and allows to disable symfony's profiler.
 *   Added a `data_container()` twig function.
+*   Added `DownloadableStringTrait`, to easily send strings as downloadable files to the browser.
