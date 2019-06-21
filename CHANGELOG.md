@@ -9,3 +9,5 @@ Changelog for 6.0
 *   Added a custom `Profiler` wrapper, that is always available and allows to disable symfony's profiler.
 *   Added a `data_container()` twig function.
 *   Added `DownloadableStringTrait`, to easily send strings as downloadable files to the browser.
+*   Added `ChoicePlaceholderFormExtension`. Symfony removes "placeholder" attributes for certain configurations. 
+    In these cases, the placeholder is re-added as `data-placeholder` attribute (if not already set).
