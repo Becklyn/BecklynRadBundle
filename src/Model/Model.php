@@ -8,7 +8,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 /**
  * Base class for all models.
  */
-abstract class Model
+abstract class Model implements ModelInterface
 {
     /**
      * @var EntityManagerInterface
@@ -26,9 +26,7 @@ abstract class Model
 
 
     /**
-     * Marks the entity for adding.
-     *
-     * @param object $entity
+     * @inheritDoc
      */
     public function add (object $entity) : void
     {
@@ -37,9 +35,7 @@ abstract class Model
 
 
     /**
-     * Updates the given entity.
-     *
-     * @param object $entity
+     * @inheritDoc
      */
     public function update (object $entity) : void
     {
@@ -51,9 +47,7 @@ abstract class Model
 
 
     /**
-     * Marks the entity for removal.
-     *
-     * @param object $entity
+     * @inheritDoc
      */
     public function remove (object $entity) : void
     {
@@ -62,7 +56,7 @@ abstract class Model
 
 
     /**
-     * Flushes the entity changes to the database.
+     * @inheritDoc
      */
     public function flush () : void
     {
