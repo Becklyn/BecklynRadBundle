@@ -4,7 +4,7 @@ namespace Becklyn\RadBundle\Form;
 
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Helper class for calculating form error mappings.
