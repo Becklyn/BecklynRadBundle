@@ -28,6 +28,7 @@ class FormErrorMapper
 
     /**
      * @param FormInterface $form
+     * @param string        $translationDomain
      *
      * @return string[][]
      */
@@ -56,6 +57,7 @@ class FormErrorMapper
      *
      * @param FormInterface $form
      * @param string        $fieldPrefix
+     * @param string        $translationDomain
      * @param array         $allErrors
      */
     private function addChildErrors (FormInterface $form, string $fieldPrefix, string $translationDomain, array &$allErrors) : void
