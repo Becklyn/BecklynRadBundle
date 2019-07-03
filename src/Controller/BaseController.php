@@ -21,8 +21,8 @@ abstract class BaseController extends AbstractController
     public static function getSubscribedServices ()
     {
         return \array_replace(parent::getSubscribedServices(), [
-            TranslatorInterface::class,
             LoggerInterface::class,
+            TranslatorInterface::class,
         ]);
     }
 
