@@ -1,7 +1,6 @@
 Changelog for 6.0
 =================
 
-*   Added new form option `attr_row`, that acts like `attr` but is dedicated for form row attributes.
 *   Added `LabeledEntityRemovalBlockedException`
 *   Added `Model` and `ModelInterface`.
 *   Bumped all dependencies. PHP 7.2+ and Symfony 4.2+ are now required.
