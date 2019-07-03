@@ -24,11 +24,13 @@
         "becklyn/php-cs": "^1.4",
         "doctrine/doctrine-bundle": "^1.11",
         "doctrine/orm": "^2.6",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "symfony/twig-bridge": "^4.3"
     },
     "suggest": {
         "doctrine/doctrine-bundle": "To use the DoctrineModel.",
-        "doctrine/orm": "To use the DoctrineModel, the SortableHelper and the entity traits."
+        "doctrine/orm": "To use the DoctrineModel, the SortableHelper and the entity traits.",
+        "symfony/twig-bridge": "To use the default form theme."
     },
     "config": {
         "sort-packages": true
