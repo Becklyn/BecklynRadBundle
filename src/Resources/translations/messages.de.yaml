@@ -1,0 +1,4 @@
+entity_removal:
+    failed:
+        generic: 'Das Löschen ist leider fehlgeschlagen.'
+        foreign_key: 'Der Eintrag kann nicht gelöscht werden, da er noch andernorts referenziert wird.'

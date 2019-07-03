@@ -1,0 +1,4 @@
+entity_removal:
+    failed:
+        generic: 'Removing this entry failed.'
+        foreign_key: 'The entry can't be removed, as it is still referenced in another location.'
