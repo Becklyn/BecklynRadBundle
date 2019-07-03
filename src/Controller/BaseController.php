@@ -2,6 +2,7 @@
 
 namespace Becklyn\RadBundle\Controller;
 
+use Becklyn\RadBundle\Exception\EntityRemovalBlockedException;
 use Becklyn\RadBundle\Exception\LabeledEntityRemovalBlockedException;
 use Becklyn\RadBundle\Form\FormErrorMapper;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
@@ -54,6 +55,9 @@ abstract class BaseController extends AbstractController
         {
             case $exception instanceof LabeledEntityRemovalBlockedException:
                 $message = $exception->getFrontendMessage();
+                break;
+            case $exception instanceof EntityRemovalBlockedException:
+                $message = "entity_removal.failed.generic_blocked";
                 break;
             case $exception->getPrevious() instanceof ForeignKeyConstraintViolationException:
                 // this entity is still referenced
