@@ -11,3 +11,4 @@ Changelog for 6.0
 *   Added `DownloadableStringTrait`, to easily send strings as downloadable files to the browser.
 *   Added `ChoicePlaceholderFormExtension`. Symfony removes "placeholder" attributes for certain configurations. 
     In these cases, the placeholder is re-added as `data-placeholder` attribute (if not already set).
+*   Added a default form theme in `@BecklynRad/form/theme.html.twig`.

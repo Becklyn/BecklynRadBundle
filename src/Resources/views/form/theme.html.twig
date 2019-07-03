@@ -1,0 +1,217 @@
+{% extends "form_div_layout.html.twig" %}
+
+{#- #####################################################################
+    Global Structure
+    ##################################################################### -#}
+
+{%- block form_start -%}
+    {%- set attr = attr|appendToKey("class", "form") -%}
+    {{- parent() -}}
+{%- endblock form_start -%}
+
+
+{%- block form_widget_compound -%}
+    {# remove wrapper div #}
+    {%- if form is rootform -%}
+        {{- form_errors(form) -}}
+    {%- endif -%}
+    {{- block('form_rows') -}}
+    {{- form_rest(form) -}}
+{%- endblock form_widget_compound -%}
+
+
+
+{#- #####################################################################
+    Form Rows
+    ##################################################################### -#}
+
+{%- block form_row -%}
+    {%- set attr_row = attr_row|appendToKey("class", "form-row") -%}
+
+    {%- if errors|length > 0 -%}
+        {%- set attr_row = attr_row|appendToKey("class", "has-error") -%}
+    {%- endif -%}
+
+    {%- if compound -%}
+        {{- block('form_row_compound') -}}
+    {%- else -%}
+        {{- block('form_row_simple') -}}
+    {%- endif -%}
+{%- endblock form_row -%}
+
+
+{%- block form_row_simple -%}
+    {%- set widget_attr = {} -%}
+    {%- set form_element_type = form_element_type ?? "label" -%}
+    {%- set form_label_type = form_label_type ?? "span" -%}
+    {%- set form_widget_type = form_widget_type ?? "span" -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+<div{% with {attr: attr_row} %}{{ block("attributes") }}{% endwith %}>
+    <{{ form_element_type }} class="form-element">
+    {{- form_label(form, null, {element: form_label_type}) -}}
+    <{{ form_widget_type }} class="form-widget">
+    {{- form_widget(form, widget_attr) -}}
+    </{{ form_widget_type }}>
+    </{{ form_element_type }}>
+    {{- form_help(form) -}}
+    {{- form_errors(form) -}}
+    </div>
+{%- endblock form_row_simple -%}
+
+
+{%- block form_row_compound -%}
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+
+    {%- if label is same as (false) -%}
+        {# without a label -> just inline like regular fields #}
+        {{- block('form_rows') -}}
+        {{- form_rest(form) -}}
+    {%- else -%}
+        {# with label -> show as nested form (but only if it is not a choice #}
+        {%- if choices is not defined -%}
+            {%- set attr_row = attr_row|appendToKey("class", "nested-form") -%}
+        {%- endif -%}
+        {{- block("form_row_simple") -}}
+    {%- endif -%}
+{%- endblock form_row_compound -%}
+
+
+
+{#- #####################################################################
+    Form Label
+    ##################################################################### -#}
+
+{%- block form_label -%}
+    {%- set label_attr = label_attr|appendToKey("class", "form-label") -%}
+    {{- parent() -}}
+{%- endblock form_label -%}
+
+
+
+{#- #####################################################################
+    Form Help
+    ##################################################################### -#}
+
+{%- block form_help -%}
+    {%- set help_attr = help_attr|appendToKey("class", "form-help") -%}
+    {{- parent() -}}
+{%- endblock form_help -%}
+
+
+
+{#- #####################################################################
+    Form Errors
+    ##################################################################### -#}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        <ul class="form-errors">
+            {%- for error in errors -%}
+                <li>{{ error.message }}</li>
+            {%- endfor -%}
+        </ul>
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+
+
+{#- #####################################################################
+    Base Class for field types
+    ##################################################################### -#}
+
+{%- block form_widget_simple -%}
+    {%- set attr = attr|appendToKey("class", "form-input form-input-" ~ (type ?? "text")) -%}
+    {%- if type is defined and type is not same as ("text") -%}
+        {%- set attr = attr|appendToKey("class", "form-input-text") -%}
+    {%- endif -%}
+    {{- parent() -}}
+{%- endblock form_widget_simple -%}
+
+
+
+{#- #####################################################################
+    Field Type: Choice
+    ##################################################################### -#}
+
+{%- block choice_row -%}
+    {%- set form_element_type = "div" -%}
+    {%- set form_label_type = "label" -%}
+    {%- set form_widget_type = "div" -%}
+    {{- block("form_row") -}}
+{%- endblock choice_row -%}
+
+{%- block choice_widget_expanded -%}
+    {%- for child in form %}
+        <label class="form-widget-expanded-choice">
+            {{- form_widget(child) -}}
+            {{- form_label(child, null, {translation_domain: choice_translation_domain, element: "span"}) -}}
+        </label>
+    {% endfor -%}
+{%- endblock choice_widget_expanded -%}
+
+{%- block choice_widget_collapsed -%}
+    {%- set attr = attr|appendToKey("class", "form-input form-input-select") -%}
+    {%- if multiple and placeholder is not empty -%}
+        {%- set attr = attr|merge({"data-placeholder": placeholder}) -%}
+    {%- endif -%}
+    {{- parent() -}}
+{%- endblock choice_widget_collapsed -%}
+
+{%- block checkbox_widget -%}
+    <span class="form-input-checkbox">
+        {{- parent() -}}<i><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fff" d="M9.3 18.7L2.7 12l1.8-1.9 4.8 4.8L19.5 4.8l1.8 1.9z"></path></svg></i>
+    </span>
+{%- endblock checkbox_widget -%}
+
+{%- block radio_widget -%}
+    <span class="form-input-radio">
+        {{- parent() -}}<i></i>
+    </span>
+{%- endblock radio_widget -%}
+
+
+
+{#- #####################################################################
+    Field Type: Textarea
+    ##################################################################### -#}
+
+{%- block textarea_widget -%}
+    {%- set attr = attr|appendToKey("class", "form-input form-input-text form-input-textarea") -%}
+    {{- parent() -}}
+{%- endblock textarea_widget -%}
+
+
+
+{#- #####################################################################
+    Row: Checkbox
+    ##################################################################### -#}
+
+{%- block checkbox_row -%}
+    {%- set attr_row = attr_row|appendToKey("class", "form-row") -%}
+
+    {%- if errors|length > 0 -%}
+        {%- set attr_row = attr_row|appendToKey("class", "has-error") -%}
+    {%- endif -%}
+
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+    <div{% with {attr: attr_row} %}{{ block("attributes") }}{% endwith %}>
+        <div class="form-element">
+            <span class="form-widget">
+                <label class="form-widget-expanded-choice">
+                    {{- form_widget(form, widget_attr) -}}
+                    {{- form_label(form, null, {element: "span"}) -}}
+                </label>
+            </span>
+        </div>
+        {{- form_help(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock checkbox_row -%}
