@@ -1,5 +1,5 @@
 entity_removal:
     failed:
-        foreign_key: 'The entry can't be removed, as it is still referenced in another location.'
-        generic: 'Removing this entry failed.'
-        generic_blocked: 'The entry can't be removed, as it is still referenced in another location.'
+        foreign_key: The entry can't be removed, as it is still referenced in another location.
+        generic: Removing this entry failed.
+        generic_blocked: The entry can't be removed, as it is still referenced in another location.
