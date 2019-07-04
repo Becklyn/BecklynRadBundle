@@ -26,10 +26,10 @@
     ##################################################################### -#}
 
 {%- block form_row -%}
-    {%- set attr_row = attr_row|appendToKey("class", "form-row") -%}
+    {%- set row_attr = row_attr|appendToKey("class", "form-row") -%}
 
     {%- if errors|length > 0 -%}
-        {%- set attr_row = attr_row|appendToKey("class", "has-error") -%}
+        {%- set row_attr = row_attr|appendToKey("class", "has-error") -%}
     {%- endif -%}
 
     {%- if compound -%}
@@ -48,7 +48,7 @@
     {%- if help is not empty -%}
         {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
     {%- endif -%}
-<div{% with {attr: attr_row} %}{{ block("attributes") }}{% endwith %}>
+<div{% with {attr: row_attr} %}{{ block("attributes") }}{% endwith %}>
     <{{ form_element_type }} class="form-element">
     {{- form_label(form, null, {element: form_label_type}) -}}
     <{{ form_widget_type }} class="form-widget">
@@ -74,7 +74,7 @@
     {%- else -%}
         {# with label -> show as nested form (but only if it is not a choice #}
         {%- if choices is not defined -%}
-            {%- set attr_row = attr_row|appendToKey("class", "nested-form") -%}
+            {%- set row_attr = row_attr|appendToKey("class", "nested-form") -%}
         {%- endif -%}
         {{- block("form_row_simple") -}}
     {%- endif -%}
@@ -192,17 +192,17 @@
     ##################################################################### -#}
 
 {%- block checkbox_row -%}
-    {%- set attr_row = attr_row|appendToKey("class", "form-row") -%}
+    {%- set row_attr = row_attr|appendToKey("class", "form-row") -%}
 
     {%- if errors|length > 0 -%}
-        {%- set attr_row = attr_row|appendToKey("class", "has-error") -%}
+        {%- set row_attr = row_attr|appendToKey("class", "has-error") -%}
     {%- endif -%}
 
     {%- set widget_attr = {} -%}
     {%- if help is not empty -%}
         {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
     {%- endif -%}
-    <div{% with {attr: attr_row} %}{{ block("attributes") }}{% endwith %}>
+    <div{% with {attr: row_attr} %}{{ block("attributes") }}{% endwith %}>
         <div class="form-element">
             <span class="form-widget">
                 <label class="form-widget-expanded-choice">
