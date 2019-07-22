@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Base class for all controllers
+ * Base class for all controllers.
  */
 abstract class BaseController extends AbstractController
 {
@@ -56,13 +56,16 @@ abstract class BaseController extends AbstractController
             case $exception instanceof LabeledEntityRemovalBlockedException:
                 $message = $exception->getFrontendMessage();
                 break;
+
             case $exception instanceof EntityRemovalBlockedException:
                 $message = "entity_removal.failed.generic_blocked";
                 break;
+
             case $exception->getPrevious() instanceof ForeignKeyConstraintViolationException:
                 // this entity is still referenced
                 $message = "entity_removal.failed.foreign_key";
                 break;
+
             default:
                 // unknown cause of failed removal
                 // -> use generic error message

@@ -1,5 +1,11 @@
-Changelog for 6.0
-=================
+6.1.0
+=====
+
+*   Added `StatsCounter`.
+
+
+6.0.0
+=====
 
 *   Added `LabeledEntityRemovalBlockedException`
 *   Added `Model` and `ModelInterface`.
