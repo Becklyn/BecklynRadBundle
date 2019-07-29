@@ -127,6 +127,15 @@ class Pagination
 
 
     /**
+     * @return int
+     */
+    public function getNumberOfItems () : int
+    {
+        return $this->numberOfItems;
+    }
+
+
+    /**
      * @return array
      */
     public function toArray () : array
@@ -149,6 +158,6 @@ class Pagination
      */
     public function withNumberOfItems (int $numberOfItems) : self
     {
-        return new self($this->currentPage, $numberOfItems, $this->perPage);
+        return new self($this->currentPage, $this->perPage, $numberOfItems);
     }
 }

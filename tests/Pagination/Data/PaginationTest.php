@@ -63,4 +63,23 @@ class PaginationTest extends TestCase
     {
         new Pagination(1, $itemsPerPage, $numberOfItems);
     }
+
+
+    /**
+     *
+     */
+    public function testCreateWithNewCount () : void
+    {
+        $pagination = new Pagination(2, 10, 25);
+        self::assertSame(2, $pagination->getCurrentPage());
+        self::assertSame(3, $pagination->getMaxPage());
+        self::assertSame(25, $pagination->getNumberOfItems());
+
+        $newPagination = $pagination->withNumberOfItems(7);
+        self::assertNotSame($pagination, $newPagination);
+        self::assertSame(1, $newPagination->getCurrentPage());
+        self::assertSame(1, $newPagination->getMaxPage());
+        self::assertSame(7, $newPagination->getNumberOfItems());
+
+    }
 }
