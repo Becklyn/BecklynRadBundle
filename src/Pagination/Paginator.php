@@ -35,6 +35,6 @@ class Paginator
             $list = [];
         }
 
-        return new PaginatedList($list, $pagination);
+        return new PaginatedList($list, $newPagination);
     }
 }
