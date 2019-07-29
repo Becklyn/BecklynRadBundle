@@ -2,6 +2,8 @@
 
 namespace Becklyn\RadBundle\Pagination;
 
+use Becklyn\RadBundle\Pagination\Data\PaginatedList;
+use Becklyn\RadBundle\Pagination\Data\Pagination;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 

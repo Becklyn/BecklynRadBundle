@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Pagination;
+namespace Becklyn\RadBundle\Pagination\Data;
 
 /**
  * Generic value object for returning paginated lists.
