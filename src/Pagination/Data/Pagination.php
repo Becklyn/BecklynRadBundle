@@ -52,16 +52,6 @@ class Pagination
         $this->numberOfItems = $numberOfItems;
         $this->perPage = $perPage;
         $this->maxPage = (int) \max(1, (int) \ceil($numberOfItems / $perPage));
-
-        // sanitized current page
-        if ($currentPage < 1)
-        {
-            $this->currentPage = 1;
-        }
-        elseif ($currentPage > $this->maxPage)
-        {
-            $this->currentPage = $this->maxPage;
-        }
     }
 
 
@@ -73,6 +63,17 @@ class Pagination
      */
     public function getCurrentPage () : int
     {
+        // sanitized current page
+        if ($this->currentPage < 1)
+        {
+            return 1;
+        }
+
+        if ($this->currentPage > $this->maxPage)
+        {
+            return $this->maxPage;
+        }
+
         return $this->currentPage;
     }
 
