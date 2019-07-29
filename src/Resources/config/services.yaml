@@ -5,4 +5,4 @@ services:
 
     Becklyn\RadBundle\:
         resource: ../../*
-        exclude: ../../{Entity,Exception,Pagination,Resources,BecklynRadBundle.php}
+        exclude: ../../{Entity,Exception,Pagination/PaginatedList.php,Pagination/Pagination.php,Resources,BecklynRadBundle.php}
