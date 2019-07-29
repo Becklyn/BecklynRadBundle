@@ -63,4 +63,62 @@ class PaginationTest extends TestCase
     {
         new Pagination(1, $itemsPerPage, $numberOfItems);
     }
+
+
+    /**
+     *
+     */
+    public function testCreateWithNewCount () : void
+    {
+        $pagination = new Pagination(2, 10, 25);
+        self::assertSame(2, $pagination->getCurrentPage());
+        self::assertSame(3, $pagination->getMaxPage());
+        self::assertSame(25, $pagination->getNumberOfItems());
+
+        $newPagination = $pagination->withNumberOfItems(7);
+        self::assertNotSame($pagination, $newPagination);
+        self::assertSame(1, $newPagination->getCurrentPage());
+        self::assertSame(1, $newPagination->getMaxPage());
+        self::assertSame(7, $newPagination->getNumberOfItems());
+    }
+
+
+    /**
+     * Tests that even an invalid current page is preserved, for when the total number of items change.
+     */
+    public function testPreserveCurrentPage () : void
+    {
+        $pagination = new Pagination(5, 10, 25);
+        self::assertSame(3, $pagination->getCurrentPage());
+
+        $newPagination = $pagination->withNumberOfItems(100);
+        self::assertSame(5, $newPagination->getCurrentPage());
+    }
+
+
+    /**
+     * @return array
+     */
+    public function provideCurrent () : array
+    {
+        return [
+            [3, 40, 3],
+            [3, 10, 1],
+            [3, 12, 2],
+            [0, 12, 1],
+        ];
+    }
+
+
+    /**
+     * @dataProvider provideCurrent
+     * @param int $currentPage
+     * @param int $totalNumber
+     * @param int $expectedCurrent
+     */
+    public function testCurrent (int $currentPage, int $totalNumber, int $expectedCurrent) : void
+    {
+        $pagination = new Pagination($currentPage, 10, $totalNumber);
+        self::assertSame($expectedCurrent, $pagination->getCurrentPage());
+    }
 }
