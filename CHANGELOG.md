@@ -2,6 +2,8 @@
 =====
 
 *   Added `StatsCounter`.
+*   Changed the constructor parameters for `Pagination`.
+*   Added `Paginator`.
 
 
 6.0.0

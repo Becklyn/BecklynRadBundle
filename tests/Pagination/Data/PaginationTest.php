@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Pagination;
+namespace Tests\Becklyn\RadBundle\Pagination\Data;
 
-use Becklyn\RadBundle\Pagination\Pagination;
+use Becklyn\RadBundle\Pagination\Data\Pagination;
 use PHPUnit\Framework\TestCase;
 
 class PaginationTest extends TestCase
@@ -33,7 +33,7 @@ class PaginationTest extends TestCase
      */
     public function testValidMaxPage (int $numberOfItems, int $itemsPerPage, int $expectedMaxPage) : void
     {
-        $pagination = new Pagination(1, $numberOfItems, $itemsPerPage);
+        $pagination = new Pagination(1, $itemsPerPage, $numberOfItems);
         self::assertSame($expectedMaxPage, $pagination->getMaxPage());
     }
 
@@ -61,6 +61,6 @@ class PaginationTest extends TestCase
      */
     public function testInvalid (int $numberOfItems, int $itemsPerPage) : void
     {
-        new Pagination(1, $numberOfItems, $itemsPerPage);
+        new Pagination(1, $itemsPerPage, $numberOfItems);
     }
 }
