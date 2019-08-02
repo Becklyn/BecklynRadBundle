@@ -1,7 +1,14 @@
-Changelog for 6.0
-=================
+6.1.0
+=====
 
-*   Added new form option `attr_row`, that acts like `attr` but is dedicated for form row attributes.
+*   Added `StatsCounter`.
+*   Changed the constructor parameters for `Pagination`.
+*   Added `Paginator`.
+
+
+6.0.0
+=====
+
 *   Added `LabeledEntityRemovalBlockedException`
 *   Added `Model` and `ModelInterface`.
 *   Bumped all dependencies. PHP 7.2+ and Symfony 4.2+ are now required.
@@ -12,3 +19,4 @@ Changelog for 6.0
 *   Added `ChoicePlaceholderFormExtension`. Symfony removes "placeholder" attributes for certain configurations. 
     In these cases, the placeholder is re-added as `data-placeholder` attribute (if not already set).
 *   Added a default form theme in `@BecklynRad/form/theme.html.twig`.
+*   Added `row_attr` option for forms, with which you can apply attributes the row container in form themes.

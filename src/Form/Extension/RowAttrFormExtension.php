@@ -9,44 +9,34 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Adds a new form option "attr_row", that acts like "attr" but is rendered as
- * attributes on the form row and not the form widget.
- */
-class FormRowAttributesExtension extends AbstractTypeExtension
+class RowAttrFormExtension extends AbstractTypeExtension
 {
     /**
      * @inheritDoc
      */
     public function buildForm (FormBuilderInterface $builder, array $options) : void
     {
-        $builder->setAttribute("attr_row", $options["attr_row"]);
+        $builder->setAttribute("row_attr", $options["row_attr"]);
     }
-
-
     /**
      * @inheritDoc
      */
     public function buildView (FormView $view, FormInterface $form, array $options) : void
     {
-        $view->vars["attr_row"] = $form->getConfig()->getAttribute("attr_row");
+        $view->vars["row_attr"] = $form->getConfig()->getAttribute("row_attr");
     }
-
-
     /**
      * @inheritDoc
      */
     public function configureOptions (OptionsResolver $resolver) : void
     {
         $resolver
-            ->setDefined(["attr_row"])
-            ->setAllowedTypes("attr_row", "array")
+            ->setDefined(["row_attr"])
+            ->setAllowedTypes("row_attr", "array")
             ->setDefaults([
-                "attr_row" => [],
+                "row_attr" => [],
             ]);
     }
-
-
     /**
      * @inheritDoc
      */

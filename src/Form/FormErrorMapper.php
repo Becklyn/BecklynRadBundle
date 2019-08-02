@@ -91,7 +91,7 @@ class FormErrorMapper
      *
      * @return string[][]
      */
-    public function generate (FormInterface $form, string $translationDomain = "data") : array
+    public function generate (FormInterface $form, string $translationDomain = "validators") : array
     {
         return $this->generateMapping($form, $translationDomain);
     }

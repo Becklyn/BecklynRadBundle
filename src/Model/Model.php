@@ -2,8 +2,8 @@
 
 namespace Becklyn\RadBundle\Model;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Base class for all models.
@@ -17,11 +17,13 @@ abstract class Model implements ModelInterface
 
 
     /**
-     * @param RegistryInterface $registry
+     * @param ManagerRegistry $registry
      */
-    public function __construct (RegistryInterface $registry)
+    public function __construct (ManagerRegistry $registry)
     {
-        $this->entityManager = $registry->getEntityManager();
+        /** @var EntityManagerInterface $entityManager */
+        $entityManager = $registry->getManager();
+        $this->entityManager = $entityManager;
     }
 
 

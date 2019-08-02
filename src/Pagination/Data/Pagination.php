@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Pagination;
+namespace Becklyn\RadBundle\Pagination\Data;
 
 /**
  * Generic pagination calculator.
@@ -22,7 +22,7 @@ class Pagination
     /**
      * @var int
      */
-    private $itemsPerPage;
+    private $perPage;
 
 
     /**
@@ -33,12 +33,12 @@ class Pagination
 
     /**
      * @param int $currentPage
+     * @param int $perPage
      * @param int $numberOfItems
-     * @param int $itemsPerPage
      */
-    public function __construct (int $currentPage, int $numberOfItems, int $itemsPerPage = 50)
+    public function __construct (int $currentPage, int $perPage = 50, int $numberOfItems = 0)
     {
-        if ($itemsPerPage <= 0)
+        if ($perPage <= 0)
         {
             throw new \InvalidArgumentException("Pagination can only be created for at least 1 item per page.");
         }
@@ -50,16 +50,30 @@ class Pagination
 
         $this->currentPage = $currentPage;
         $this->numberOfItems = $numberOfItems;
-        $this->itemsPerPage = $itemsPerPage;
-        $this->maxPage = (int) \max(1, (int) \ceil($numberOfItems / $itemsPerPage));
+        $this->perPage = $perPage;
+        $this->maxPage = (int) \max(1, (int) \ceil($numberOfItems / $perPage));
     }
 
 
+
     /**
+     * Returns the sanitized current page.
+     *
      * @return int
      */
     public function getCurrentPage () : int
     {
+        // sanitized current page
+        if ($this->currentPage < 1)
+        {
+            return 1;
+        }
+
+        if ($this->currentPage > $this->maxPage)
+        {
+            return $this->maxPage;
+        }
+
         return $this->currentPage;
     }
 
@@ -83,11 +97,11 @@ class Pagination
 
 
     /**
-     * @return bool
+     * @return int
      */
-    public function isValidCurrentPage () : bool
+    public function getPerPage () : int
     {
-        return 1 <= $this->currentPage && $this->currentPage <= $this->maxPage;
+        return $this->perPage;
     }
 
 
@@ -114,6 +128,15 @@ class Pagination
 
 
     /**
+     * @return int
+     */
+    public function getNumberOfItems () : int
+    {
+        return $this->numberOfItems;
+    }
+
+
+    /**
      * @return array
      */
     public function toArray () : array
@@ -124,7 +147,18 @@ class Pagination
             "max" => $this->maxPage,
             "next" => $this->getNextPage(),
             "prev" => $this->getPreviousPage(),
-            "valid" => $this->isValidCurrentPage(),
+            "perPage" => $this->perPage,
         ];
+    }
+
+
+    /**
+     * @param int $numberOfItems
+     *
+     * @return Pagination
+     */
+    public function withNumberOfItems (int $numberOfItems) : self
+    {
+        return new self($this->currentPage, $this->perPage, $numberOfItems);
     }
 }
