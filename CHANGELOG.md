@@ -1,3 +1,9 @@
+6.2.0
+=====
+
+*   Extracted `DataContainer` into it's own service. You can now directly create a data container response using `DataContainer::createResponse()`.
+
+
 6.1.0
 =====
 
