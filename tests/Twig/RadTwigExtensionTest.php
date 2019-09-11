@@ -2,6 +2,7 @@
 
 namespace Tests\Becklyn\RadBundle\Twig;
 
+use Becklyn\RadBundle\Html\DataContainer;
 use Becklyn\RadBundle\Twig\RadTwigExtension;
 use PHPUnit\Framework\TestCase;
 
@@ -9,7 +10,7 @@ class RadTwigExtensionTest extends TestCase
 {
     public function testAppendToKey () : void
     {
-        $extension = new RadTwigExtension();
+        $extension = new RadTwigExtension(new DataContainer());
         $array = [
             "existing" => "abc",
         ];
@@ -57,21 +58,7 @@ class RadTwigExtensionTest extends TestCase
      */
     public function testClassnames (array $classnames, string $expected) : void
     {
-        $extension = new RadTwigExtension();
+        $extension = new RadTwigExtension(new DataContainer());
         self::assertSame($extension->formatClassNames($classnames), $expected);
-    }
-
-
-    /**
-     * 
-     */
-    public function testDataContainer () : void
-    {
-        $extension = new RadTwigExtension();
-
-        self::assertSame(
-            '<script class="_data-container test" type="application/json">{"&lt;b&gt;":2}</script>',
-            $extension->renderDataContainer(["<b>" => 2], "test")
-        );
     }
 }

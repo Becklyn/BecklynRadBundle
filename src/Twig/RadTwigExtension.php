@@ -2,12 +2,27 @@
 
 namespace Becklyn\RadBundle\Twig;
 
+use Becklyn\RadBundle\Html\DataContainer;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class RadTwigExtension extends AbstractExtension
 {
+    /**
+     * @var DataContainer
+     */
+    private $dataContainer;
+
+
+    /**
+     * @param DataContainer $dataContainer
+     */
+    public function __construct (DataContainer $dataContainer)
+    {
+        $this->dataContainer = $dataContainer;
+    }
+
     /**
      * @param array  $map
      * @param string $key
@@ -50,22 +65,6 @@ class RadTwigExtension extends AbstractExtension
 
 
     /**
-     * @param array  $data
-     * @param string $className
-     *
-     * @return string
-     */
-    public function renderDataContainer (array $data, string $className) : string
-    {
-        return \sprintf(
-            '<script class="_data-container %s" type="application/json">%s</script>',
-            \htmlspecialchars($className, \ENT_QUOTES),
-            \htmlspecialchars(\json_encode($data), \ENT_NOQUOTES)
-        );
-    }
-
-
-    /**
      * @inheritDoc
      */
     public function getFunctions () : array
@@ -74,7 +73,7 @@ class RadTwigExtension extends AbstractExtension
 
         return [
             new TwigFunction("classnames", [$this, "formatClassNames"]),
-            new TwigFunction("data_container", [$this, "renderDataContainer"], $safeHtml),
+            new TwigFunction("data_container", [$this->dataContainer, "renderToHtml"], $safeHtml),
         ];
     }
 
