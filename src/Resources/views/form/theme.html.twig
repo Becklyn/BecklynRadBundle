@@ -225,6 +225,11 @@
 {#- #####################################################################
     Row: Form Type Row Classes
     ##################################################################### -#}
+{%- block date_row -%}
+    {%- set form_row_type = "form-row-text form-row-date" -%}
+    {{- block("form_row") -}}
+{%- endblock -%}
+
 {%- block email_row -%}
     {%- set form_row_type = "form-row-text form-row-email" -%}
     {{- block("form_row") -}}
