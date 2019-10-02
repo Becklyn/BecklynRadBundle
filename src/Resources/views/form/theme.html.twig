@@ -78,7 +78,7 @@
     {%- else -%}
         {# with label -> show as nested form (but only if it is not a choice #}
         {%- if choices is not defined -%}
-            {%- set row_attr = row_attr|appendToKey("class", "nested-form") -%}
+            {%- set row_attr = row_attr|appendToKey("class", "form-nested") -%}
         {%- endif -%}
         {{- block("form_row_simple") -}}
     {%- endif -%}
