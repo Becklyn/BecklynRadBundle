@@ -28,6 +28,10 @@
 {%- block form_row -%}
     {%- set row_attr = row_attr|appendToKey("class", "form-row") -%}
 
+    {%- if form_row_type is defined -%}
+        {%- set row_attr = row_attr|appendToKey("class", form_row_type) -%}
+    {%- endif -%}
+
     {%- if errors|length > 0 -%}
         {%- set row_attr = row_attr|appendToKey("class", "has-error") -%}
     {%- endif -%}
@@ -74,7 +78,7 @@
     {%- else -%}
         {# with label -> show as nested form (but only if it is not a choice #}
         {%- if choices is not defined -%}
-            {%- set row_attr = row_attr|appendToKey("class", "nested-form") -%}
+            {%- set row_attr = row_attr|appendToKey("class", "form-nested") -%}
         {%- endif -%}
         {{- block("form_row_simple") -}}
     {%- endif -%}
@@ -112,7 +116,7 @@
     {%- if errors|length > 0 -%}
         <ul class="form-errors">
             {%- for error in errors -%}
-                <li>{{ error.message }}</li>
+                <li>{{ "form.error.message" | trans({error: error.message}) }}</li>
             {%- endfor -%}
         </ul>
     {%- endif -%}
@@ -142,6 +146,7 @@
     {%- set form_element_type = "div" -%}
     {%- set form_label_type = "label" -%}
     {%- set form_widget_type = "div" -%}
+    {%- set form_row_type = expanded ? "form-row-choices-list" : "form-row-select" -%}
     {{- block("form_row") -}}
 {%- endblock choice_row -%}
 
@@ -192,7 +197,7 @@
     ##################################################################### -#}
 
 {%- block checkbox_row -%}
-    {%- set row_attr = row_attr|appendToKey("class", "form-row") -%}
+    {%- set row_attr = row_attr|appendToKey("class", "form-row form-row-checkbox") -%}
 
     {%- if errors|length > 0 -%}
         {%- set row_attr = row_attr|appendToKey("class", "has-error") -%}
@@ -215,3 +220,29 @@
         {{- form_errors(form) -}}
     </div>
 {%- endblock checkbox_row -%}
+
+
+{#- #####################################################################
+    Row: Form Type Row Classes
+    ##################################################################### -#}
+{%- block date_row -%}
+    {%- set form_row_type = "form-row-text form-row-date" -%}
+    {{- block("form_row") -}}
+{%- endblock -%}
+
+{%- block email_row -%}
+    {%- set form_row_type = "form-row-text form-row-email" -%}
+    {{- block("form_row") -}}
+{%- endblock -%}
+
+{%- block text_row -%}
+    {%- set form_row_type = "form-row-text" -%}
+    {{- block("form_row") -}}
+{%- endblock -%}
+
+{%- block textarea_row -%}
+    {%- set form_row_type = "form-row-text form-row-textarea" -%}
+    {{- block("form_row") -}}
+{%- endblock -%}
+
+

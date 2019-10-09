@@ -3,3 +3,7 @@ entity_removal:
         foreign_key: Der Eintrag kann nicht gelöscht werden, da er noch andernorts referenziert wird.
         generic: Das Löschen ist leider fehlgeschlagen.
         generic_blocked: Der Eintrag kann nicht gelöscht werden, da er noch andernorts referenziert wird.
+
+form:
+    error:
+        message: 'Fehler: {error}'
