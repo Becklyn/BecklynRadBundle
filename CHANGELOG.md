@@ -1,3 +1,11 @@
+6.2.1
+=====
+
+*   The `form-row` elements now also have typed classes, like `form-row-text`.
+*   Add proper form error translation labels.
+*   All form elements now use `form-` as common class name prefix.
+
+
 6.2.0
 =====
 
