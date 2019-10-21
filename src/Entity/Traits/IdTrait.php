@@ -27,4 +27,15 @@ trait IdTrait
     {
         return $this->id;
     }
+
+
+    /**
+     * Returns whether this entity was already persisted and flushed (`false`) or if it is new (`true`).
+     *
+     * @return bool true if not yet flushed, false otherwise
+     */
+    public function isNew () : bool
+    {
+        return null === $this->id;
+    }
 }
