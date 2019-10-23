@@ -42,4 +42,20 @@ class PaginatedList
     {
         return $this->pagination;
     }
+
+
+    /**
+     * @param array $list
+     *
+     * @return self
+     */
+    public static function createFromArray (array $list) : self
+    {
+        $itemsPerPage = \max(1, \count($list));
+
+        return new self(
+            $list,
+            new Pagination(1, $itemsPerPage, $itemsPerPage)
+        );
+    }
 }

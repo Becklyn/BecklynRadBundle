@@ -1,3 +1,9 @@
+6.3.1
+=====
+
+*   Added `PaginatedList::createFromArray()`.
+
+
 6.3.0
 =====
 

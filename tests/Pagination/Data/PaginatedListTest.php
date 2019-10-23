@@ -8,6 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 class PaginatedListTest extends TestCase
 {
+    /**
+     *
+     */
     public function testArray () : void
     {
         $pagination = new Pagination(1, 50, 10);
@@ -20,6 +23,9 @@ class PaginatedListTest extends TestCase
     }
 
 
+    /**
+     *
+     */
     public function testIterator () : void
     {
         $pagination = new Pagination(1, 50, 10);
@@ -27,5 +33,31 @@ class PaginatedListTest extends TestCase
 
         $paginatedList = new PaginatedList($list, $pagination);
         self::assertSame($pagination, $paginatedList->getPagination());
+    }
+
+
+    /**
+     *
+     */
+    public function testCreateFromList () : void
+    {
+        $list = PaginatedList::createFromArray(\range(0, 9));
+        self::assertCount(10, $list->getList());
+        self::assertSame(1, $list->getPagination()->getCurrentPage());
+        self::assertSame(1, $list->getPagination()->getMaxPage());
+        self::assertSame(10, $list->getPagination()->getPerPage());
+    }
+
+
+    /**
+     *
+     */
+    public function testCreateFromEmptyList () : void
+    {
+        $list = PaginatedList::createFromArray([]);
+        self::assertCount(0, $list->getList());
+        self::assertSame(1, $list->getPagination()->getCurrentPage());
+        self::assertSame(1, $list->getPagination()->getMaxPage());
+        self::assertSame(1, $list->getPagination()->getPerPage());
     }
 }
