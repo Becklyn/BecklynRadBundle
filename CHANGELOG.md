@@ -1,3 +1,10 @@
+6.3.2
+=====
+
+*   Fix trans domain for ``BaseController::getEntityRemovalMessage()`` message: should be `backend`, 
+    as this feature isn't really useful in the frontend.
+
+
 6.3.1
 =====
 

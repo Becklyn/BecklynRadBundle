@@ -77,7 +77,7 @@ abstract class BaseController extends AbstractController
                 break;
         }
 
-        return $this->trans($message);
+        return $this->trans($message, [], "backend");
     }
 
 
