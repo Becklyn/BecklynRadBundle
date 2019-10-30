@@ -25,7 +25,7 @@ class SortableHandler
 
 
     /**
-     * Returns the next sort order value
+     * Returns the next sort order value.
      *
      * @param array $where
      *
@@ -48,7 +48,7 @@ class SortableHandler
      * Sorts the given $entity before the $before entity.
      * If no $before entity is given, the element will be moved to the end.
      *
-     * @param SortableEntityInterface|null $entity
+     * @param SortableEntityInterface      $entity
      * @param SortableEntityInterface|null $before
      * @param array                        $where
      */
@@ -82,11 +82,11 @@ class SortableHandler
             if ($existing === $before)
             {
                 $entity->setSortOrder($index);
-                $index++;
+                ++$index;
             }
 
             $existing->setSortOrder($index);
-            $index++;
+            ++$index;
         }
 
         // no $before reference element given, it should be moved to the end
@@ -103,10 +103,10 @@ class SortableHandler
      *
      * Will fetch all matching elements and resets all sort orders, except for the ones that are given here.
      *
-     * @param SortableEntityInterface[] $excludeElement
-     * @param array $where
+     * @param SortableEntityInterface[] $excludedElements
+     * @param array                     $where
      */
-    public function fixSortOrder (array $excludeElements, array $where = []) : void
+    public function fixSortOrder (array $excludedElements, array $where = []) : void
     {
         $entities = $this->getBaseQuery($where)
             ->select("t")
@@ -121,19 +121,19 @@ class SortableHandler
             /** @var SortableEntityInterface $entity */
             $entity = $row[0];
 
-            if (\in_array($entity, $excludeElements, true))
+            if (\in_array($entity, $excludedElements, true))
             {
                 continue;
             }
 
             $entity->setSortOrder($index);
-            $index++;
+            ++$index;
         }
     }
 
 
     /**
-     * Builds the base query
+     * Builds the base query.
      *
      * @param array $where
      *
@@ -161,7 +161,7 @@ class SortableHandler
                     $queryBuilder->setParameter("where_value_{$index}", $value);
                 }
 
-                $index++;
+                ++$index;
             }
 
             $queryBuilder->andWhere($whereCondition);

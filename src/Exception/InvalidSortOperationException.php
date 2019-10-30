@@ -4,5 +4,4 @@ namespace Becklyn\RadBundle\Exception;
 
 class InvalidSortOperationException extends RadException
 {
-
 }
