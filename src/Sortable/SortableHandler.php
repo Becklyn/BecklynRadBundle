@@ -3,6 +3,7 @@
 namespace Becklyn\RadBundle\Sortable;
 
 use Becklyn\RadBundle\Entity\Interfaces\SortableEntityInterface;
+use Becklyn\RadBundle\Exception\InvalidSortOperationException;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
@@ -32,7 +33,7 @@ class SortableHandler
      */
     public function getNextSortOrder (array $where = []) : int
     {
-        $currentMaxValue= $this->getBaseQuery($where)
+        $currentMaxValue = $this->getBaseQuery($where)
             ->select("MAX(t.sortOrder)")
             ->getQuery()
             ->getSingleScalarResult();
@@ -53,6 +54,11 @@ class SortableHandler
      */
     public function sortElementBefore (SortableEntityInterface $entity, ?SortableEntityInterface $before, array $where = []) : void
     {
+        if ($entity === $before)
+        {
+            throw new InvalidSortOperationException("Can't sort an element before itself.");
+        }
+
         $entities = $this->getBaseQuery($where)
             ->select("t")
             ->addOrderBy("t.sortOrder", "asc")
@@ -158,7 +164,7 @@ class SortableHandler
                 $index++;
             }
 
-            $queryBuilder->where($whereCondition);
+            $queryBuilder->andWhere($whereCondition);
         }
 
         return $queryBuilder;
