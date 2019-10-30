@@ -2,6 +2,7 @@
 =====
 
 *   Added `SortableHandler`
+*   All exceptions now extend `RadException`.
 *   Make methods in `Model` and `ModelInterface` fluent.
 
 
