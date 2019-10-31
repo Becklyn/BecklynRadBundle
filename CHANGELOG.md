@@ -1,3 +1,11 @@
+6.4.0
+=====
+
+*   All exceptions now extend `RadException`.
+*   Added `SortableHandler`.
+*   Make methods in `Model` and `ModelInterface` fluent.
+
+
 6.3.2
 =====
 

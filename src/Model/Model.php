@@ -30,38 +30,43 @@ abstract class Model implements ModelInterface
     /**
      * @inheritDoc
      */
-    public function add (object $entity) : void
+    public function add (object $entity)
     {
         $this->entityManager->persist($entity);
+        return $this;
     }
 
 
     /**
      * @inheritDoc
      */
-    public function update (object $entity) : void
+    public function update (object $entity)
     {
         if (\method_exists($entity, 'markAsModified'))
         {
             $entity->markAsModified();
         }
+
+        return $this;
     }
 
 
     /**
      * @inheritDoc
      */
-    public function remove (object $entity) : void
+    public function remove (object $entity)
     {
         $this->entityManager->remove($entity);
+        return $this;
     }
 
 
     /**
      * @inheritDoc
      */
-    public function flush () : void
+    public function flush ()
     {
         $this->entityManager->flush();
+        return $this;
     }
 }
