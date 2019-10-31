@@ -1,4 +1,4 @@
-6.4.0
+7.0.0
 =====
 
 *   All exceptions now extend `RadException`.

@@ -1,3 +1,10 @@
+6.x to 7.0
+==========
+
+*   The return types from `Model` and `ModelInterface` were removed. Remove them in your code as well and always return the instance
+    to create a fluent interface.
+
+
 6.0 to 6.1
 ==========
 
