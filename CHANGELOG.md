@@ -1,3 +1,9 @@
+7.0.1
+=====
+
+*   Improve handling of entity removal blocked messages.
+
+
 7.0.0
 =====
 

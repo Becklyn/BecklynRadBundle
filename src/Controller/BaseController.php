@@ -62,6 +62,7 @@ abstract class BaseController extends AbstractController
                 break;
 
             case $exception->getPrevious() instanceof ForeignKeyConstraintViolationException:
+            case $exception instanceof ForeignKeyConstraintViolationException:
                 // this entity is still referenced
                 $message = "entity_removal.failed.foreign_key";
                 break;
