@@ -49,19 +49,20 @@
     {%- set form_element_type = form_element_type ?? "label" -%}
     {%- set form_label_type = form_label_type ?? "span" -%}
     {%- set form_widget_type = form_widget_type ?? "span" -%}
+    {%- set element_attr = (element_attr ?? [])|appendToKey("class", "form-widget") -%}
     {%- if help is not empty -%}
         {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
     {%- endif -%}
 <div{% with {attr: row_attr} %}{{ block("attributes") }}{% endwith %}>
     <{{ form_element_type }} class="form-element">
     {{- form_label(form, null, {element: form_label_type}) -}}
-    <{{ form_widget_type }} class="form-widget">
+    <{{ form_widget_type }} {% with {attr: element_attr} %}{{ block("attributes") }}{% endwith %}>
     {{- form_widget(form, widget_attr) -}}
     </{{ form_widget_type }}>
     </{{ form_element_type }}>
     {{- form_help(form) -}}
     {{- form_errors(form) -}}
-    </div>
+</div>
 {%- endblock form_row_simple -%}
 
 
@@ -79,6 +80,7 @@
         {# with label -> show as nested form (but only if it is not a choice #}
         {%- if choices is not defined -%}
             {%- set row_attr = row_attr|appendToKey("class", "form-nested") -%}
+            {%- set element_attr = (element_attr ?? [])|appendToKey("class", "form-widget-nested") -%}
         {%- endif -%}
         {{- block("form_row_simple") -}}
     {%- endif -%}

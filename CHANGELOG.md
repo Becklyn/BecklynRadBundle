@@ -1,3 +1,9 @@
+7.0.2
+=====
+
+*   Also add `form-widget-nested` on nested forms.
+
+
 7.0.1
 =====
 
