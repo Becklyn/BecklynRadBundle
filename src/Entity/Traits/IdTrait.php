@@ -21,7 +21,6 @@ trait IdTrait
 
 
     /**
-     * @return int|null
      */
     public function getId () : ?int
     {

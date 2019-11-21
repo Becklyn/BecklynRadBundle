@@ -7,8 +7,6 @@ interface EntityInterface
     /**
      * Returns the ID of the entity.
      * May only return `null` for unstored entities.
-     *
-     * @return int|null
      */
     public function getId () : ?int;
 }

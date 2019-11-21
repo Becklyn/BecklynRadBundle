@@ -8,14 +8,8 @@ class DataContainer
 {
     /**
      * Renders the data container to HTML.
-     *
-     * @param array       $data
-     * @param string      $className
-     * @param string|null $id
-     *
-     * @return string
      */
-    public function renderToHtml (array $data, string $className, ?string $id = null)
+    public function renderToHtml (array $data, string $className, ?string $id = null) : string
     {
         return \sprintf(
             '<script%s class="_data-container %s" type="application/json">%s</script>',
@@ -29,12 +23,6 @@ class DataContainer
     /**
      * Renders the data container as a direct response.
      * Convenient to use in embedded controllers.
-     *
-     * @param array       $data
-     * @param string      $className
-     * @param string|null $id
-     *
-     * @return Response
      */
     public function createResponse (array $data, string $className, ?string $id = null) : Response
     {

@@ -17,7 +17,6 @@ abstract class Model implements ModelInterface
 
 
     /**
-     * @param ManagerRegistry $registry
      */
     public function __construct (ManagerRegistry $registry)
     {
@@ -30,7 +29,7 @@ abstract class Model implements ModelInterface
     /**
      * @inheritDoc
      */
-    public function add (object $entity)
+    public function add (object $entity) : ModelInterface
     {
         $this->entityManager->persist($entity);
         return $this;
@@ -40,7 +39,7 @@ abstract class Model implements ModelInterface
     /**
      * @inheritDoc
      */
-    public function update (object $entity)
+    public function update (object $entity) : ModelInterface
     {
         if (\method_exists($entity, 'markAsModified'))
         {
@@ -54,7 +53,7 @@ abstract class Model implements ModelInterface
     /**
      * @inheritDoc
      */
-    public function remove (object $entity)
+    public function remove (object $entity) : ModelInterface
     {
         $this->entityManager->remove($entity);
         return $this;
@@ -64,7 +63,7 @@ abstract class Model implements ModelInterface
     /**
      * @inheritDoc
      */
-    public function flush ()
+    public function flush () : ModelInterface
     {
         $this->entityManager->flush();
         return $this;

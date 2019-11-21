@@ -11,8 +11,6 @@ class PathHelper
      * Joins path segments to one full path.
      *
      * @param string[] ...$paths
-     *
-     * @return string
      */
     public static function join (...$paths) : string
     {

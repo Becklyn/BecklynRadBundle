@@ -27,7 +27,6 @@ class PaginatedList
 
 
     /**
-     * @return iterable
      */
     public function getList () : iterable
     {
@@ -36,7 +35,6 @@ class PaginatedList
 
 
     /**
-     * @return Pagination
      */
     public function getPagination () : Pagination
     {
@@ -45,9 +43,7 @@ class PaginatedList
 
 
     /**
-     * @param array $list
      *
-     * @return self
      */
     public static function createFromArray (array $list) : self
     {

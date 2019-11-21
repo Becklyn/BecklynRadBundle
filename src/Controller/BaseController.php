@@ -19,7 +19,7 @@ abstract class BaseController extends AbstractController
     /**
      * @inheritDoc
      */
-    public static function getSubscribedServices ()
+    public static function getSubscribedServices () : array
     {
         return \array_replace(parent::getSubscribedServices(), [
             LoggerInterface::class,
@@ -29,12 +29,7 @@ abstract class BaseController extends AbstractController
 
 
     /**
-     * @param string      $id
-     * @param array       $parameters
-     * @param string|null $domain
-     * @param string|null $locale
      *
-     * @return string
      */
     protected function trans (string $id, array $parameters = [], ?string $domain = null, ?string $locale = null) : string
     {
@@ -44,10 +39,6 @@ abstract class BaseController extends AbstractController
 
     /**
      * Fetches the Entity remove message from an exception.
-     *
-     * @param \Exception $exception
-     *
-     * @return string
      */
     protected function getEntityRemovalMessage (\Exception $exception) : string
     {
@@ -84,10 +75,6 @@ abstract class BaseController extends AbstractController
 
     /**
      * Returns the form error mapping for the given form.
-     *
-     * @param FormInterface $form
-     *
-     * @return array
      */
     protected function getFormErrorMapping (FormInterface $form) : array
     {

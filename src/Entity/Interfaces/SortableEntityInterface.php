@@ -14,8 +14,6 @@ interface SortableEntityInterface extends EntityInterface
 
     /**
      * Sets the sort order.
-     *
-     * @param int $sortOrder
      */
     public function setSortOrder (int $sortOrder) : void;
 }

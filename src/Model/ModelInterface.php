@@ -10,31 +10,25 @@ interface ModelInterface
     /**
      * Marks the entity for adding.
      *
-     * @param object $entity
-     *
      * @return $this
      */
-    public function add (object $entity);
+    public function add (object $entity) : self;
 
 
     /**
      * Updates the given entity.
      *
-     * @param object $entity
-     *
      * @return $this
      */
-    public function update (object $entity);
+    public function update (object $entity) : self;
 
 
     /**
      * Marks the entity for removal.
      *
-     * @param object $entity
-     *
      * @return $this
      */
-    public function remove (object $entity);
+    public function remove (object $entity) : self;
 
 
     /**
@@ -42,5 +36,5 @@ interface ModelInterface
      *
      * @return $this
      */
-    public function flush ();
+    public function flush () : self;
 }

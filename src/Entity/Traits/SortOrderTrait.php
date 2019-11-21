@@ -28,7 +28,6 @@ trait SortOrderTrait
 
 
     /**
-     * @param int $sortOrder
      */
     public function setSortOrder (int $sortOrder) : void
     {

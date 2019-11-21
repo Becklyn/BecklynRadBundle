@@ -21,7 +21,6 @@ class BundleExtension extends Extension
 
 
     /**
-     * @param BundleInterface $bundle
      */
     public function __construct (BundleInterface $bundle)
     {
@@ -46,7 +45,7 @@ class BundleExtension extends Extension
     /**
      * @inheritDoc
      */
-    public function getAlias ()
+    public function getAlias () : string
     {
         // use default naming convention
         $basename = \preg_replace('/Bundle$/', '', $this->bundle->getName());

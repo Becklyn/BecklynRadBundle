@@ -16,7 +16,6 @@ class SortableHandler
 
 
     /**
-     * @param EntityRepository $repository
      */
     public function __construct (EntityRepository $repository)
     {
@@ -26,10 +25,6 @@ class SortableHandler
 
     /**
      * Returns the next sort order value.
-     *
-     * @param array $where
-     *
-     * @return int
      */
     public function getNextSortOrder (array $where = []) : int
     {
@@ -47,10 +42,6 @@ class SortableHandler
     /**
      * Sorts the given $entity before the $before entity.
      * If no $before entity is given, the element will be moved to the end.
-     *
-     * @param SortableEntityInterface      $entity
-     * @param SortableEntityInterface|null $before
-     * @param array                        $where
      */
     public function sortElementBefore (SortableEntityInterface $entity, ?SortableEntityInterface $before, array $where = []) : void
     {
@@ -104,7 +95,6 @@ class SortableHandler
      * Will fetch all matching elements and resets all sort orders, except for the ones that are given here.
      *
      * @param SortableEntityInterface[] $excludedElements
-     * @param array                     $where
      */
     public function fixSortOrder (array $excludedElements, array $where = []) : void
     {
@@ -134,10 +124,6 @@ class SortableHandler
 
     /**
      * Builds the base query.
-     *
-     * @param array $where
-     *
-     * @return QueryBuilder
      */
     private function getBaseQuery (array $where) : QueryBuilder
     {
