@@ -21,10 +21,11 @@
         "twig/twig": "^2.11"
     },
     "require-dev": {
-        "becklyn/php-cs": "^1.4",
+        "becklyn/php-cs": "^2.0.1",
         "doctrine/doctrine-bundle": "^1.11",
         "doctrine/orm": "^2.6",
         "roave/security-advisories": "dev-master",
+        "symfony/phpunit-bridge": "^4.3.8",
         "symfony/twig-bridge": "^4.3"
     },
     "suggest": {
