@@ -14,8 +14,6 @@ class Paginator
      *
      * @param QueryBuilder $queryBuilder The query builder to retrieve the entities
      * @param Pagination   $pagination   The pagination object
-     *
-     * @return PaginatedList
      */
     public function paginate (QueryBuilder $queryBuilder, Pagination $pagination) : PaginatedList
     {

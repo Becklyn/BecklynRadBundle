@@ -25,7 +25,6 @@ trait TimestampsTrait
 
 
     /**
-     * @return \DateTimeImmutable
      */
     public function getTimeCreated () : \DateTimeImmutable
     {
@@ -35,7 +34,6 @@ trait TimestampsTrait
 
 
     /**
-     * @return \DateTimeImmutable|null
      */
     public function getTimeModified () : ?\DateTimeImmutable
     {
@@ -45,7 +43,6 @@ trait TimestampsTrait
 
 
     /**
-     * @param \DateTimeImmutable $timeModified
      */
     public function markAsModified () : void
     {
@@ -56,8 +53,6 @@ trait TimestampsTrait
 
     /**
      * Returns the most recent modification time.
-     *
-     * @return \DateTimeImmutable
      */
     public function getLastModificationTime () : \DateTimeImmutable
     {

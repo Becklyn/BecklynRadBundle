@@ -17,7 +17,6 @@ abstract class Model implements ModelInterface
 
 
     /**
-     * @param ManagerRegistry $registry
      */
     public function __construct (ManagerRegistry $registry)
     {

@@ -32,9 +32,6 @@ class Pagination
 
 
     /**
-     * @param int $currentPage
-     * @param int $perPage
-     * @param int $numberOfItems
      */
     public function __construct (int $currentPage, int $perPage = 50, int $numberOfItems = 0)
     {
@@ -58,8 +55,6 @@ class Pagination
 
     /**
      * Returns the sanitized current page.
-     *
-     * @return int
      */
     public function getCurrentPage () : int
     {
@@ -79,7 +74,6 @@ class Pagination
 
 
     /**
-     * @return int
      */
     public function getMinPage () : int
     {
@@ -88,7 +82,6 @@ class Pagination
 
 
     /**
-     * @return int
      */
     public function getMaxPage () : int
     {
@@ -97,7 +90,6 @@ class Pagination
 
 
     /**
-     * @return int
      */
     public function getPerPage () : int
     {
@@ -106,7 +98,6 @@ class Pagination
 
 
     /**
-     * @return int|null
      */
     public function getNextPage () : ?int
     {
@@ -117,7 +108,6 @@ class Pagination
 
 
     /**
-     * @return int|null
      */
     public function getPreviousPage () : ?int
     {
@@ -128,7 +118,6 @@ class Pagination
 
 
     /**
-     * @return int
      */
     public function getNumberOfItems () : int
     {
@@ -137,7 +126,6 @@ class Pagination
 
 
     /**
-     * @return array
      */
     public function toArray () : array
     {
@@ -153,8 +141,6 @@ class Pagination
 
 
     /**
-     * @param int $numberOfItems
-     *
      * @return Pagination
      */
     public function withNumberOfItems (int $numberOfItems) : self

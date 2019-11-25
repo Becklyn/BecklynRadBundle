@@ -12,12 +12,6 @@ trait DownloadableStringTrait
      * Sends a string as download.
      *
      * If you want to send a file, use {@see ControllerTrait::file()} instead.
-     *
-     * @param string $content
-     * @param string $filename
-     * @param string $contentType
-     *
-     * @return Response
      */
     private function stringAsDownload (string $content, string $filename, string $contentType) : Response
     {
