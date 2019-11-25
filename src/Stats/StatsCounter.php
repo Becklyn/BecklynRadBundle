@@ -41,9 +41,6 @@ class StatsCounter
 
     /**
      * Sets a label.
-     *
-     * @param string $key
-     * @param string $label
      */
     public function setLabel (string $key, string $label, ?string $description = null) : void
     {
@@ -53,9 +50,6 @@ class StatsCounter
 
     /**
      * Increments the value for the given key.
-     *
-     * @param string $key
-     * @param int    $amount
      */
     public function increment (string $key, int $amount = 1) : void
     {
@@ -70,8 +64,6 @@ class StatsCounter
 
     /**
      * Renders as a table in the CLI.
-     *
-     * @param SymfonyStyle $io
      */
     public function render (SymfonyStyle $io) : void
     {
@@ -90,8 +82,6 @@ class StatsCounter
 
     /**
      * Transforms the result to a array-formed table.
-     *
-     * @return array
      */
     public function toArray () : array
     {

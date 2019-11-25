@@ -21,7 +21,6 @@ class BundleExtension extends Extension
 
 
     /**
-     * @param BundleInterface $bundle
      */
     public function __construct (BundleInterface $bundle)
     {

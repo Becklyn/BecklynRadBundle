@@ -18,7 +18,6 @@ class FormErrorMapper
 
 
     /**
-     * @param TranslatorInterface $translator
      */
     public function __construct (TranslatorInterface $translator)
     {
@@ -27,9 +26,6 @@ class FormErrorMapper
 
 
     /**
-     * @param FormInterface $form
-     * @param string        $translationDomain
-     *
      * @return string[][]
      */
     private function generateMapping (FormInterface $form, string $translationDomain) : array
@@ -54,11 +50,6 @@ class FormErrorMapper
 
     /**
      * Adds all child errors to the mapping of errors.
-     *
-     * @param FormInterface $form
-     * @param string        $fieldPrefix
-     * @param string        $translationDomain
-     * @param array         $allErrors
      */
     private function addChildErrors (FormInterface $form, string $fieldPrefix, string $translationDomain, array &$allErrors) : void
     {
@@ -85,9 +76,6 @@ class FormErrorMapper
 
     /**
      * Generates the form error mapping.
-     *
-     * @param FormInterface $form
-     * @param string        $translationDomain
      *
      * @return string[][]
      */

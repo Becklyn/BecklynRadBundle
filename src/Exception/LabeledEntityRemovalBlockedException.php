@@ -18,18 +18,15 @@ class LabeledEntityRemovalBlockedException extends EntityRemovalBlockedException
      * The $frontendMessage must be a message key from the default message domain that can be translated to the user message.
      *
      * @param object|object[] $entities
-     * @param string          $message
      * @param string          $frontendMessage the #TranslationKey to use
-     * @param \Throwable|null $previous
      */
-    public function __construct ($entities, string $message, string $frontendMessage, \Throwable $previous = null)
+    public function __construct ($entities, string $message, string $frontendMessage, ?\Throwable $previous = null)
     {
         parent::__construct($entities, $message, $previous);
         $this->frontendMessage = $frontendMessage;
     }
 
     /**
-     * @return string
      */
     public function getFrontendMessage () : string
     {

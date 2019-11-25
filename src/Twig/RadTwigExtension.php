@@ -16,7 +16,6 @@ class RadTwigExtension extends AbstractExtension
 
 
     /**
-     * @param DataContainer $dataContainer
      */
     public function __construct (DataContainer $dataContainer)
     {
@@ -24,11 +23,7 @@ class RadTwigExtension extends AbstractExtension
     }
 
     /**
-     * @param array  $map
-     * @param string $key
-     * @param string $append
      *
-     * @return array
      */
     public function appendToKey (array $map, string $key, string $append) : array
     {
@@ -39,9 +34,7 @@ class RadTwigExtension extends AbstractExtension
 
 
     /**
-     * @param array $classes
      *
-     * @return string
      */
     public function formatClassNames (array $classes) : string
     {
