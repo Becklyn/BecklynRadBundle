@@ -21,13 +21,11 @@
         "twig/twig": "^2.11 || ^3.0"
     },
     "require-dev": {
-        "becklyn/php-cs": "^3.0.1",
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/orm": "^2.7",
         "roave/security-advisories": "dev-master",
         "symfony/phpunit-bridge": "^5.0",
-        "symfony/twig-bridge": "^5.0",
-        "tm/tooly-composer-script": "^1.4"
+        "symfony/twig-bridge": "^5.0"
     },
     "suggest": {
         "doctrine/doctrine-bundle": "To use the DoctrineModel.",
@@ -36,15 +34,6 @@
     },
     "config": {
         "sort-packages": true
-    },
-    "extra": {
-        "tools": {
-            "php-cs-fixer": {
-                "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.16.0/php-cs-fixer.phar",
-                "sign-url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.16.0/php-cs-fixer.phar.asc",
-                "only-dev": true
-            }
-        }
     },
     "autoload": {
         "psr-4": {
@@ -55,9 +44,5 @@
         "psr-4": {
             "Tests\\Becklyn\\RadBundle\\": "tests/"
         }
-    },
-    "scripts": {
-        "post-install-cmd": "Tooly\\ScriptHandler::installPharTools",
-        "post-update-cmd": "Tooly\\ScriptHandler::installPharTools"
     }
 }
