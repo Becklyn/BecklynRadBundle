@@ -32,7 +32,14 @@ class BundleExtension extends Extension
      */
     public function load (array $configs, ContainerBuilder $container) : void
     {
-        $configDir = "{$this->bundle->getPath()}/Resources/config";
+        // first try Symfony 5+ structure
+        $configDir = "{$this->bundle->getPath()}/config";
+
+        // then fall back to legacy structure
+        if (!\is_dir($configDir))
+        {
+            $configDir = "{$this->bundle->getPath()}/Resources/config";
+        }
 
         if (\is_file("{$configDir}/services.yaml"))
         {

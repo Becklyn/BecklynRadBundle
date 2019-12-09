@@ -1,3 +1,9 @@
+7.0.4
+=====
+
+*   (improvement) Support the new bundle structure of Symfony 5 in `BundleExtension`.
+
+
 7.0.3
 =====
 
