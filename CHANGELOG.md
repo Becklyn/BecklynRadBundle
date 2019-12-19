@@ -1,3 +1,9 @@
+7.0.5
+=====
+
+*   (improvement) Added option to explicitly set the bundle alias.
+
+
 7.0.4
 =====
 

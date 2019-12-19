@@ -21,10 +21,17 @@ class BundleExtension extends Extension
 
 
     /**
+     * @var string|null
      */
-    public function __construct (BundleInterface $bundle)
+    private $alias;
+
+
+    /**
+     */
+    public function __construct (BundleInterface $bundle, ?string $alias = null)
     {
         $this->bundle = $bundle;
+        $this->alias = $alias;
     }
 
     /**
@@ -54,6 +61,11 @@ class BundleExtension extends Extension
      */
     public function getAlias ()
     {
+        if (null !== $this->alias)
+        {
+            return $this->alias;
+        }
+
         // use default naming convention
         $basename = \preg_replace('/Bundle$/', '', $this->bundle->getName());
         return Container::underscore($basename);
