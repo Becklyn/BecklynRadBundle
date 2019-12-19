@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait SortOrderTrait
 {
     /**
-     * @var int
+     * @var int|null
      * @ORM\Column(name="sort_order", type="integer")
      */
     private $sortOrder;
@@ -19,7 +19,7 @@ trait SortOrderTrait
 
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getSortOrder () : ?int
     {
