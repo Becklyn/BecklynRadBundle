@@ -1,3 +1,9 @@
+7.0.6
+=====
+
+*   (improvement) Don't use deprecated `ManagerRegistry`.
+
+
 7.0.5
 =====
 

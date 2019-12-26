@@ -2,8 +2,8 @@
 
 namespace Becklyn\RadBundle\Model;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * Base class for all models.
