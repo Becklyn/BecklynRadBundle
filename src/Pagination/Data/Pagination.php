@@ -136,6 +136,7 @@ class Pagination
             "next" => $this->getNextPage(),
             "prev" => $this->getPreviousPage(),
             "perPage" => $this->perPage,
+            "total" => $this->numberOfItems,
         ];
     }
 
