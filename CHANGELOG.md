@@ -1,3 +1,9 @@
+7.0.7
+=====
+
+*   (improvement) Add `total` to the normalized pagination data.
+
+
 7.0.6
 =====
 

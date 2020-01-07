@@ -112,13 +112,29 @@ class PaginationTest extends TestCase
 
     /**
      * @dataProvider provideCurrent
-     * @param int $currentPage
-     * @param int $totalNumber
-     * @param int $expectedCurrent
      */
     public function testCurrent (int $currentPage, int $totalNumber, int $expectedCurrent) : void
     {
         $pagination = new Pagination($currentPage, 10, $totalNumber);
         self::assertSame($expectedCurrent, $pagination->getCurrentPage());
+    }
+
+
+    /**
+     *
+     */
+    public function testNormalization () : void
+    {
+        $pagination = new Pagination(2, 10, 29);
+
+        self::assertEquals([
+            "current" => 2,
+            "min" => 1,
+            "max" => 3,
+            "next" => 3,
+            "prev" => 1,
+            "perPage" => 10,
+            "total" => 29,
+        ], $pagination->toArray());
     }
 }
