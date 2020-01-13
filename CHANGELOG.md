@@ -7,6 +7,7 @@ next minor
     *   datetime functions: `WEEK()`, `YEAR()`
 *   (internal) Properly set branch alias.
 *   (feature) Add `DeferredRoute`.
+*   (feature) Add `BackendTranslator`.
 
 
 7.0.7
