@@ -5,6 +5,7 @@ next minor
     *   string functions: `CHAR_LENGTH()`, `DATE_FORMAT()`, `IFELSE()`, `IFNULL()`, `JSON_EXTRACT()`, `LPAD()`
     *   numeric functions: `RAND()`
     *   datetime functions: `WEEK()`, `YEAR()`
+*   (internal) Properly set branch alias.
 
 
 7.0.7
