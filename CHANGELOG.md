@@ -1,5 +1,5 @@
-next minor
-==========
+7.1.0
+=====
 
 *   (feature) Added `EntityUsagesFinder`, that helps when trying to collect usages of entities.
 *   (feature) Add and autoregister doctrine mysql extensions (`doctrine` is now a required package of this bundle)
@@ -9,6 +9,7 @@ next minor
 *   (internal) Properly set branch alias.
 *   (feature) Add `DeferredRoute`.
 *   (feature) Add `BackendTranslator`.
+*   (internal) Bumped required symfony version to `4.4+` (or `5.0+`), as we need `!tagged_iterator`.
 
 
 7.0.7
