@@ -18,7 +18,7 @@ class DoctrineExtensionsCompilerPass implements CompilerPassInterface
 {
     /**
      */
-    public function process (ContainerBuilder $container)
+    public function process (ContainerBuilder $container) : void
     {
         foreach ($container->getDefinitions() as $name => $definition)
         {
