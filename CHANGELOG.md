@@ -1,3 +1,16 @@
+next minor
+==========
+
+*   (feature) Added `EntityUsagesFinder`, that helps when trying to collect usages of entities.
+*   (feature) Add and autoregister doctrine mysql extensions (`doctrine` is now a required package of this bundle)
+    *   string functions: `CHAR_LENGTH()`, `DATE_FORMAT()`, `IFELSE()`, `IFNULL()`, `JSON_EXTRACT()`, `LPAD()`
+    *   numeric functions: `RAND()`
+    *   datetime functions: `WEEK()`, `YEAR()`
+*   (internal) Properly set branch alias.
+*   (feature) Add `DeferredRoute`.
+*   (feature) Add `BackendTranslator`.
+
+
 7.0.7
 =====
 

@@ -6,3 +6,6 @@ services:
     Becklyn\RadBundle\:
         resource: ../../*
         exclude: ../../{Entity,Exception,Pagination/Data,Resources,BecklynRadBundle.php}
+
+    Becklyn\RadBundle\Usages\EntityUsagesFinder:
+        $finders: !tagged_iterator entity_usages.provider
