@@ -13,6 +13,10 @@
     "require": {
         "php": "^7.2",
         "ext-json": "*",
+        "beberlei/doctrineextensions": "^1.2",
+        "doctrine/doctrine-bundle": "^2.0",
+        "doctrine/orm": "^2.7",
+        "scienta/doctrine-json-functions": "^4.1",
         "symfony/config": "^4.3 || ^5.0",
         "symfony/dependency-injection": "^4.3 || ^5.0",
         "symfony/form": "^4.3 || ^5.0",
@@ -21,15 +25,11 @@
         "twig/twig": "^2.11 || ^3.0"
     },
     "require-dev": {
-        "doctrine/doctrine-bundle": "^2.0.3",
-        "doctrine/orm": "^2.7",
         "roave/security-advisories": "dev-master",
         "symfony/phpunit-bridge": "^5.0",
         "symfony/twig-bridge": "^5.0"
     },
     "suggest": {
-        "doctrine/doctrine-bundle": "To use the DoctrineModel.",
-        "doctrine/orm": "To use the DoctrineModel, the SortableHelper and the entity traits.",
         "symfony/twig-bridge": "To use the default form theme."
     },
     "config": {

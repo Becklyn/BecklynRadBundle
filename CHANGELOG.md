@@ -1,3 +1,12 @@
+next minor
+==========
+
+*   (feature) Add and autoregister doctrine mysql extensions: 
+    *   string functions: `CHAR_LENGTH()`, `DATE_FORMAT()`, `IFELSE()`, `IFNULL()`, `JSON_EXTRACT()`, `LPAD()`
+    *   numeric functions: `RAND()`
+    *   datetime functions: `WEEK()`, `YEAR()`
+
+
 7.0.7
 =====
 
