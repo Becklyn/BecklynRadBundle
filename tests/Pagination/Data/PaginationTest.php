@@ -137,4 +137,23 @@ class PaginationTest extends TestCase
             "total" => 29,
         ], $pagination->toArray());
     }
+
+
+    /**
+     *
+     */
+    public function testCorrectCurrentNormalization () : void
+    {
+        $pagination = new Pagination(2, 1, 1);
+
+        self::assertEquals([
+            "current" => 1,
+            "min" => 1,
+            "max" => 1,
+            "next" => null,
+            "prev" => null,
+            "perPage" => 1,
+            "total" => 1,
+        ], $pagination->toArray());
+    }
 }

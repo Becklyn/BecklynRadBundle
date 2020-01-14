@@ -8,6 +8,10 @@ namespace Becklyn\RadBundle\Pagination\Data;
 class Pagination
 {
     /**
+     * WARNING: this value is unsanitized. You should never use it except for when passing it to a pagination with a
+     * different number of elements. Always use the getter, which returns the normalized value. Also use the normalized
+     * getter in internal methods to have correct calculation.
+     *
      * @var int
      */
     private $currentPage;
@@ -101,8 +105,10 @@ class Pagination
      */
     public function getNextPage () : ?int
     {
-        return $this->currentPage < $this->maxPage
-            ? $this->currentPage + 1
+        $current = $this->getCurrentPage();
+
+        return $current < $this->maxPage
+            ? $current + 1
             : null;
     }
 
@@ -111,8 +117,10 @@ class Pagination
      */
     public function getPreviousPage () : ?int
     {
-        return $this->currentPage > 1
-            ? $this->currentPage - 1
+        $current = $this->getCurrentPage();
+
+        return $current > 1
+            ? $current - 1
             : null;
     }
 
@@ -130,7 +138,7 @@ class Pagination
     public function toArray () : array
     {
         return [
-            "current" => $this->currentPage,
+            "current" => $this->getCurrentPage(),
             "min" => $this->getMinPage(),
             "max" => $this->maxPage,
             "next" => $this->getNextPage(),
