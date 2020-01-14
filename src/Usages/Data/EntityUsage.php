@@ -25,6 +25,14 @@ final class EntityUsage
 
 
     /**
+     * A label that describes the type, like a text or an icon key. Depends on the UI on what to do with this.
+     *
+     * @var string|null
+     */
+    private $type;
+
+
+    /**
      * @var DeferredRoute|null
      */
     private $link;
@@ -34,10 +42,11 @@ final class EntityUsage
      * @param string|string[] $labels
      * @param string|null     $group  The group name. Will be translated in the `backend` domain.
      */
-    public function __construct ($labels, ?string $group = null, ?DeferredRoute $link = null)
+    public function __construct ($labels, ?string $group = null, ?string $type = null, ?DeferredRoute $link = null)
     {
         $this->labels = \is_array($labels) ? $labels : [$labels];
         $this->group = $group;
+        $this->type = $type;
         $this->link = $link;
     }
 
@@ -60,6 +69,14 @@ final class EntityUsage
 
     /**
      */
+    public function getType () : ?string
+    {
+        return $this->type;
+    }
+
+
+    /**
+     */
     public function getLink () : ?DeferredRoute
     {
         return $this->link;
@@ -73,6 +90,7 @@ final class EntityUsage
     {
         return new ResolvedEntityUsage(
             $this->labels,
+            $this->type,
             null !== $this->link
                 ? $this->link->generate($urlGenerator)
                 : null
