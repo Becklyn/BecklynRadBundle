@@ -2,7 +2,7 @@
 =====
 
 *   (improvement) Added `type` to entity usages.
-*   (improvement) Removed the  `ResolvedEntityUsage::toArray()` normalization. As the normalization is now dependent on the type usage, this makes no sense anymore.
+*   (improvement) Removed the `ResolvedEntityUsage::toArray()` normalization. As the normalization is now dependent on the type usage, this makes no sense anymore.
 
 All these were not really used in the wild, so no BC adaptions here.
 
