@@ -1,3 +1,9 @@
+7.1.1
+=====
+
+*   (bug) Fix invalid calculations in `Pagination`.
+
+
 7.1.0
 =====
 
