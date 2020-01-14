@@ -18,14 +18,21 @@ final class ResolvedEntityUsage
     /**
      * @var string|null
      */
+    private $type;
+
+
+    /**
+     * @var string|null
+     */
     private $url;
 
 
     /**
      */
-    public function __construct (array $labels, ?string $url)
+    public function __construct (array $labels, ?string $type, ?string $url)
     {
         $this->labels = $labels;
+        $this->type = $type;
         $this->url = $url;
     }
 
@@ -35,6 +42,14 @@ final class ResolvedEntityUsage
     public function getLabels () : array
     {
         return $this->labels;
+    }
+
+
+    /**
+     */
+    public function getType () : ?string
+    {
+        return $this->type;
     }
 
 
@@ -52,6 +67,7 @@ final class ResolvedEntityUsage
     {
         return [
             "name" => $this->labels,
+            "type" => $this->type,
             "url" => $this->url,
         ];
     }

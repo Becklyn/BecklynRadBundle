@@ -1,3 +1,11 @@
+7.1.3
+=====
+
+*   (improvement) Added `type` to entity usages.
+
+All these were not really used in the wild, so no BC adaptions here.
+
+
 7.1.2
 =====
 
