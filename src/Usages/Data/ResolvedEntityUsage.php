@@ -7,12 +7,12 @@ namespace Becklyn\RadBundle\Usages\Data;
  *
  * Without the group (as it is handled externally) and the link is already resolved.
  */
-class ResolvedEntityUsage
+final class ResolvedEntityUsage
 {
     /**
-     * @var string
+     * @var array
      */
-    private $name;
+    private $labels;
 
 
     /**
@@ -23,18 +23,18 @@ class ResolvedEntityUsage
 
     /**
      */
-    public function __construct (string $name, ?string $url)
+    public function __construct (array $labels, ?string $url)
     {
-        $this->name = $name;
+        $this->labels = $labels;
         $this->url = $url;
     }
 
 
     /**
      */
-    public function getName () : string
+    public function getLabels () : array
     {
-        return $this->name;
+        return $this->labels;
     }
 
 
@@ -51,7 +51,7 @@ class ResolvedEntityUsage
     public function toArray () : array
     {
         return [
-            "name" => $this->name,
+            "name" => $this->labels,
             "url" => $this->url,
         ];
     }

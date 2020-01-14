@@ -7,7 +7,7 @@ use Becklyn\RadBundle\Translation\BackendTranslator;
 use Becklyn\RadBundle\Usages\Data\ResolvedEntityUsage;
 use Symfony\Component\Routing\RouterInterface;
 
-class EntityUsagesFinder
+final class EntityUsagesFinder
 {
     /**
      * @var iterable|EntityUsagesProviderInterface[]
@@ -54,17 +54,13 @@ class EntityUsagesFinder
 
         foreach ($this->finders as $finder)
         {
-            foreach ($finder->getUsages($entity) as $found)
+            foreach ($finder->getUsages($entity) as $usage)
             {
-                $link = $found->getLink();
-                $resolved = new ResolvedEntityUsage(
-                    $found->getName(),
-                    $link ? $link->generate($this->router) : null
-                );
+                $resolved = $usage->resolve($this->router);
 
-                if (null !== $found->getGroup())
+                if (null !== $usage->getGroup())
                 {
-                    $group = $this->backendTranslator->t($found->getGroup());
+                    $group = $this->backendTranslator->t($usage->getGroup());
                     $grouped[$group][] = $resolved;
                 }
                 else

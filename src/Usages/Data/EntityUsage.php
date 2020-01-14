@@ -3,18 +3,19 @@
 namespace Becklyn\RadBundle\Usages\Data;
 
 use Becklyn\RadBundle\Route\DeferredRoute;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * An unresolved entity usage. Optimized for ease of use.
  *
  * Neither the group nor the route is resolved yet.
  */
-class EntityUsage
+final class EntityUsage
 {
     /**
-     * @var string
+     * @var string[]
      */
-    private $name;
+    private $labels;
 
 
     /**
@@ -30,11 +31,12 @@ class EntityUsage
 
 
     /**
-     * @param string|null $group The group name. Will be translated in the `backend` domain.
+     * @param string|string[] $labels
+     * @param string|null     $group  The group name. Will be translated in the `backend` domain.
      */
-    public function __construct (string $name, ?string $group = null, ?DeferredRoute $link = null)
+    public function __construct ($labels, ?string $group = null, ?DeferredRoute $link = null)
     {
-        $this->name = $name;
+        $this->labels = \is_array($labels) ? $labels : [$labels];
         $this->group = $group;
         $this->link = $link;
     }
@@ -42,9 +44,9 @@ class EntityUsage
 
     /**
      */
-    public function getName () : string
+    public function getLabels () : array
     {
-        return $this->name;
+        return $this->labels;
     }
 
 
@@ -61,5 +63,19 @@ class EntityUsage
     public function getLink () : ?DeferredRoute
     {
         return $this->link;
+    }
+
+
+    /**
+     * Resolves the entity usage
+     */
+    public function resolve (UrlGeneratorInterface $urlGenerator) : ResolvedEntityUsage
+    {
+        return new ResolvedEntityUsage(
+            $this->labels,
+            null !== $this->link
+                ? $this->link->generate($urlGenerator)
+                : null
+        );
     }
 }
