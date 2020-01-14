@@ -1,3 +1,12 @@
+7.1.2
+=====
+
+*   (improvement) Allow `string[]` as name in entity usages.
+*   (improvement) Made usages classes all final.
+
+All these were not really used in the wild, so no BC adaptions here.
+
+
 7.1.1
 =====
 
