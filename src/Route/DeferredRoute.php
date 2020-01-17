@@ -2,6 +2,7 @@
 
 namespace Becklyn\RadBundle\Route;
 
+use Becklyn\RadBundle\Entity\Interfaces\EntityInterface;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
@@ -35,14 +36,14 @@ class DeferredRoute
 
 
     /**
-     * @param string $route         The route name.  #Route
-     * @param array  $parameters    the parameters required for generating the route
-     * @param int    $referenceType The reference type to generate for this route
+     * @param string                                                    $route         The route name.  #Route
+     * @param array<string, string|int|float|EntityInterface|bool|null> $parameters    the parameters required for generating the route
+     * @param int                                                       $referenceType The reference type to generate for this route
      */
     public function __construct (string $route, array $parameters = [], int $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
     {
         $this->route = $route;
-        $this->parameters = $parameters;
+        $this->parameters = $this->normalizeParameters($parameters);
         $this->referenceType = $referenceType;
     }
 
@@ -78,6 +79,7 @@ class DeferredRoute
      */
     public function generate (UrlGeneratorInterface $urlGenerator) : string
     {
+
         return $urlGenerator->generate($this->route, $this->parameters, $this->referenceType);
     }
 
@@ -88,7 +90,25 @@ class DeferredRoute
     public function withParameters (array $parameters) : self
     {
         $modified = clone $this;
-        $modified->parameters = \array_replace($modified->parameters, $parameters);
+        $modified->parameters = \array_replace($modified->parameters, $this->normalizeParameters($parameters));
         return $modified;
+    }
+
+
+    /**
+     * Normalizes the parameters
+     */
+    private function normalizeParameters (array $parameters) : array
+    {
+        $normalized = [];
+
+        foreach ($parameters as $key => $value)
+        {
+            $normalized[$key] = $value instanceof EntityInterface
+                ? $value->getId()
+                : $value;
+        }
+
+        return $normalized;
     }
 }
