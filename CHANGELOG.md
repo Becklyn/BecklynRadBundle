@@ -1,3 +1,9 @@
+7.1.4
+=====
+
+*   (improvement) Added native support for `EntityInterface`s as parameters in `DeferredRoute`s.
+
+
 7.1.3
 =====
 
