@@ -3,6 +3,8 @@
 namespace Becklyn\RadBundle\Route;
 
 use Becklyn\RadBundle\Entity\Interfaces\EntityInterface;
+use Becklyn\RadBundle\Exception\InvalidRouteActionException;
+use Becklyn\RadBundle\Translation\DeferredTranslation;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
@@ -17,21 +19,15 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class DeferredRoute
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $route;
 
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $parameters;
 
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $referenceType;
 
 
@@ -110,5 +106,27 @@ class DeferredRoute
         }
 
         return $normalized;
+    }
+
+
+    /**
+     * @param self|string|mixed|null $value
+     */
+    public function generateValue ($value, UrlGeneratorInterface $urlGenerator) : string
+    {
+        if (\is_string($value) || null === $value)
+        {
+            return (string) $value;
+        }
+
+        if ($value instanceof self)
+        {
+            return $value->generate($urlGenerator);
+        }
+
+        throw new InvalidRouteActionException(\sprintf(
+            "Can't generate route for value of type '%s', only DeferredRoutes, strings and null are allowed.",
+            \is_object($value) ? \get_class($value) : \gettype($value)
+        ));
     }
 }

@@ -2,6 +2,7 @@
 =====
 
 *   (improvement) Added `DeferredTranslation`.
+*   (improvement) Added `DeferredRoute::generateValue`.
 
 
 
