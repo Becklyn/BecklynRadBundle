@@ -75,7 +75,6 @@ class DeferredRoute
      */
     public function generate (UrlGeneratorInterface $urlGenerator) : string
     {
-
         return $urlGenerator->generate($this->route, $this->parameters, $this->referenceType);
     }
 
