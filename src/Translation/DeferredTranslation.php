@@ -29,11 +29,49 @@ class DeferredTranslation
      * @param array  $parameters Translation parameters
      * @param string $domain     Translation domain #TranslationDomain
      */
-    public function __construct (string $id, array $parameters, string $domain = "messages")
+    public function __construct (string $id, array $parameters = [], string $domain = "messages")
     {
         $this->id = $id;
         $this->parameters = $parameters;
         $this->domain = $domain;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getId () : string
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getParameters () : array
+    {
+        return $this->parameters;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getDomain () : string
+    {
+        return $this->domain;
+    }
+
+
+    /**
+     * @return static
+     */
+    public function withParameters (array $parameters) : self
+    {
+        $modified = clone $this;
+        $modified->parameters = \array_replace($modified->parameters, $parameters);
+        return $modified;
     }
 
 
