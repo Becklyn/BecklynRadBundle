@@ -1,3 +1,10 @@
+7.1.5
+=====
+
+*   (improvement) Added `DeferredTranslation`.
+
+
+
 7.1.4
 =====
 
