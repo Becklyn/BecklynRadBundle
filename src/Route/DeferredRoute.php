@@ -4,7 +4,6 @@ namespace Becklyn\RadBundle\Route;
 
 use Becklyn\RadBundle\Entity\Interfaces\EntityInterface;
 use Becklyn\RadBundle\Exception\InvalidRouteActionException;
-use Becklyn\RadBundle\Translation\DeferredTranslation;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;

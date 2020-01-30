@@ -38,7 +38,6 @@ class DeferredTranslation
 
 
     /**
-     * @return string
      */
     public function getId () : string
     {
@@ -47,7 +46,6 @@ class DeferredTranslation
 
 
     /**
-     * @return array
      */
     public function getParameters () : array
     {
@@ -56,7 +54,6 @@ class DeferredTranslation
 
 
     /**
-     * @return string
      */
     public function getDomain () : string
     {
