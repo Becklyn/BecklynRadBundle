@@ -3,6 +3,7 @@
 namespace Tests\Becklyn\RadBundle\Route;
 
 use Becklyn\RadBundle\Entity\Interfaces\EntityInterface;
+use Becklyn\RadBundle\Exception\InvalidRouteActionException;
 use Becklyn\RadBundle\Route\DeferredRoute;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -129,5 +130,65 @@ class DeferredRouteTest extends TestCase
 
         $route2 = $route1->withParameters(["page" => $entity2]);
         $route2->generate($router);
+    }
+
+
+    /**
+     */
+    public function provideValidRouteValue () : \Generator
+    {
+        yield ["test", "test"];
+        yield [null, ""];
+        yield [
+            new DeferredRoute("test"),
+            "generated_route"
+        ];
+    }
+
+
+    /**
+     * @dataProvider provideValidRouteValue
+     *
+     * @param mixed $value
+     */
+    public function testValidRouteValue ($value, string $expected) : void
+    {
+        $router = $this->getMockBuilder(RouterInterface::class)
+            ->getMock();
+
+        $router
+            ->method("generate")
+            ->willReturn("generated_route");
+
+        self::assertSame(
+            $expected,
+            DeferredRoute::generateValue($value, $router)
+        );
+    }
+
+
+    /**
+     */
+    public function provideInvalidRouteValue () : \Generator
+    {
+        yield [true];
+        yield [1];
+        yield [new \stdClass()];
+    }
+
+
+    /**
+     * @dataProvider provideInvalidRouteValue
+     *
+     * @param mixed $value
+     */
+    public function testInvalidRouteValue ($value) : void
+    {
+        $this->expectException(InvalidRouteActionException::class);
+
+        $router = $this->getMockBuilder(RouterInterface::class)
+            ->getMock();
+
+        DeferredRoute::generateValue($value, $router);
     }
 }
