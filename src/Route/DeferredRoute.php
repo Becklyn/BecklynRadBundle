@@ -111,7 +111,7 @@ class DeferredRoute
     /**
      * @param self|string|mixed|null $value
      */
-    public function generateValue ($value, UrlGeneratorInterface $urlGenerator) : string
+    public static function generateValue ($value, UrlGeneratorInterface $urlGenerator) : string
     {
         if (\is_string($value) || null === $value)
         {
