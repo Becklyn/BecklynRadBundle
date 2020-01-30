@@ -1,9 +1,8 @@
 7.1.5
 =====
 
-*   (improvement) Added `DeferredTranslation`.
+*   (feature) Added `DeferredTranslation`.
 *   (improvement) Added `DeferredRoute::generateValue`.
-
 
 
 7.1.4
