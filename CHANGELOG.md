@@ -1,3 +1,9 @@
+7.2.1
+=====
+
+*   (bug) Refactor form theme to not use `<label>` as most outer element, as this has too many edge cases (like nested forms).
+
+
 7.2.0
 =====
 
