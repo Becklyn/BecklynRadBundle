@@ -46,17 +46,16 @@
 
 {%- block form_row_simple -%}
     {%- set widget_attr = {} -%}
-    {%- set form_widget_type = form_widget_type ?? "span" -%}
     {%- set element_attr = (element_attr ?? [])|appendToKey("class", "form-widget") -%}
     {%- if help is not empty -%}
         {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
     {%- endif -%}
 <div{% with {attr: row_attr} %}{{ block("attributes") }}{% endwith %}>
     <div class="form-element">
-    {{- form_label(form, null, {element: "label"}) -}}
-    <{{ form_widget_type }} {% with {attr: element_attr} %}{{ block("attributes") }}{% endwith %}>
-    {{- form_widget(form, widget_attr) -}}
-    </{{ form_widget_type }}>
+        {{- form_label(form, null, {element: "label"}) -}}
+        <div {% with {attr: element_attr} %}{{ block("attributes") }}{% endwith %}>
+            {{- form_widget(form, widget_attr) -}}
+        </div>
     </div>
     {{- form_help(form) -}}
     {{- form_errors(form) -}}
@@ -143,7 +142,6 @@
     ##################################################################### -#}
 
 {%- block choice_row -%}
-    {%- set form_widget_type = "div" -%}
     {%- set form_row_type = expanded ? "form-row-choices-list" : "form-row-select" -%}
     {{- block("form_row") -}}
 {%- endblock choice_row -%}
