@@ -1,3 +1,9 @@
+7.2.2
+=====
+
+*   (bug) Fixed missing refactor of form theme, that was overlooked in `7.2.1`.
+
+
 7.2.1
 =====
 
