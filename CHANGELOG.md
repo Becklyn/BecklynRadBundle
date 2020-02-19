@@ -1,3 +1,9 @@
+7.2.3
+=====
+
+*   (improvement) Make nested form rendering more robust and more flexible.
+
+
 7.2.2
 =====
 
