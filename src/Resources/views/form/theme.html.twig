@@ -75,7 +75,7 @@
         {{- form_rest(form) -}}
     {%- else -%}
         {# with label -> show as nested form (but only if it is not a choice #}
-        {%- if choices is not defined -%}
+        {%- if (is_nested_form ?? true) -%}
             {%- set row_attr = row_attr|appendToKey("class", "form-nested") -%}
             {%- set element_attr = (element_attr ?? [])|appendToKey("class", "form-widget-nested") -%}
         {%- endif -%}
@@ -143,6 +143,7 @@
 
 {%- block choice_row -%}
     {%- set form_row_type = expanded ? "form-row-choices-list" : "form-row-select" -%}
+    {%- set is_nested_form = false -%}
     {{- block("form_row") -}}
 {%- endblock choice_row -%}
 
