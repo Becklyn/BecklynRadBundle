@@ -1,3 +1,11 @@
+7.3.0
+=====
+
+*   (improvement) Made `PaginatedList` generic in PhpStan.
+*   (feature) Added `PropertiesSortableHandler`.
+*   (bug) Make sortable handler more robust against cases where the doctrine entity isn't a singleton.
+
+
 7.2.3
 =====
 

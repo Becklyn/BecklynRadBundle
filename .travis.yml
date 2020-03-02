@@ -14,7 +14,7 @@ php:
 before_install:
     - composer self-update --stable --no-interaction --no-progress
     - composer require php-coveralls/php-coveralls --prefer-dist --no-interaction --no-progress
-    - composer global require localheinz/composer-normalize bamarni/composer-bin-plugin --prefer-dist --no-interaction --no-progress
+    - composer global require ergebnis/composer-normalize bamarni/composer-bin-plugin --no-interaction --prefer-dist --no-progress --no-suggest
 
 install:
     - composer install --prefer-dist --no-interaction --no-progress
@@ -25,7 +25,7 @@ script:
     - composer normalize --indent-size 4 --indent-style space --dry-run
     - ./vendor/bin/php-cs-fixer fix --diff --config vendor-bin/test/vendor/becklyn/php-cs/.php_cs.dist --dry-run --no-interaction
     - ./vendor/bin/phpstan analyse -l 4 --memory-limit 4G --ansi -c vendor-bin/test/vendor/becklyn/php-cs/phpstan/lib.neon . --no-interaction --no-progress
-    - ./vendor/bin/simple-phpunit -c phpunit.xml --coverage-clover build/logs/clover.xml
+    - ./vendor/bin/simple-phpunit -c phpunit.xml --coverage-clover build/logs/clover.xml --testdox
 
 after_script:
     - travis_retry php vendor/bin/php-coveralls

@@ -9,11 +9,12 @@ use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class SortableHandlerTest extends TestCase
 {
+    use SortableTestTrait;
+
     //region Next Sort Order
     /**
      * @return array
@@ -74,7 +75,7 @@ class SortableHandlerTest extends TestCase
         $entity3 = $this->createEntity(3, 3);
         $entity4 = $this->createEntity(4, 4);
 
-        $repository = $this->createIteratingRepository($entity1, $entity2, $entity3, $entity4);
+        [$repository] = $this->createIteratingRepository($entity1, $entity2, $entity3, $entity4);
         $sortable = new SortableHandler($repository);
         $sortable->fixSortOrder([$entity3]);
 
@@ -105,7 +106,7 @@ class SortableHandlerTest extends TestCase
             ->expects(self::never())
             ->method("setSortOrder");
 
-        $repository = $this->createIteratingRepository($entity1, $entity2, $entity3, $entityExcluded1, $entityExcluded2);
+        [$repository] = $this->createIteratingRepository($entity1, $entity2, $entity3, $entityExcluded1, $entityExcluded2);
         $sortable = new SortableHandler($repository);
         $sortable->fixSortOrder([$entityExcluded1, $entityExcluded2]);
     }
@@ -119,7 +120,7 @@ class SortableHandlerTest extends TestCase
     public function testSortElementBeforeBeginning () : void
     {
         $entities = $this->createEntities(5);
-        $repository = $this->createIteratingRepository(...$entities);
+        [$repository] = $this->createIteratingRepository(...$entities);
         $sortable = new SortableHandler($repository);
 
         $sortable->sortElementBefore($entities[4], $entities[0]);
@@ -142,7 +143,7 @@ class SortableHandlerTest extends TestCase
     public function testSortElementBeforeMiddle () : void
     {
         $entities = $this->createEntities(5);
-        $repository = $this->createIteratingRepository(...$entities);
+        [$repository] = $this->createIteratingRepository(...$entities);
         $sortable = new SortableHandler($repository);
 
         $sortable->sortElementBefore($entities[4], $entities[2]);
@@ -165,7 +166,7 @@ class SortableHandlerTest extends TestCase
     public function testSortElementToEnd () : void
     {
         $entities = $this->createEntities(5);
-        $repository = $this->createIteratingRepository(...$entities);
+        [$repository] = $this->createIteratingRepository(...$entities);
         $sortable = new SortableHandler($repository);
 
         $sortable->sortElementBefore($entities[3], null);
@@ -191,7 +192,7 @@ class SortableHandlerTest extends TestCase
         $this->expectExceptionMessage("Can't sort an element before itself.");
 
         $entity = $this->createEntity(1, 1);
-        $repository = $this->createIteratingRepository($entity);
+        [$repository] = $this->createIteratingRepository($entity);
         $sortable = new SortableHandler($repository);
 
         $sortable->sortElementBefore($entity, $entity);
@@ -265,121 +266,4 @@ class SortableHandlerTest extends TestCase
         ], $andX->getParts());
     }
     //endregion
-
-
-    /**
-     * @param mixed ...$entities
-     *
-     * @return MockObject|EntityRepository
-     */
-    private function createIteratingRepository (...$entities) : MockObject
-    {
-        $repository = $this->createMock(EntityRepository::class);
-        $queryBuilder = $this->createMock(QueryBuilder::class);
-        $query = $this->createMock(AbstractQuery::class);
-
-        $repository
-            ->method("createQueryBuilder")
-            ->willReturn($queryBuilder);
-
-        $queryBuilder
-            ->method("select")
-            ->willReturnSelf();
-
-        $queryBuilder
-            ->method("addOrderBy")
-            ->willReturnSelf();
-
-        $queryBuilder
-            ->method("getQuery")
-            ->willReturn($query);
-
-        $result = [];
-        foreach ($entities as $entity)
-        {
-            $result[] = [$entity];
-        }
-
-        $query
-            ->method("iterate")
-            ->willReturn($result);
-
-        return $repository;
-    }
-
-
-    /**
-     * @param int      $id
-     * @param int|null $sortOrder
-     *
-     * @return SortableEntityInterface
-     */
-    private function createEntity (int $id, ?int $sortOrder = null) : SortableEntityInterface
-    {
-        return new class ($id, $sortOrder) implements SortableEntityInterface
-        {
-            private $id;
-            private $sortOrder;
-
-            public function __construct (int $id, ?int $sortOrder = null)
-            {
-                $this->id = $id;
-                $this->sortOrder = $sortOrder;
-            }
-
-
-            public function getId () : ?int
-            {
-                return $this->id;
-            }
-
-
-            public function getSortOrder () : ?int
-            {
-                return $this->sortOrder;
-            }
-
-
-            public function setSortOrder (int $sortOrder) : void
-            {
-                $this->sortOrder = $sortOrder;
-            }
-        };
-    }
-
-
-    /**
-     * @param int $number
-     *
-     * @return array
-     */
-    private function createEntities (int $number) : array
-    {
-        $result = [];
-
-        for ($i = 0; $i < $number; $i++)
-        {
-            $result[] = $this->createEntity($i, $i);
-        }
-
-        return $result;
-    }
-
-
-    /**
-     * @param SortableEntityInterface[] $entities
-     *
-     * @return array
-     */
-    private function mapEntities (array $entities) : array
-    {
-        $result = [];
-
-        foreach ($entities as $entity)
-        {
-            $result[$entity->getId()] = $entity->getSortOrder();
-        }
-
-        return $result;
-    }
 }
