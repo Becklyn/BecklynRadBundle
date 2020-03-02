@@ -104,6 +104,13 @@ class SortableHandler
             ->getQuery()
             ->iterate();
 
+        $excludedIds = [];
+
+        foreach ($excludedElements as $entity)
+        {
+            $excludedIds[$entity->getId()] = true;
+        }
+
         $index = 0;
 
         foreach ($entities as $row)
@@ -111,7 +118,7 @@ class SortableHandler
             /** @var SortableEntityInterface $entity */
             $entity = $row[0];
 
-            if (\in_array($entity, $excludedElements, true))
+            if (\array_key_exists($entity->getId(), $excludedIds))
             {
                 continue;
             }
