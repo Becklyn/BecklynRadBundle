@@ -2,6 +2,7 @@ next minor
 ==========
 
 *   (improvement) Made `PaginatedList` generic in PhpStan.
+*   (feature) Added `PropertiesSortableHandler`.
 
 
 7.2.3
