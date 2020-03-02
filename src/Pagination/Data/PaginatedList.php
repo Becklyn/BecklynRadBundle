@@ -4,6 +4,8 @@ namespace Becklyn\RadBundle\Pagination\Data;
 
 /**
  * Generic value object for returning paginated lists.
+ *
+ * @phpstan-template T
  */
 class PaginatedList
 {
@@ -27,6 +29,7 @@ class PaginatedList
 
 
     /**
+     * @phpstan-return iterable<T>
      */
     public function getList () : iterable
     {

@@ -1,3 +1,9 @@
+next minor
+==========
+
+*   (improvement) Made `PaginatedList` generic in PhpStan.
+
+
 7.2.3
 =====
 
