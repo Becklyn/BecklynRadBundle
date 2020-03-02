@@ -28,6 +28,7 @@ class PropertiesSortableHandler
 
 
     /**
+     * @param string ...$properties The properties that should be used for generating the `$where` sortable filter array.
      */
     public function __construct (EntityRepository $repository, string ...$properties)
     {
