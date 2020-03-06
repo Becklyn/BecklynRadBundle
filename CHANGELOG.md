@@ -1,3 +1,10 @@
+7.4.0
+=====
+
+*   (feature) Add `CommandHelper`.
+*   (feature) Add generic `TagInterface` + `TagHelper`.
+
+
 7.3.0
 =====
 
