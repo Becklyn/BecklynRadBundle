@@ -1,3 +1,9 @@
+7.4.0
+=====
+
+*   (feature) Add `CommandHelper`.
+
+
 7.3.0
 =====
 
