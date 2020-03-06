@@ -23,7 +23,7 @@ class CommandHelper
      */
     public function startLongRunningCommand () : void
     {
-        \ini_set("memory_limit", -1);
+        \ini_set("memory_limit", "-1");
         \set_time_limit(0);
         $this->profiler->disable();
     }
