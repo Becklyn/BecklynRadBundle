@@ -145,6 +145,7 @@ class Pagination
             "prev" => $this->getPreviousPage(),
             "perPage" => $this->perPage,
             "total" => $this->numberOfItems,
+            "valid" => $this->isValid(),
         ];
     }
 
@@ -155,5 +156,15 @@ class Pagination
     public function withNumberOfItems (int $numberOfItems) : self
     {
         return new self($this->currentPage, $this->perPage, $numberOfItems);
+    }
+
+
+    /**
+     * Returns whether the current configuration is valid (ie. whether the set current page is valid within
+     * the given min / max page range).
+     */
+    public function isValid () : bool
+    {
+        return $this->currentPage === $this->getCurrentPage();
     }
 }

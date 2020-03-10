@@ -1,3 +1,10 @@
+7.4.2
+=====
+
+*   (improvement) Add `Pagination::isValid()`.
+
+
+
 7.4.1
 =====
 

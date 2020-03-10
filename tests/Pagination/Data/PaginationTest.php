@@ -54,13 +54,12 @@ class PaginationTest extends TestCase
     /**
      * @dataProvider provideInvalid
      *
-     * @expectedException \InvalidArgumentException
-     *
      * @param int $numberOfItems
      * @param int $itemsPerPage
      */
     public function testInvalid (int $numberOfItems, int $itemsPerPage) : void
     {
+        $this->expectException(\InvalidArgumentException::class);
         new Pagination(1, $itemsPerPage, $numberOfItems);
     }
 
@@ -74,12 +73,13 @@ class PaginationTest extends TestCase
         self::assertSame(2, $pagination->getCurrentPage());
         self::assertSame(3, $pagination->getMaxPage());
         self::assertSame(25, $pagination->getNumberOfItems());
+        self::assertSame(true, $pagination->isValid());
 
         $newPagination = $pagination->withNumberOfItems(7);
         self::assertNotSame($pagination, $newPagination);
         self::assertSame(1, $newPagination->getCurrentPage());
         self::assertSame(1, $newPagination->getMaxPage());
-        self::assertSame(7, $newPagination->getNumberOfItems());
+        self::assertSame(false, $newPagination->isValid());
     }
 
 
@@ -102,10 +102,10 @@ class PaginationTest extends TestCase
     public function provideCurrent () : array
     {
         return [
-            [3, 40, 3],
-            [3, 10, 1],
-            [3, 12, 2],
-            [0, 12, 1],
+            [3, 40, 3, true],
+            [3, 10, 1, false],
+            [3, 12, 2, false],
+            [0, 12, 1, false],
         ];
     }
 
@@ -113,10 +113,11 @@ class PaginationTest extends TestCase
     /**
      * @dataProvider provideCurrent
      */
-    public function testCurrent (int $currentPage, int $totalNumber, int $expectedCurrent) : void
+    public function testCurrent (int $currentPage, int $totalNumber, int $expectedCurrent, bool $expectedValid) : void
     {
         $pagination = new Pagination($currentPage, 10, $totalNumber);
         self::assertSame($expectedCurrent, $pagination->getCurrentPage());
+        self::assertSame($expectedValid, $pagination->isValid());
     }
 
 
@@ -135,6 +136,7 @@ class PaginationTest extends TestCase
             "prev" => 1,
             "perPage" => 10,
             "total" => 29,
+            "valid" => true,
         ], $pagination->toArray());
     }
 
@@ -154,6 +156,7 @@ class PaginationTest extends TestCase
             "prev" => null,
             "perPage" => 1,
             "total" => 1,
+            "valid" => false,
         ], $pagination->toArray());
     }
 }
