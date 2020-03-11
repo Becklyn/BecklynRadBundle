@@ -33,7 +33,6 @@ abstract class TagEntity implements EntityInterface, TagInterface
 
 
     /**
-     * @return string|null
      */
     public function getTag () : ?string
     {
@@ -42,7 +41,6 @@ abstract class TagEntity implements EntityInterface, TagInterface
 
 
     /**
-     * @param string|null $tag
      */
     public function setTag (?string $tag) : void
     {

@@ -2,6 +2,8 @@
 =====
 
 *   (feature) Add base tag entity.
+*   (feature) Add `TagMatcher` that automatically applies a query constraint to match tags.
+*   (improvement) Add `TagHelper` functionality to `TagMatcher`.
 
 
 7.4.6
