@@ -7,11 +7,11 @@ use Becklyn\RadBundle\Exception\TagNormalizationException;
 class TagHelper
 {
     /**
-     * @param array<string|TagInterface|mixed> $tags
+     * @param iterable<string|TagInterface|mixed> $tags
      *
      * @return string[]
      */
-    public static function getTagLabels (array $tags) : array
+    public static function getTagLabels (iterable $tags) : array
     {
         $labels = [];
 
