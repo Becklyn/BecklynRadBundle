@@ -1,3 +1,9 @@
+7.4.4
+=====
+
+*   (bug) Fix wrong method name in `TagHelper`.
+
+
 7.4.3
 =====
 

@@ -24,7 +24,7 @@ class TagHelper
 
             if ($tag instanceof TagInterface)
             {
-                $labels[] = $tag->getLabel();
+                $labels[] = $tag->getTagLabel();
                 continue;
             }
 
