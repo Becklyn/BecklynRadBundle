@@ -159,7 +159,7 @@
 {%- block choice_widget_collapsed -%}
     {%- set attr = attr|appendToKey("class", "form-input form-input-select") -%}
     {%- if multiple and placeholder is not empty -%}
-        {%- set attr = attr|merge({"data-placeholder": placeholder|trans}) -%}
+        {%- set attr = attr|merge({"data-placeholder": placeholder}) -%}
     {%- endif -%}
     {{- parent() -}}
 {%- endblock choice_widget_collapsed -%}

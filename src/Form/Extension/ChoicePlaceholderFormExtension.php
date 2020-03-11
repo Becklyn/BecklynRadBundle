@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Symfony removes "placeholder" attributes for certain configurations.
@@ -13,6 +14,16 @@ use Symfony\Component\Form\FormView;
  */
 class ChoicePlaceholderFormExtension extends AbstractTypeExtension
 {
+    /** @var TranslatorInterface */
+    private $translator;
+
+    /**
+     */
+    public function __construct (TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * @inheritDoc
      */
@@ -24,10 +35,10 @@ class ChoicePlaceholderFormExtension extends AbstractTypeExtension
         if (
             null === $existingPlaceholder
             && !\array_key_exists("data-placeholder", $view->vars["attr"])
-            && null !== $originalAttributes
+            && \is_string($originalAttributes)
         )
         {
-            $view->vars["attr"]["data-placeholder"] = $originalAttributes;
+            $view->vars["attr"]["data-placeholder"] = $this->translator->trans($originalAttributes, [], "form");
         }
     }
 
