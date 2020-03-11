@@ -7,5 +7,5 @@ interface TagInterface
     /**
      * Returns the tag label.
      */
-    public function getLabel () : string;
+    public function getTagLabel () : string;
 }

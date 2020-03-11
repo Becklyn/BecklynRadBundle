@@ -1,3 +1,9 @@
+7.4.3
+=====
+
+*   (bug) Fix bad naming of method in `TagInterface`.
+
+
 7.4.2
 =====
 
