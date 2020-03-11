@@ -1,3 +1,9 @@
+7.4.5
+=====
+
+*   (bug) Properly translate placeholder in collapsed choice widgets.
+
+
 7.4.4
 =====
 
