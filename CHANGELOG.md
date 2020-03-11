@@ -1,3 +1,9 @@
+7.5.0
+=====
+
+*   (feature) Add base tag entity.
+
+
 7.4.6
 =====
 
