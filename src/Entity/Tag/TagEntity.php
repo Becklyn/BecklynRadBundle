@@ -27,7 +27,7 @@ abstract class TagEntity implements EntityInterface, TagInterface
      *
      * @Assert\NotNull()
      * @Assert\Length(max="254")
-     * @Assert\Regex(pattern="~^[a-z0-9\\-_., ]+$~i", message="becklyn_rad.tag.tag.pattern")
+     * @Assert\Regex(pattern="~^[a-z0-9\-_., ]+$~i", message="becklyn_rad.tag.tag.pattern")
      */
     private $tag;
 

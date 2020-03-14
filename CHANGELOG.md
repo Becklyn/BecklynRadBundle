@@ -1,3 +1,9 @@
+7.5.1
+=====
+
+*   (bug) Fix invalid tag validation pattern.
+
+
 7.5.0
 =====
 
