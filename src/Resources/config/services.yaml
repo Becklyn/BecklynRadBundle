@@ -9,3 +9,6 @@ services:
 
     Becklyn\RadBundle\Usages\EntityUsagesFinder:
         $finders: !tagged_iterator entity_usages.provider
+
+    Becklyn\RadBundle\Command\CommandHelper:
+        $eventManager: "@doctrine.dbal.default_connection.event_manager"

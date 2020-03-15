@@ -1,3 +1,9 @@
+7.5.2
+=====
+
+*   (improvement) Add `CommandHelper::disableSearchIndexing()`.
+
+
 7.5.1
 =====
 
