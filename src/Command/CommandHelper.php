@@ -2,19 +2,25 @@
 
 namespace Becklyn\RadBundle\Command;
 
+use Algolia\SearchBundle\EventListener\SearchIndexerSubscriber;
 use Becklyn\RadBundle\Integration\Profiler;
+use Doctrine\Common\EventManager;
 
 class CommandHelper
 {
     /** @var Profiler */
     private $profiler;
 
+    /** @var EventManager */
+    private $eventManager;
+
 
     /**
      */
-    public function __construct (Profiler $profiler)
+    public function __construct (Profiler $profiler, EventManager $eventManager)
     {
         $this->profiler = $profiler;
+        $this->eventManager = $eventManager;
     }
 
 
@@ -26,5 +32,30 @@ class CommandHelper
         \ini_set("memory_limit", "-1");
         \set_time_limit(0);
         $this->profiler->disable();
+    }
+
+
+    /**
+     * Disables search indexing
+     */
+    public function disableSearchIndexing () : void
+    {
+        $remove = [];
+
+        foreach ($this->eventManager->getListeners() as $event => $listeners)
+        {
+            foreach ($listeners as $listener)
+            {
+                if ($listener instanceof SearchIndexerSubscriber)
+                {
+                    $remove[$event] = $listener;
+                }
+            }
+        }
+
+        foreach ($remove as $event => $listener)
+        {
+            $this->eventManager->removeEventListener($event, $listener);
+        }
     }
 }
