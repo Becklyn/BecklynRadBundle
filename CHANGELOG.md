@@ -1,3 +1,9 @@
+next patch
+==========
+
+*   (improvement) Add `DeferredTranslation::translateAllValues()`.
+
+
 7.5.2
 =====
 

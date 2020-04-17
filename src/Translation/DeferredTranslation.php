@@ -105,4 +105,24 @@ class DeferredTranslation
             \is_object($value) ? \get_class($value) : \gettype($value)
         ));
     }
+
+
+    /**
+     * Translates all values
+     *
+     * @param array<self|string|mixed|null> $values
+     *
+     * @return string[]
+     */
+    public static function translateAllValues (array $values, TranslatorInterface $translator) : array
+    {
+        $result = [];
+
+        foreach ($values as $key => $value)
+        {
+            $result[$key] = self::translateValue($values, $translator);
+        }
+
+        return $result;
+    }
 }
