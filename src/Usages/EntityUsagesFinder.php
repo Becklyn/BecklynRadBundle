@@ -7,6 +7,9 @@ use Becklyn\RadBundle\Translation\BackendTranslator;
 use Becklyn\RadBundle\Usages\Data\ResolvedEntityUsage;
 use Symfony\Component\Routing\RouterInterface;
 
+/**
+ * @deprecated Use becklyn/entity-admin instead.
+ */
 final class EntityUsagesFinder
 {
     /**
@@ -49,6 +52,7 @@ final class EntityUsagesFinder
      */
     public function findUsages (EntityInterface $entity) : array
     {
+        @\trigger_error("The entity usages from becklyn/rad-bundle are deprecated. Use becklyn/entity-admin instead.", \E_USER_DEPRECATED);
         $grouped = [];
         $ungrouped = [];
 
