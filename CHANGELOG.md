@@ -1,5 +1,5 @@
-next patch
-==========
+7.5.3
+=====
 
 *   (improvement) Add `DeferredTranslation::translateAllValues()`.
 *   (deprecation) Deprecated entity usage integration. Use `becklyn/entity-admin` instead.
