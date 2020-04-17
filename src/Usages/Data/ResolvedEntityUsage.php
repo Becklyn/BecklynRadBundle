@@ -6,6 +6,8 @@ namespace Becklyn\RadBundle\Usages\Data;
  * A already resolved usage.
  *
  * Without the group (as it is handled externally) and the link is already resolved.
+ *
+ * @deprecated Use becklyn/entity-admin instead.
  */
 final class ResolvedEntityUsage
 {

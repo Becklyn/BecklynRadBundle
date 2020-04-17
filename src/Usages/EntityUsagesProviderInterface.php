@@ -5,6 +5,9 @@ namespace Becklyn\RadBundle\Usages;
 use Becklyn\RadBundle\Entity\Interfaces\EntityInterface;
 use Becklyn\RadBundle\Usages\Data\EntityUsage;
 
+/**
+ * @deprecated Use becklyn/entity-admin instead.
+ */
 interface EntityUsagesProviderInterface
 {
     /**

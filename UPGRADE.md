@@ -1,3 +1,9 @@
+7.x to 8.0
+==========
+
+*   The entity usage integration was removed. Migrate to `becklyn/entity-admin`.
+
+
 6.x to 7.0
 ==========
 

@@ -9,6 +9,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  * An unresolved entity usage. Optimized for ease of use.
  *
  * Neither the group nor the route is resolved yet.
+ *
+ * @deprecated Use becklyn/entity-admin instead.
  */
 final class EntityUsage
 {
