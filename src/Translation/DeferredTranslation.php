@@ -120,7 +120,7 @@ class DeferredTranslation
 
         foreach ($values as $key => $value)
         {
-            $result[$key] = self::translateValue($values, $translator);
+            $result[$key] = self::translateValue($value, $translator);
         }
 
         return $result;

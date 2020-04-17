@@ -1,3 +1,9 @@
+7.5.4
+=====
+
+*   (bug) Fix typo in variable.
+
+
 7.5.3
 =====
 
