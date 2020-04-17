@@ -3,6 +3,7 @@ next patch
 
 *   (improvement) Add `DeferredTranslation::translateAllValues()`.
 *   (deprecation) Deprecated entity usage integration. Use `becklyn/entity-admin` instead.
+*   (improvement) Add log messages support to `StatsCounter`.
 
 
 7.5.2

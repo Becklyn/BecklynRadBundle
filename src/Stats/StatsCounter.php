@@ -11,11 +11,15 @@ class StatsCounter
      */
     private $labels = [];
 
-
     /**
      * @var int[]
      */
     private $counts = [];
+
+    /**
+     * @var string[]
+     */
+    private $log = [];
 
 
     /**
@@ -63,9 +67,18 @@ class StatsCounter
 
 
     /**
+     * Adds a log message
+     */
+    public function log (string $message) : void
+    {
+        $this->log[] = $message;
+    }
+
+
+    /**
      * Renders as a table in the CLI.
      */
-    public function render (SymfonyStyle $io) : void
+    public function render (SymfonyStyle $io, bool $includeLog = false) : void
     {
         $rows = \array_map(
             function (array $row)
@@ -77,6 +90,12 @@ class StatsCounter
         );
 
         $io->table(["Label", "×", "Description"], $rows);
+
+        if ($includeLog && !empty($this->log))
+        {
+            $io->newLine();
+            $io->listing($this->log);
+        }
     }
 
 
