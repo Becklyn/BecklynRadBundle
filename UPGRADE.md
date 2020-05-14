@@ -2,6 +2,7 @@
 ==========
 
 *   The entity usage integration was removed. Migrate to `becklyn/entity-admin`.
+*   `StatsCounter::log()` was removed. Use `StatsCounter::debug/warning/critical()` instead.
 
 
 6.x to 7.0
