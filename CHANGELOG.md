@@ -1,3 +1,11 @@
+7.6.0
+=====
+
+*   (feature) Added log levels in `StatsCounter`: `->debug()`, `->warning()`, `->critical()`.
+*   (deprecation) Deprecated log without level in `StatsCounter`: `->log()`.
+*   (feature) Added possibility to create a nested stats counter with a prefix.
+
+
 7.5.4
 =====
 

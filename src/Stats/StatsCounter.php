@@ -4,22 +4,22 @@ namespace Becklyn\RadBundle\Stats;
 
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class StatsCounter
+class StatsCounter implements StatsCounterInterface
 {
-    /**
-     * @var array[]
-     */
+    /** @var array[] */
     private $labels = [];
 
-    /**
-     * @var int[]
-     */
+    /** @var int[] */
     private $counts = [];
 
-    /**
-     * @var string[]
-     */
-    private $log = [];
+    /** @var string[] */
+    private $debug = [];
+
+    /** @var string[] */
+    private $warnings = [];
+
+    /** @var string[] */
+    private $critical = [];
 
 
     /**
@@ -53,7 +53,7 @@ class StatsCounter
 
 
     /**
-     * Increments the value for the given key.
+     * @inheritDoc
      */
     public function increment (string $key, int $amount = 1) : void
     {
@@ -67,19 +67,64 @@ class StatsCounter
 
 
     /**
-     * Adds a log message
+     * @inheritDoc
      */
     public function log (string $message) : void
     {
-        $this->log[] = $message;
+        @\trigger_error("StatsCounter::log() is deprecated, use ->debug(), ->warn(), ->critical() instead.", \E_USER_DEPRECATED);
+        $this->debug[] = $message;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function debug (string $message) : void
+    {
+        $this->debug[] = $message;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function warning (string $message) : void
+    {
+        $this->warnings[] = $message;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function critical (string $message) : void
+    {
+        $this->critical[] = $message;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function createNestedCounter (string $prefix) : StatsCounterInterface
+    {
+        return new NestedStatsCounter($this, $prefix);
     }
 
 
     /**
      * Renders as a table in the CLI.
+     *
+     * @param bool $showDebug decides whether the debug log will be displayed. If `null` it will be shown in
+     *                        verbose (`-v`) mode
      */
-    public function render (SymfonyStyle $io, bool $includeLog = false) : void
+    public function render (SymfonyStyle $io, ?bool $showDebug = null) : void
     {
+        if (null === $showDebug)
+        {
+            $showDebug = $io->isVerbose();
+        }
+
         $rows = \array_map(
             function (array $row)
             {
@@ -91,10 +136,30 @@ class StatsCounter
 
         $io->table(["Label", "×", "Description"], $rows);
 
-        if ($includeLog && !empty($this->log))
+        $listing = [];
+
+        foreach ($this->critical as $line)
+        {
+            $listing[] = "<fg=red>CRITICAL</> {$line}";
+        }
+
+        foreach ($this->warnings as $line)
+        {
+            $listing[] = "<fg=yellow>WARNING</> {$line}";
+        }
+
+        if ($showDebug)
+        {
+            foreach ($this->debug as $line)
+            {
+                $listing[] = "<fg=blue>DEBUG</> {$line}";
+            }
+        }
+
+        if (!empty($listing))
         {
             $io->newLine();
-            $io->listing($this->log);
+            $io->listing($listing);
         }
     }
 
