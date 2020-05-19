@@ -1,3 +1,10 @@
+7.7.0
+=====
+
+*   (feature) Add prefix-based search term tokenizer.
+*   (feature) Add `SimpleEntitySearchHelper`.
+
+
 7.6.0
 =====
 
