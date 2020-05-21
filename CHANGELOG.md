@@ -1,3 +1,9 @@
+7.7.1
+=====
+
+*   (fix) Add missing PhpDoc meta comments to let PhpStorm know about `BaseController::trans()`'s translation key and domain.
+
+
 7.7.0
 =====
 

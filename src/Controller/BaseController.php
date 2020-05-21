@@ -29,7 +29,8 @@ abstract class BaseController extends AbstractController
 
 
     /**
-     *
+     * @param string      $id     #TranslationKey
+     * @param string|null $domain #TranslationDomain
      */
     protected function trans (string $id, array $parameters = [], ?string $domain = null, ?string $locale = null) : string
     {
