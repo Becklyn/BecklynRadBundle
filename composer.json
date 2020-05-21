@@ -11,11 +11,12 @@
         }
     ],
     "require": {
-        "php": "^7.2",
+        "php": ">=7.3",
         "ext-json": "*",
         "beberlei/doctrineextensions": "^1.2",
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/orm": "^2.7",
+        "psr/log": "^1.1",
         "scienta/doctrine-json-functions": "^4.1",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/dependency-injection": "^4.4 || ^5.0",

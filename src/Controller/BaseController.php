@@ -9,6 +9,8 @@ use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -19,7 +21,7 @@ abstract class BaseController extends AbstractController
     /**
      * @inheritDoc
      */
-    public static function getSubscribedServices ()
+    public static function getSubscribedServices () : array
     {
         return \array_replace(parent::getSubscribedServices(), [
             LoggerInterface::class,
@@ -81,5 +83,49 @@ abstract class BaseController extends AbstractController
     {
         $mapper = new FormErrorMapper($this->get(TranslatorInterface::class));
         return $mapper->generate($form);
+    }
+
+
+    /**
+     * Returns the logger.
+     */
+    protected function getLogger () : LoggerInterface
+    {
+        return $this->get(LoggerInterface::class);
+    }
+
+
+    /**
+     * Returns the parsed JSON formatted request body.
+     */
+    protected function getJsonRequestData (Request $request) : array
+    {
+        if ("json" !== $request->getContentType())
+        {
+            throw new HttpException(415, "Expected JSON request content type.");
+        }
+
+        try
+        {
+            $data = \json_decode($request->getContent(), true, 512, \JSON_THROW_ON_ERROR);
+
+            if (!\is_array($data))
+            {
+                throw new HttpException(
+                    400,
+                    \sprintf("Invalid JSON structure received, expected list / key-value map, got %s", \gettype($data))
+                );
+            }
+
+            return $data;
+        }
+        catch (\JsonException $e)
+        {
+            throw new HttpException(
+                400,
+                "Invalid JSON received, error: {$e->getMessage()}",
+                $e
+            );
+        }
     }
 }

@@ -1,7 +1,9 @@
-7.7.1
+7.8.0
 =====
 
 *   (fix) Add missing PhpDoc meta comments to let PhpStorm know about `BaseController::trans()`'s translation key and domain.
+*   (feature) Add `BaseController::getJsonRequestData()` and `BaseController:getLogger()`
+*   (internal) Require at least PHP 7.3
 
 
 7.7.0
