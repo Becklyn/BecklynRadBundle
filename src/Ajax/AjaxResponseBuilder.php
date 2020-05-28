@@ -12,15 +12,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * The response builder builds a response of the following structure:
- *
- * {
- *     ok: boolean;
- *     status: string; // basic string status, that you can react to in your code
- *     data: any; // the response data
- *     redirect?: string; // a possible redirect target
- *     metaTitle?: string; // whether the meta title
- * }
+ * The response builder builds a JSON response of the structure that is described
+ * in the README.
  */
 class AjaxResponseBuilder
 {
