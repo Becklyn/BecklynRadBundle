@@ -1,3 +1,9 @@
+7.8.1
+=====
+
+*   (bug) Fix unintentional BC break from 7.8.0: Remove return type from `BaseController::getSubscribedServices()`. 
+
+
 7.8.0
 =====
 
