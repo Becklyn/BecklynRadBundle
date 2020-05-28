@@ -125,12 +125,12 @@ abstract class BaseController extends AbstractController
      */
     protected function ajaxResponse (bool $ok, string $status) : AjaxResponseBuilder
     {
-        $builder = new AjaxResponseBuilder(
+        return new AjaxResponseBuilder(
             $this->get(TranslatorInterface::class),
-            $this->get(RouterInterface::class)
+            $this->get(RouterInterface::class),
+            $ok,
+            $status
         );
-
-        return $builder->setStatus($ok, $status);
     }
 
 

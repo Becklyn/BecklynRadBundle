@@ -31,10 +31,10 @@ final class AjaxResponseBuilder
     private $urlGenerator;
 
     /** @var bool */
-    private $ok = true;
+    private $ok;
 
     /** @var string */
-    private $status = "ok";
+    private $status;
 
     /** @var DeferredRoute|string|null */
     private $redirect;
@@ -57,21 +57,17 @@ final class AjaxResponseBuilder
 
     /**
      */
-    public function __construct (TranslatorInterface $translator, UrlGeneratorInterface $urlGenerator)
+    public function __construct (
+        TranslatorInterface $translator,
+        UrlGeneratorInterface $urlGenerator,
+        bool $ok,
+        string $status
+    )
     {
         $this->urlGenerator = $urlGenerator;
         $this->translator = $translator;
-    }
-
-
-    /**
-     * @return $this
-     */
-    public function setStatus (bool $ok, string $status) : self
-    {
         $this->ok = $ok;
         $this->status = $status;
-        return $this;
     }
 
 
