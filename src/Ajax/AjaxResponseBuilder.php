@@ -31,28 +31,28 @@ final class AjaxResponseBuilder
     private $urlGenerator;
 
     /** @var bool */
-    protected $ok = true;
+    private $ok = true;
 
     /** @var string */
-    protected $status = "ok";
+    private $status = "ok";
 
     /** @var DeferredRoute|string|null */
-    protected $redirect;
+    private $redirect;
 
     /** @var DeferredTranslation|string|null */
-    protected $message;
+    private $message;
 
     /** @var string|null */
-    protected $messageType;
+    private $messageType;
 
     /** @var DeferredTranslation|string|null */
-    protected $messageActionLabel;
+    private $messageActionLabel;
 
     /** @var DeferredRoute|string|null */
-    protected $messageActionTarget;
+    private $messageActionTarget;
 
     /** @var array */
-    protected $data = [];
+    private $data = [];
 
 
     /**
