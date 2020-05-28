@@ -1,3 +1,10 @@
+7.8.2
+=====
+
+*   (improvement) Add `ExceptionWithFrontendLabelTrait`.
+*   (improvement) Add generic `UnexpectedTypeException`.
+
+
 7.8.1
 =====
 
