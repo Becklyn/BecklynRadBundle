@@ -57,10 +57,7 @@ final class AjaxResponseBuilder
 
     /**
      */
-    public function __construct (
-        TranslatorInterface $translator,
-        UrlGeneratorInterface $urlGenerator
-    )
+    public function __construct (TranslatorInterface $translator, UrlGeneratorInterface $urlGenerator)
     {
         $this->urlGenerator = $urlGenerator;
         $this->translator = $translator;
@@ -200,7 +197,7 @@ final class AjaxResponseBuilder
      */
     public function messageAction ($label, $target) : self
     {
-        if ( !\is_string($target) && !$target instanceof DeferredRoute)
+        if (!\is_string($target) && !$target instanceof DeferredRoute)
         {
             throw new UnexpectedTypeException($target, DeferredRoute::class . " or string");
         }

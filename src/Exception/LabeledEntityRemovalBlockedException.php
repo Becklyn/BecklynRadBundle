@@ -2,8 +2,6 @@
 
 namespace Becklyn\RadBundle\Exception;
 
-use Becklyn\RadBundle\Translation\DeferredTranslation;
-
 /**
  * Like {@see EntityRemovalBlockedException}, except that this exception carries a frontend message.
  */
