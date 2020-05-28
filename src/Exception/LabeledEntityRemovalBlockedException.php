@@ -2,14 +2,14 @@
 
 namespace Becklyn\RadBundle\Exception;
 
+use Becklyn\RadBundle\Translation\DeferredTranslation;
+
 /**
  * Like {@see EntityRemovalBlockedException}, except that this exception carries a frontend message.
  */
-class LabeledEntityRemovalBlockedException extends EntityRemovalBlockedException
+class LabeledEntityRemovalBlockedException extends EntityRemovalBlockedException implements LabeledExceptionInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $frontendMessage;
 
     /**
@@ -28,7 +28,7 @@ class LabeledEntityRemovalBlockedException extends EntityRemovalBlockedException
 
     /**
      */
-    public function getFrontendMessage () : string
+    public function getFrontendMessage ()
     {
         return $this->frontendMessage;
     }

@@ -2,6 +2,7 @@
 
 namespace Becklyn\RadBundle\Controller;
 
+use Becklyn\RadBundle\Ajax\AjaxResponseBuilder;
 use Becklyn\RadBundle\Exception\EntityRemovalBlockedException;
 use Becklyn\RadBundle\Exception\LabeledEntityRemovalBlockedException;
 use Becklyn\RadBundle\Form\FormErrorMapper;
@@ -11,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -18,18 +20,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 abstract class BaseController extends AbstractController
 {
-    /**
-     * @inheritDoc
-     */
-    public static function getSubscribedServices ()
-    {
-        return \array_replace(parent::getSubscribedServices(), [
-            LoggerInterface::class,
-            TranslatorInterface::class,
-        ]);
-    }
-
-
     /**
      * @param string      $id     #TranslationKey
      * @param string|null $domain #TranslationDomain
@@ -127,5 +117,32 @@ abstract class BaseController extends AbstractController
                 $e
             );
         }
+    }
+
+
+    /**
+     * Creates an AJAX response and returns its builder.
+     */
+    protected function ajaxResponse (bool $ok, string $status) : AjaxResponseBuilder
+    {
+        $builder = new AjaxResponseBuilder(
+            $this->get(TranslatorInterface::class),
+            $this->get(RouterInterface::class)
+        );
+
+        return $builder->setStatus($ok, $status);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public static function getSubscribedServices ()
+    {
+        $services = parent::getSubscribedServices();
+        $services[] = LoggerInterface::class;
+        $services[] = TranslatorInterface::class;
+
+        return $services;
     }
 }
