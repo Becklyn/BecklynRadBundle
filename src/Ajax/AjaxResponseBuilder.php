@@ -22,37 +22,37 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *     metaTitle?: string; // whether the meta title
  * }
  */
-final class AjaxResponseBuilder
+class AjaxResponseBuilder
 {
     /** @var TranslatorInterface */
-    private $translator;
+    protected $translator;
 
     /** @var UrlGeneratorInterface */
-    private $urlGenerator;
+    protected $urlGenerator;
 
     /** @var bool */
-    private $ok;
+    protected $ok;
 
     /** @var string */
-    private $status;
+    protected $status;
 
     /** @var DeferredRoute|string|null */
-    private $redirect;
+    protected $redirect;
 
     /** @var DeferredTranslation|string|null */
-    private $message;
+    protected $message;
 
     /** @var string|null */
-    private $messageImpact;
+    protected $messageImpact;
 
     /** @var DeferredTranslation|string|null */
-    private $messageActionLabel;
+    protected $messageActionLabel;
 
     /** @var DeferredRoute|string|null */
-    private $messageActionTarget;
+    protected $messageActionTarget;
 
     /** @var array */
-    private $data = [];
+    protected $data = [];
 
 
     /**
