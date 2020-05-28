@@ -1,3 +1,10 @@
+7.9.0
+=====
+
+*   (feature) Add `AjaxResponseBuilder` + `BaseController::ajaxReponse()`.
+*   (bug) Rename `ExceptionWithFrontendLabelTrait` to `LabeledExceptionTrait`.
+
+
 7.8.2
 =====
 
