@@ -65,7 +65,7 @@ final class AjaxResponseBuilderTest extends TestCase
                 "impact" => "negative",
                 "action" => [
                     "label" => "action",
-                    "url" => "target",
+                    "action" => "target",
                 ],
             ],
             "redirect" => "redirect",
@@ -258,7 +258,7 @@ final class AjaxResponseBuilderTest extends TestCase
                 "impact" => "neutral",
                 "action" => [
                     "label" => "translated",
-                    "url" => "compiled",
+                    "action" => "compiled",
                 ],
             ],
             "data" => [],

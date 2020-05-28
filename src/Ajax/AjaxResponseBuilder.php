@@ -244,7 +244,7 @@ class AjaxResponseBuilder
             {
                 $message["action"] = [
                     "label" => DeferredTranslation::translateValue($this->messageActionLabel, $this->translator),
-                    "url" => DeferredRoute::generateValue($this->messageActionTarget, $this->urlGenerator),
+                    "action" => DeferredRoute::generateValue($this->messageActionTarget, $this->urlGenerator),
                 ];
             }
 

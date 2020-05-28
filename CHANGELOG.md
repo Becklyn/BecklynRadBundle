@@ -1,3 +1,9 @@
+7.9.1
+=====
+
+*   (bug) Fix invalid key in message actions in `AjaxResponseBuilder`.
+
+
 7.9.0
 =====
 
