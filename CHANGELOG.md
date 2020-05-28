@@ -1,3 +1,9 @@
+7.9.2
+=====
+
+*   (improvement) Add named constructor `DeferredTranslation::backend()`.
+
+
 7.9.1
 =====
 

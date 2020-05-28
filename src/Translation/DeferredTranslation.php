@@ -125,4 +125,13 @@ class DeferredTranslation
 
         return $result;
     }
+
+
+    /**
+     * Special named constructor for the domain "backend"
+     */
+    public static function backend (string $id, array $parameters = []) : self
+    {
+        return new self($id, $parameters, "backend");
+    }
 }
