@@ -43,7 +43,7 @@ interface AjaxResponse
      */
     message?: {
         text: string;
-        type: "positive" | "negative" | null;
+        impact: "positive" | "negative" | "neutral";
         action?: {
             label: string;
             url: string;

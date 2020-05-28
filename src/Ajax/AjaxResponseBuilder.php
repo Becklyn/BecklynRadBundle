@@ -43,7 +43,7 @@ final class AjaxResponseBuilder
     private $message;
 
     /** @var string|null */
-    private $messageType;
+    private $messageImpact;
 
     /** @var DeferredTranslation|string|null */
     private $messageActionLabel;
@@ -127,7 +127,7 @@ final class AjaxResponseBuilder
      */
     public function message ($message) : self
     {
-        return $this->setMessage($message, null);
+        return $this->setMessage($message, "neutral");
     }
 
 
@@ -136,7 +136,7 @@ final class AjaxResponseBuilder
      *
      * @return $this
      */
-    private function setMessage ($message, ?string $messageType) : self
+    private function setMessage ($message, string $impact) : self
     {
         if (null !== $this->message)
         {
@@ -149,7 +149,7 @@ final class AjaxResponseBuilder
         }
 
         $this->message = $message;
-        $this->messageType = $messageType;
+        $this->messageImpact = $impact;
 
         return $this;
     }
@@ -158,7 +158,7 @@ final class AjaxResponseBuilder
     /**
      * Automatically adds the message from an exception with an optional fallback
      *
-     * @param string|DeferredTranslation $fallback
+     * @param DeferredTranslation|string $fallback
      *
      * @return $this
      */
@@ -187,7 +187,8 @@ final class AjaxResponseBuilder
 
 
     /**
-     * @param DeferredRoute|string|mixed $target
+     * @param DeferredTranslation|string $label
+     * @param DeferredRoute|string       $target
      *
      * @return $this
      */
@@ -236,7 +237,7 @@ final class AjaxResponseBuilder
         {
             $message = [
                 "text" => DeferredTranslation::translateValue($this->message, $this->translator),
-                "type" => $this->messageType,
+                "impact" => $this->messageImpact,
             ];
 
             if (null !== $this->messageActionLabel)
