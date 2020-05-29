@@ -54,9 +54,14 @@ class AjaxResponseBuilder
         TranslatorInterface $translator,
         UrlGeneratorInterface $urlGenerator,
         bool $ok,
-        string $status
+        ?string $status = null
     )
     {
+        if (null === $status)
+        {
+            $status = $ok ? "ok" : "failed";
+        }
+
         $this->urlGenerator = $urlGenerator;
         $this->translator = $translator;
         $this->ok = $ok;

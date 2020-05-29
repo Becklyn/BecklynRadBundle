@@ -27,8 +27,10 @@ trait LabeledExceptionTrait
 
     /**
      * @param DeferredTranslation|string|null $frontendMessage
+     *
+     * @return $this
      */
-    public function setFrontendMessage ($frontendMessage) : void
+    public function setFrontendMessage ($frontendMessage) : self
     {
         if (null !== $frontendMessage && !\is_string($frontendMessage) && !$frontendMessage instanceof DeferredTranslation)
         {
@@ -36,5 +38,16 @@ trait LabeledExceptionTrait
         }
 
         $this->frontendMessage = $frontendMessage;
+        return $this;
+    }
+
+
+    /**
+     * Creates a new exception with a frontend label
+     */
+    public static function createWithLabel (string $exceptionMessage, $frontendMessage) : self
+    {
+        return (new self($exceptionMessage))
+            ->setFrontendMessage($frontendMessage);
     }
 }

@@ -348,4 +348,35 @@ final class AjaxResponseBuilderTest extends TestCase
             ->messageAction("test", "target")
             ->build();
     }
+
+
+    /**
+     */
+    public function provideDefaultStatus () : iterable
+    {
+        yield [true, "ok"];
+        yield [false, "failed"];
+    }
+
+
+    /**
+     * @dataProvider provideDefaultStatus
+     */
+    public function testDefaultStatus (bool $ok, string $expected)
+    {
+        $builder = new AjaxResponseBuilder(
+            $this->getMockBuilder(TranslatorInterface::class)->disableOriginalConstructor()->getMock(),
+            $this->getMockBuilder(RouterInterface::class)->disableOriginalConstructor()->getMock(),
+            $ok
+        );
+
+        $response = $builder->build();
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertEquals([
+            "ok" => $ok,
+            "status" => $expected,
+            "data" => [],
+        ], \json_decode($response->getContent(), true));
+    }
 }
