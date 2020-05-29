@@ -1,3 +1,9 @@
+7.9.3
+=====
+
+*   (improvement) Add dynamic default for `$status` in `AjaxResponseBuilder`.
+
+
 7.9.2
 =====
 
