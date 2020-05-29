@@ -2,6 +2,8 @@
 =====
 
 *   (improvement) Add dynamic default for `$status` in `AjaxResponseBuilder`.
+*   (improvement) Make `LabeledExceptionTrait::setFrontendMessage()` fluent.
+*   (improvement) Add `LabeledExceptionTrait::createWithLabel()`.
 
 
 7.9.2
