@@ -123,7 +123,7 @@ abstract class BaseController extends AbstractController
     /**
      * Creates an AJAX response and returns its builder.
      */
-    protected function ajaxResponse (bool $ok, string $status) : AjaxResponseBuilder
+    protected function ajaxResponse (bool $ok, ?string $status = null) : AjaxResponseBuilder
     {
         return new AjaxResponseBuilder(
             $this->get(TranslatorInterface::class),
