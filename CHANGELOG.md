@@ -1,3 +1,9 @@
+7.9.4
+=====
+
+*   (improvement) Simplify signature of `BaseController::ajaxResponse()`.
+
+
 7.9.3
 =====
 
