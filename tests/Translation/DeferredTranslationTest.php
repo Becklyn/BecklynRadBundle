@@ -128,4 +128,30 @@ class DeferredTranslationTest extends TestCase
 
         DeferredTranslation::translateValue($value, $translator);
     }
+
+
+    /**
+     */
+    public function provideIsValid () : iterable
+    {
+        yield [true, "test", DeferredTranslation::REQUIRED];
+        yield [true, "test", DeferredTranslation::OPTIONAL];
+        yield [true, new DeferredTranslation("test"), DeferredTranslation::REQUIRED];
+        yield [true, new DeferredTranslation("test"), DeferredTranslation::OPTIONAL];
+        yield [false, null, DeferredTranslation::REQUIRED];
+        yield [true, null, DeferredTranslation::OPTIONAL];
+        yield [false, 1, DeferredTranslation::OPTIONAL];
+        yield [false, 1, DeferredTranslation::REQUIRED];
+        yield [false, false, DeferredTranslation::OPTIONAL];
+        yield [false, false, DeferredTranslation::REQUIRED];
+    }
+
+
+    /**
+     * @dataProvider provideIsValid
+     */
+    public function testIsValid (bool $expected, $value, bool $required) : void
+    {
+        self::assertSame($expected, DeferredTranslation::isValidValue($value, $required));
+    }
 }

@@ -14,6 +14,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class DeferredTranslation
 {
+    public const OPTIONAL = true;
+    public const REQUIRED = false;
+
     /** @var string */
     private $id;
 
@@ -133,5 +136,16 @@ class DeferredTranslation
     public static function backend (string $id, array $parameters = []) : self
     {
         return new self($id, $parameters, "backend");
+    }
+
+
+    /**
+     * Returns whether the given value is a valid translation value
+     */
+    public static function isValidValue ($value, bool $allowNull = self::REQUIRED) : bool
+    {
+        return null !== $value
+            ? (\is_string($value) || $value instanceof self)
+            : $allowNull;
     }
 }
