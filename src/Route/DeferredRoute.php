@@ -18,6 +18,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class DeferredRoute
 {
+    public const OPTIONAL = true;
+    public const REQUIRED = false;
+
     /** @var string */
     private $route;
 
@@ -126,5 +129,16 @@ class DeferredRoute
             "Can't generate route for value of type '%s', only DeferredRoutes, strings and null are allowed.",
             \is_object($value) ? \get_class($value) : \gettype($value)
         ));
+    }
+
+
+    /**
+     * Returns whether the given value is a valid translation value
+     */
+    public static function isValidValue ($value, bool $allowNull = self::REQUIRED) : bool
+    {
+        return null !== $value
+            ? (\is_string($value) || $value instanceof self)
+            : $allowNull;
     }
 }

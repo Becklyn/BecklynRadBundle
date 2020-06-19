@@ -191,4 +191,30 @@ class DeferredRouteTest extends TestCase
 
         DeferredRoute::generateValue($value, $router);
     }
+
+
+    /**
+     */
+    public function provideIsValid () : iterable
+    {
+        yield [true, "test", DeferredRoute::REQUIRED];
+        yield [true, "test", DeferredRoute::OPTIONAL];
+        yield [true, new DeferredRoute("test"), DeferredRoute::REQUIRED];
+        yield [true, new DeferredRoute("test"), DeferredRoute::OPTIONAL];
+        yield [false, null, DeferredRoute::REQUIRED];
+        yield [true, null, DeferredRoute::OPTIONAL];
+        yield [false, 1, DeferredRoute::OPTIONAL];
+        yield [false, 1, DeferredRoute::REQUIRED];
+        yield [false, false, DeferredRoute::OPTIONAL];
+        yield [false, false, DeferredRoute::REQUIRED];
+    }
+
+
+    /**
+     * @dataProvider provideIsValid
+     */
+    public function testIsValid (bool $expected, $value, bool $required) : void
+    {
+        self::assertSame($expected, DeferredRoute::isValidValue($value, $required));
+    }
 }

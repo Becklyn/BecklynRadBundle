@@ -1,3 +1,10 @@
+7.10.3
+======
+
+*   (improvement) Add helper `DeferredRoute::isValidValue()`.
+*   (improvement) Add helper `DeferredTranslation::isValidValue()`.
+
+
 7.10.2
 =====
 
