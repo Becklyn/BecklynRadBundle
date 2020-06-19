@@ -162,15 +162,24 @@ class PaginationTest extends TestCase
 
 
     /**
-     *
      */
-    public function testCorrectOffsetCalculation () : void
+    public function provideOffset () : iterable
     {
-        self::assertSame(0, (new Pagination(0, 10, 29))->getOffset());
-        self::assertSame(0, (new Pagination(1, 10, 29))->getOffset());
-        self::assertSame(10, (new Pagination(2, 10, 29))->getOffset());
-        self::assertSame(10, (new Pagination(2, 10, 290))->getOffset());
-        self::assertSame(5, (new Pagination(2, 5, 29))->getOffset());
-        self::assertSame(20, (new Pagination(5, 5, 29))->getOffset());
+        yield [0, 0, 10, 0];
+        yield [0, 0, 10, 29];
+        yield [0, 1, 10, 29];
+        yield [10, 2, 10, 29];
+        yield [10, 2, 10, 290];
+        yield [5, 2, 5, 29];
+        yield [20, 5, 5, 29];
+    }
+
+    /**
+     * @dataProvider provideOffset
+     */
+    public function testCorrectOffsetCalculation (int $expected, int $currentPage, int $perPage, int $numberOfItems) : void
+    {
+        $pagination = new Pagination($currentPage, $perPage, $numberOfItems);
+        self::assertSame($expected, $pagination->getOffset());
     }
 }
