@@ -135,6 +135,14 @@ class Pagination
 
     /**
      */
+    public function getOffset () : int
+    {
+        return ($this->getCurrentPage() - $this->getMinPage()) * $this->getPerPage();
+    }
+
+
+    /**
+     */
     public function toArray () : array
     {
         return [

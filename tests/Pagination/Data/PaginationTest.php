@@ -159,4 +159,18 @@ class PaginationTest extends TestCase
             "valid" => false,
         ], $pagination->toArray());
     }
+
+
+    /**
+     *
+     */
+    public function testCorrectOffsetCalculation () : void
+    {
+        self::assertSame(0, (new Pagination(0, 10, 29))->getOffset());
+        self::assertSame(0, (new Pagination(1, 10, 29))->getOffset());
+        self::assertSame(10, (new Pagination(2, 10, 29))->getOffset());
+        self::assertSame(10, (new Pagination(2, 10, 290))->getOffset());
+        self::assertSame(5, (new Pagination(2, 5, 29))->getOffset());
+        self::assertSame(20, (new Pagination(5, 5, 29))->getOffset());
+    }
 }
