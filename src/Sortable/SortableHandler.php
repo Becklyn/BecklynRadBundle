@@ -3,7 +3,6 @@
 namespace Becklyn\RadBundle\Sortable;
 
 use Becklyn\RadBundle\Entity\Interfaces\SortableEntityInterface;
-use Becklyn\RadBundle\Exception\InvalidSortOperationException;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
@@ -42,12 +41,18 @@ class SortableHandler
     /**
      * Sorts the given $entity before the $before entity.
      * If no $before entity is given, the element will be moved to the end.
+     *
+     * @return bool whether the sort order could be adjusted correctly.
      */
-    public function sortElementBefore (SortableEntityInterface $entity, ?SortableEntityInterface $before, array $where = []) : void
+    public function sortElementBefore (
+        SortableEntityInterface $entity,
+        ?SortableEntityInterface $before,
+        array $where = []
+    ) : bool
     {
         if ($entity === $before)
         {
-            throw new InvalidSortOperationException("Can't sort an element before itself.");
+            return false;
         }
 
         $entities = $this->getBaseQuery($where)
@@ -86,6 +91,8 @@ class SortableHandler
         {
             $entity->setSortOrder($index);
         }
+
+        return true;
     }
 
 
