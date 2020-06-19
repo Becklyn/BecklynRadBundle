@@ -1,3 +1,12 @@
+7.10.1
+======
+
+*   (improvement) Return `bool` in `SortableHandler::sortElementBefore()` instead of throwing an exception.
+*   (deprecation) Deprecate `InvalidSortOperationException`, as it is not used anymore.
+*   (improvement) Mark all sortable handlers as `final`.
+
+
+
 7.10.0
 ======
 

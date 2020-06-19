@@ -3,7 +3,6 @@
 namespace Becklyn\RadBundle\Sortable;
 
 use Becklyn\RadBundle\Entity\Interfaces\SortableEntityInterface;
-use Becklyn\RadBundle\Exception\InvalidSortOperationException;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
@@ -12,7 +11,7 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
  * A sortable handler, that fetches the `$where` attribute of the regular sortable handler automatically from the given
  * entity.
  */
-class PropertiesSortableHandler
+final class PropertiesSortableHandler
 {
     /** @var EntityRepository */
     private $repository;
@@ -65,25 +64,13 @@ class PropertiesSortableHandler
      * Sorts the given $entity before the $before entity.
      * If no $before entity is given, the element will be moved to the end.
      *
-     * Returns whether the sort order could be adjusted correctly.
+     * @return bool whether the sort order could be adjusted correctly.
      */
     public function sortElementBefore (SortableEntityInterface $entity, ?SortableEntityInterface $before) : bool
     {
-        if (!$this->areCompatible($entity, $before))
-        {
-            return false;
-        }
-
-        try
-        {
-            $this->nested->sortElementBefore($entity, $before, $this->buildWhere($entity));
-            return true;
-        }
-        catch (InvalidSortOperationException $exception)
-        {
-            // will never actually occur, as this is already checked in `areCompatible`
-            return false;
-        }
+        return $this->areCompatible($entity, $before)
+            ? $this->nested->sortElementBefore($entity, $before, $this->buildWhere($entity))
+            : false;
     }
 
 

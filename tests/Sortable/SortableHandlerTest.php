@@ -123,7 +123,8 @@ class SortableHandlerTest extends TestCase
         [$repository] = $this->createIteratingRepository(...$entities);
         $sortable = new SortableHandler($repository);
 
-        $sortable->sortElementBefore($entities[4], $entities[0]);
+        $success = $sortable->sortElementBefore($entities[4], $entities[0]);
+        self::assertTrue($success);
         self::assertEquals(
             [
                 4 => 0,
@@ -146,7 +147,8 @@ class SortableHandlerTest extends TestCase
         [$repository] = $this->createIteratingRepository(...$entities);
         $sortable = new SortableHandler($repository);
 
-        $sortable->sortElementBefore($entities[4], $entities[2]);
+        $success = $sortable->sortElementBefore($entities[4], $entities[2]);
+        self::assertTrue($success);
         self::assertEquals(
             [
                 0 => 0,
@@ -169,7 +171,8 @@ class SortableHandlerTest extends TestCase
         [$repository] = $this->createIteratingRepository(...$entities);
         $sortable = new SortableHandler($repository);
 
-        $sortable->sortElementBefore($entities[3], null);
+        $success = $sortable->sortElementBefore($entities[3], null);
+        self::assertTrue($success);
         self::assertEquals(
             [
                 0 => 0,
@@ -188,14 +191,12 @@ class SortableHandlerTest extends TestCase
      */
     public function testSortElementBeforeSelf () : void
     {
-        $this->expectException(InvalidSortOperationException::class);
-        $this->expectExceptionMessage("Can't sort an element before itself.");
-
         $entity = $this->createEntity(1, 1);
         [$repository] = $this->createIteratingRepository($entity);
         $sortable = new SortableHandler($repository);
 
-        $sortable->sortElementBefore($entity, $entity);
+        $success = $sortable->sortElementBefore($entity, $entity);
+        self::assertFalse($success);
     }
     //endregion
 

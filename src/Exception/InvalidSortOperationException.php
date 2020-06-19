@@ -2,6 +2,9 @@
 
 namespace Becklyn\RadBundle\Exception;
 
+/**
+ * @deprecated will never be thrown by the RAD bundle
+ */
 class InvalidSortOperationException extends RadException
 {
 }
