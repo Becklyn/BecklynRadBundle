@@ -1,3 +1,9 @@
+7.10.4
+======
+
+*   (improvement) Add helper `DeferredRoute::ensureValidValue()`.
+
+
 7.10.3
 ======
 
