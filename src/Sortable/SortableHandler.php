@@ -6,7 +6,7 @@ use Becklyn\RadBundle\Entity\Interfaces\SortableEntityInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
-class SortableHandler
+final class SortableHandler
 {
     /**
      * @var EntityRepository

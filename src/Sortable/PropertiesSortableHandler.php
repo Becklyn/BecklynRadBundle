@@ -11,7 +11,7 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
  * A sortable handler, that fetches the `$where` attribute of the regular sortable handler automatically from the given
  * entity.
  */
-class PropertiesSortableHandler
+final class PropertiesSortableHandler
 {
     /** @var EntityRepository */
     private $repository;
