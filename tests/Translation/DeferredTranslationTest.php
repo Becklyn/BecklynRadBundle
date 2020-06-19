@@ -3,6 +3,7 @@
 namespace Tests\Becklyn\RadBundle\Translation;
 
 use Becklyn\RadBundle\Exception\InvalidTranslationActionException;
+use Becklyn\RadBundle\Exception\UnexpectedTypeException;
 use Becklyn\RadBundle\Translation\DeferredTranslation;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -132,7 +133,7 @@ class DeferredTranslationTest extends TestCase
 
     /**
      */
-    public function provideIsValid () : iterable
+    public function provideValueVariations () : iterable
     {
         yield [true, "test", DeferredTranslation::REQUIRED];
         yield [true, "test", DeferredTranslation::OPTIONAL];
@@ -148,10 +149,34 @@ class DeferredTranslationTest extends TestCase
 
 
     /**
-     * @dataProvider provideIsValid
+     * @dataProvider provideValueVariations
      */
-    public function testIsValid (bool $expected, $value, bool $required) : void
+    public function testIsValidValue (bool $expected, $value, bool $required) : void
     {
         self::assertSame($expected, DeferredTranslation::isValidValue($value, $required));
+    }
+
+
+    /**
+     * @dataProvider provideValueVariations
+     */
+    public function testEnsureValidValue (bool $shouldBeOk, $value, bool $isOptional) : void
+    {
+        if (!$shouldBeOk)
+        {
+            $this->expectException(UnexpectedTypeException::class);
+            $this->expectErrorMessage(
+                $isOptional
+                    ? \sprintf("string, %s or null", DeferredTranslation::class)
+                    : \sprintf("string or %s", DeferredTranslation::class)
+            );
+        }
+
+        DeferredTranslation::ensureValidValue($value, $isOptional);
+
+        if ($shouldBeOk)
+        {
+            self::assertTrue(true);
+        }
     }
 }

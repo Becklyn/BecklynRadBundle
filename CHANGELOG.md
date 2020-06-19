@@ -2,6 +2,7 @@
 ======
 
 *   (improvement) Add helper `DeferredRoute::ensureValidValue()`.
+*   (improvement) Add helper `DeferredTranslation::ensureValidValue()`.
 
 
 7.10.3

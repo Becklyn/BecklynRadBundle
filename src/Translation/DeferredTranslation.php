@@ -3,6 +3,7 @@
 namespace Becklyn\RadBundle\Translation;
 
 use Becklyn\RadBundle\Exception\InvalidTranslationActionException;
+use Becklyn\RadBundle\Exception\UnexpectedTypeException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -147,5 +148,23 @@ class DeferredTranslation
         return null !== $value
             ? (\is_string($value) || $value instanceof self)
             : $allowNull;
+    }
+
+
+    /**
+     * Ensures that the given value is valid
+     */
+    public static function ensureValidValue ($value, bool $isOptional = self::REQUIRED) : void
+    {
+        if (!self::isValidValue($value, $isOptional))
+        {
+
+            throw new UnexpectedTypeException(
+                $value,
+                $isOptional
+                    ? \sprintf("string, %s or null", self::class)
+                    : \sprintf("string or %s", self::class)
+            );
+        }
     }
 }
