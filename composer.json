@@ -40,7 +40,6 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "7.x-dev",
             "dev-next": "7.x-dev"
         }
     },
