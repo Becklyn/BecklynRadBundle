@@ -4,6 +4,7 @@ namespace Becklyn\RadBundle\Route;
 
 use Becklyn\RadBundle\Entity\Interfaces\EntityInterface;
 use Becklyn\RadBundle\Exception\InvalidRouteActionException;
+use Becklyn\RadBundle\Exception\UnexpectedTypeException;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
@@ -135,10 +136,28 @@ class DeferredRoute
     /**
      * Returns whether the given value is a valid translation value
      */
-    public static function isValidValue ($value, bool $allowNull = self::REQUIRED) : bool
+    public static function isValidValue ($value, bool $isOptional = self::REQUIRED) : bool
     {
         return null !== $value
             ? (\is_string($value) || $value instanceof self)
-            : $allowNull;
+            : $isOptional;
+    }
+
+
+    /**
+     * Ensures that the given value is valid
+     */
+    public static function ensureValidValue ($value, bool $isOptional = self::REQUIRED) : void
+    {
+        if (!self::isValidValue($value, $isOptional))
+        {
+
+            throw new UnexpectedTypeException(
+                $value,
+                $isOptional
+                ? \sprintf("string, %s or null", self::class)
+                : \sprintf("string or %s", self::class)
+            );
+        }
     }
 }

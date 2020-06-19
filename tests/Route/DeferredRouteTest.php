@@ -4,6 +4,7 @@ namespace Tests\Becklyn\RadBundle\Route;
 
 use Becklyn\RadBundle\Entity\Interfaces\EntityInterface;
 use Becklyn\RadBundle\Exception\InvalidRouteActionException;
+use Becklyn\RadBundle\Exception\UnexpectedTypeException;
 use Becklyn\RadBundle\Route\DeferredRoute;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -195,7 +196,7 @@ class DeferredRouteTest extends TestCase
 
     /**
      */
-    public function provideIsValid () : iterable
+    public function provideValueVariations () : iterable
     {
         yield [true, "test", DeferredRoute::REQUIRED];
         yield [true, "test", DeferredRoute::OPTIONAL];
@@ -211,10 +212,34 @@ class DeferredRouteTest extends TestCase
 
 
     /**
-     * @dataProvider provideIsValid
+     * @dataProvider provideValueVariations
      */
-    public function testIsValid (bool $expected, $value, bool $required) : void
+    public function testIsValid (bool $expected, $value, bool $isOptional) : void
     {
-        self::assertSame($expected, DeferredRoute::isValidValue($value, $required));
+        self::assertSame($expected, DeferredRoute::isValidValue($value, $isOptional));
+    }
+
+
+    /**
+     * @dataProvider provideValueVariations
+     */
+    public function testEnsureValid (bool $shouldBeOk, $value, bool $isOptional) : void
+    {
+        if (!$shouldBeOk)
+        {
+            $this->expectException(UnexpectedTypeException::class);
+            $this->expectErrorMessage(
+                $isOptional
+                ? \sprintf("string, %s or null", DeferredRoute::class)
+                : \sprintf("string or %s", DeferredRoute::class)
+            );
+        }
+
+        DeferredRoute::ensureValidValue($value, $isOptional);
+
+        if ($shouldBeOk)
+        {
+            self::assertTrue(true);
+        }
     }
 }
