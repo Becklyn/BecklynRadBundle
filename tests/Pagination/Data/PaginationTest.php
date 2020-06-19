@@ -159,4 +159,27 @@ class PaginationTest extends TestCase
             "valid" => false,
         ], $pagination->toArray());
     }
+
+
+    /**
+     */
+    public function provideOffset () : iterable
+    {
+        yield [0, 0, 10, 0];
+        yield [0, 0, 10, 29];
+        yield [0, 1, 10, 29];
+        yield [10, 2, 10, 29];
+        yield [10, 2, 10, 290];
+        yield [5, 2, 5, 29];
+        yield [20, 5, 5, 29];
+    }
+
+    /**
+     * @dataProvider provideOffset
+     */
+    public function testCorrectOffsetCalculation (int $expected, int $currentPage, int $perPage, int $numberOfItems) : void
+    {
+        $pagination = new Pagination($currentPage, $perPage, $numberOfItems);
+        self::assertSame($expected, $pagination->getOffset());
+    }
 }

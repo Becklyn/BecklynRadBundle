@@ -1,3 +1,9 @@
+7.10.2
+=====
+
+*   (improvement) Move calculation of pagination offset from `Paginator` to `Pagination`.
+
+
 7.10.1
 ======
 

@@ -22,9 +22,8 @@ class Paginator
 
         if ($totalNumberOfItems > 0)
         {
-            $offset = ($newPagination->getCurrentPage() - $newPagination->getMinPage()) * $newPagination->getPerPage();
             $queryBuilder
-                ->setFirstResult($offset)
+                ->setFirstResult($newPagination->getOffset())
                 ->setMaxResults($pagination->getPerPage());
             $list = \iterator_to_array(new DoctrinePaginator($queryBuilder->getQuery()));
         }
