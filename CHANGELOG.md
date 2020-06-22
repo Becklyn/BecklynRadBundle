@@ -1,7 +1,7 @@
 7.10.7
 ======
 
-*   (improvement) Also add `Router` under interface class name in the service locator in the `BaseController`.
+*   (bug) Also add `Router` under interface class name in the service locator in the `BaseController`.
 
 
 7.10.6
