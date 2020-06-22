@@ -141,6 +141,8 @@ abstract class BaseController extends AbstractController
     {
         $services = parent::getSubscribedServices();
         $services[] = LoggerInterface::class;
+        // also add router with interface, symfony only adds it as "router"
+        $services[] = RouterInterface::class;
         $services[] = TranslatorInterface::class;
 
         return $services;
