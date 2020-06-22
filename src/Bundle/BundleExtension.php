@@ -14,24 +14,28 @@ use Symfony\Component\HttpKernel\Bundle\BundleInterface;
  */
 class BundleExtension extends Extension
 {
-    /**
-     * @var BundleInterface
-     */
+    /** @var BundleInterface */
     private $bundle;
 
 
-    /**
-     * @var string|null
-     */
+    /** @var string|null */
     private $alias;
 
+    /** @var callable|null */
+    private $configurator;
+
 
     /**
      */
-    public function __construct (BundleInterface $bundle, ?string $alias = null)
+    public function __construct (
+        BundleInterface $bundle,
+        ?string $alias = null,
+        ?callable $configurator = null
+    )
     {
         $this->bundle = $bundle;
         $this->alias = $alias;
+        $this->configurator = $configurator;
     }
 
     /**
@@ -52,6 +56,13 @@ class BundleExtension extends Extension
         {
             $loader = new YamlFileLoader($container, new FileLocator($configDir));
             $loader->load("services.yaml");
+        }
+
+        $configurator = $this->configurator;
+
+        if (null !== $configurator)
+        {
+            $configurator($configs, $container);
         }
     }
 
