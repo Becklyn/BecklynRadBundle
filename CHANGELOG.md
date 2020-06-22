@@ -1,3 +1,9 @@
+7.10.6
+======
+
+*   (improvement) Replace `$configurator` from `BundleExtension` with better `ConfigurableBundleExtension`.
+
+
 7.10.5
 ======
 
