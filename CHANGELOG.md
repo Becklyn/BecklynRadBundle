@@ -1,3 +1,9 @@
+next patch
+==========
+
+*   (improvement) Return `null` for `DeferredTranslation::translateValue(null)`.
+
+
 7.10.7
 ======
 

@@ -76,7 +76,8 @@ class DeferredTranslationTest extends TestCase
     public function provideValidTranslateValue () : \Generator
     {
         yield ["test", "test"];
-        yield [null, ""];
+        yield ["", ""];
+        yield [null, null];
         yield [
             new DeferredTranslation("test"),
             "translated_key"
@@ -89,7 +90,7 @@ class DeferredTranslationTest extends TestCase
      *
      * @param mixed $value
      */
-    public function testValidTranslateValue ($value, string $expected) : void
+    public function testValidTranslateValue ($value, ?string $expected) : void
     {
         $translator = $this->getMockBuilder(TranslatorInterface::class)
             ->getMock();

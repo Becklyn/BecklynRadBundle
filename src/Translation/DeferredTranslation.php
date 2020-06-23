@@ -92,9 +92,14 @@ class DeferredTranslation
     /**
      * @param self|string|mixed|null $value
      */
-    public static function translateValue ($value, TranslatorInterface $translator) : string
+    public static function translateValue ($value, TranslatorInterface $translator) : ?string
     {
-        if (\is_string($value) || null === $value)
+        if (null === $value)
+        {
+            return null;
+        }
+
+        if (\is_string($value))
         {
             return (string) $value;
         }
