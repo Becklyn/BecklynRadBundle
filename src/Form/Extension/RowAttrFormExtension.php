@@ -18,6 +18,7 @@ class RowAttrFormExtension extends AbstractTypeExtension
     {
         $builder->setAttribute("row_attr", $options["row_attr"]);
     }
+
     /**
      * @inheritDoc
      */
@@ -25,6 +26,7 @@ class RowAttrFormExtension extends AbstractTypeExtension
     {
         $view->vars["row_attr"] = $form->getConfig()->getAttribute("row_attr");
     }
+
     /**
      * @inheritDoc
      */
@@ -37,6 +39,7 @@ class RowAttrFormExtension extends AbstractTypeExtension
                 "row_attr" => [],
             ]);
     }
+
     /**
      * @inheritDoc
      */
