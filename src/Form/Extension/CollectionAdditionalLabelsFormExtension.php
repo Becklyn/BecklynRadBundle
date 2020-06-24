@@ -3,20 +3,25 @@
 namespace Becklyn\RadBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RowAttrFormExtension extends AbstractTypeExtension
+final class CollectionAdditionalLabelsFormExtension extends AbstractTypeExtension
 {
+    private const LABELS = ["empty_message", "entry_add_label", "entry_remove_label"];
+
     /**
      * @inheritDoc
      */
     public function buildForm (FormBuilderInterface $builder, array $options) : void
     {
-        $builder->setAttribute("row_attr", $options["row_attr"]);
+        foreach (self::LABELS as $label)
+        {
+            $builder->setAttribute($label, $options[$label]);
+        }
     }
 
     /**
@@ -24,7 +29,10 @@ class RowAttrFormExtension extends AbstractTypeExtension
      */
     public function buildView (FormView $view, FormInterface $form, array $options) : void
     {
-        $view->vars["row_attr"] = $form->getConfig()->getAttribute("row_attr");
+        foreach (self::LABELS as $label)
+        {
+            $view->vars[$label] = $form->getConfig()->getAttribute($label);
+        }
     }
 
     /**
@@ -33,11 +41,13 @@ class RowAttrFormExtension extends AbstractTypeExtension
     public function configureOptions (OptionsResolver $resolver) : void
     {
         $resolver
-            ->setDefined(["row_attr"])
-            ->setAllowedTypes("row_attr", "array")
-            ->setDefaults([
-                "row_attr" => [],
-            ]);
+            ->setDefined(self::LABELS)
+            ->setDefaults(\array_fill_keys(self::LABELS, null));
+
+        foreach (self::LABELS as $label)
+        {
+            $resolver->setAllowedTypes($label, ["string", "null"]);
+        }
     }
 
     /**
@@ -46,7 +56,7 @@ class RowAttrFormExtension extends AbstractTypeExtension
     public static function getExtendedTypes () : array
     {
         return [
-            FormType::class,
+            CollectionType::class,
         ];
     }
 }

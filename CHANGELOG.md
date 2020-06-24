@@ -1,3 +1,14 @@
+next patch
+==========
+
+*   (improvement) Return `null` for `DeferredTranslation::translateValue(null)`.
+*   (improvement) Add proper styling for `Collection` form fields.
+*   (improvement) Add additional texts for `Collection` form types:
+    *   `empty_message` is displayed if there is no entry.
+    *   `entry_add_label` is the label of the "add entry" button.
+    *   `entry_remove_label` is the label of every "remove entry" button.
+
+
 7.10.7
 ======
 
