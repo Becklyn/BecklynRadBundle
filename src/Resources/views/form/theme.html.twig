@@ -1,4 +1,5 @@
 {% extends "form_div_layout.html.twig" %}
+{%- trans_default_domain "form" -%}
 
 {#- #####################################################################
     Global Structure
@@ -243,3 +244,42 @@
 {%- endblock -%}
 
 
+
+
+{#- #####################################################################
+    Row: Collection
+    ##################################################################### -#}
+
+{%- block collection_row -%}
+    {%- set element_attr = (element_attr ?? [])|merge({"data-form-collection": ({
+        prototype: (allow_add and prototype is defined) ? form_row(prototype) : null,
+        remove: allow_delete,
+        text: {
+            add: entry_add_label ? entry_add_label|trans : null,
+            remove: entry_remove_label ? entry_remove_label|trans : null,
+            empty: empty_message ? empty_message|trans : null,
+        }
+    })|json_encode}) -%}
+    {%- set is_nested_form = false -%}
+    {%- set element_attr = element_attr|appendToKey("class", "form-widget-collection") -%}
+
+    {{- block("form_row") -}}
+{%- endblock collection_row -%}
+
+
+{%- block collection_widget -%}
+    {#- We don't need to set the prototype here as it is already set in collection_row. -#}
+    {#- However we should display the empty message, if there is no entry. -#}
+    {%- if value is empty and empty_message -%}
+        <div class="form-collection-empty-message">{{ empty_message|trans }}</div>
+    {%- endif -%}
+    
+    {{- block('form_widget') -}}
+{%- endblock -%}
+
+
+{%- block collection_entry_row -%}
+    <div class="form-collection-entry form form-nested-root">
+        {{- block("form_row") -}}
+    </div>
+{%- endblock -%}
