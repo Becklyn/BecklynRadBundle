@@ -254,10 +254,15 @@
     {%- set element_attr = (element_attr ?? [])|merge({"data-form-collection": ({
         prototype: (allow_add and prototype is defined) ? form_row(prototype) : null,
         remove: allow_delete,
+        sort: allow_sort,
         text: {
             add: entry_add_label ? entry_add_label|trans : null,
             remove: entry_remove_label ? entry_remove_label|trans : null,
             empty: empty_message ? empty_message|trans : null,
+        },
+        prefixes: {
+            id: id ~ "_<index>_",
+            name: full_name ~ "[<index>]",
         }
     })|json_encode}) -%}
     {%- set is_nested_form = false -%}
