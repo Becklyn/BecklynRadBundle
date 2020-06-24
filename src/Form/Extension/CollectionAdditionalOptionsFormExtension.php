@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class CollectionAdditionalLabelsFormExtension extends AbstractTypeExtension
+final class CollectionAdditionalOptionsFormExtension extends AbstractTypeExtension
 {
     private const LABELS = ["empty_message", "entry_add_label", "entry_remove_label"];
 
@@ -22,6 +22,7 @@ final class CollectionAdditionalLabelsFormExtension extends AbstractTypeExtensio
         {
             $builder->setAttribute($label, $options[$label]);
         }
+        $builder->setAttribute("allow_sort", $options["allow_sort"]);
     }
 
     /**
@@ -33,6 +34,7 @@ final class CollectionAdditionalLabelsFormExtension extends AbstractTypeExtensio
         {
             $view->vars[$label] = $form->getConfig()->getAttribute($label);
         }
+        $view->vars["allow_sort"] = $form->getConfig()->getAttribute("allow_sort");
     }
 
     /**
@@ -42,6 +44,9 @@ final class CollectionAdditionalLabelsFormExtension extends AbstractTypeExtensio
     {
         $resolver
             ->setDefined(self::LABELS)
+            ->setDefined("allow_sort")
+            ->setDefault("allow_sort", false)
+            ->setAllowedTypes("allow_sort", "bool")
             ->setDefaults(\array_fill_keys(self::LABELS, null));
 
         foreach (self::LABELS as $label)

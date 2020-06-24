@@ -1,3 +1,10 @@
+7.11.1
+======
+
+*   (improvement) Add `allow_sort` field for `Collection` form fields.
+*   (improvement) Expose prefixes in collection row JSON data.
+
+
 7.11.0
 ======
 
