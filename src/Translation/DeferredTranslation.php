@@ -90,18 +90,13 @@ class DeferredTranslation
 
 
     /**
-     * @param self|string|mixed|null $value
+     * @param self|string|null $value
      */
     public static function translateValue ($value, TranslatorInterface $translator) : ?string
     {
-        if (null === $value)
+        if (null === $value || \is_string($value))
         {
-            return null;
-        }
-
-        if (\is_string($value))
-        {
-            return (string) $value;
+            return $value;
         }
 
         if ($value instanceof self)
@@ -121,7 +116,7 @@ class DeferredTranslation
      *
      * @param array<self|string|mixed|null> $values
      *
-     * @return string[]
+     * @return array<string|null>
      */
     public static function translateAllValues (array $values, TranslatorInterface $translator) : array
     {
@@ -137,16 +132,9 @@ class DeferredTranslation
 
 
     /**
-     * Special named constructor for the domain "backend"
-     */
-    public static function backend (string $id, array $parameters = []) : self
-    {
-        return new self($id, $parameters, "backend");
-    }
-
-
-    /**
      * Returns whether the given value is a valid translation value
+     *
+     * @param mixed $value
      */
     public static function isValidValue ($value, bool $allowNull = self::REQUIRED) : bool
     {
@@ -158,6 +146,8 @@ class DeferredTranslation
 
     /**
      * Ensures that the given value is valid
+     *
+     * @param mixed $value
      */
     public static function ensureValidValue ($value, bool $isOptional = self::REQUIRED) : void
     {
@@ -172,4 +162,15 @@ class DeferredTranslation
             );
         }
     }
+
+
+    //region Named Constructors
+    /**
+     * Special named constructor for the domain "backend"
+     */
+    public static function backend (string $id, array $parameters = []) : self
+    {
+        return new self($id, $parameters, "backend");
+    }
+    //endregion
 }

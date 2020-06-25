@@ -25,10 +25,8 @@ class DeferredRoute
     /** @var string */
     private $route;
 
-
     /** @var array */
     private $parameters;
-
 
     /** @var int */
     private $referenceType;
@@ -112,13 +110,13 @@ class DeferredRoute
 
 
     /**
-     * @param self|string|mixed|null $value
+     * @param self|string|null $value
      */
-    public static function generateValue ($value, UrlGeneratorInterface $urlGenerator) : string
+    public static function generateValue ($value, UrlGeneratorInterface $urlGenerator) : ?string
     {
-        if (\is_string($value) || null === $value)
+        if (null === $value || \is_string($value))
         {
-            return (string) $value;
+            return $value;
         }
 
         if ($value instanceof self)
@@ -134,7 +132,9 @@ class DeferredRoute
 
 
     /**
-     * Returns whether the given value is a valid translation value
+     * Returns whether the given value is a valid route value
+     *
+     * @param mixed $value
      */
     public static function isValidValue ($value, bool $isOptional = self::REQUIRED) : bool
     {
@@ -146,12 +146,13 @@ class DeferredRoute
 
     /**
      * Ensures that the given value is valid
+     *
+     * @param mixed $value
      */
     public static function ensureValidValue ($value, bool $isOptional = self::REQUIRED) : void
     {
         if (!self::isValidValue($value, $isOptional))
         {
-
             throw new UnexpectedTypeException(
                 $value,
                 $isOptional

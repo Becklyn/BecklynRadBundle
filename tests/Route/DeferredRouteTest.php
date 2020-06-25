@@ -139,7 +139,8 @@ class DeferredRouteTest extends TestCase
     public function provideValidRouteValue () : \Generator
     {
         yield ["test", "test"];
-        yield [null, ""];
+        yield [null, null];
+        yield ["", ""];
         yield [
             new DeferredRoute("test"),
             "generated_route"
@@ -152,7 +153,7 @@ class DeferredRouteTest extends TestCase
      *
      * @param mixed $value
      */
-    public function testValidRouteValue ($value, string $expected) : void
+    public function testValidRouteValue ($value, ?string $expected) : void
     {
         $router = $this->getMockBuilder(RouterInterface::class)
             ->getMock();
