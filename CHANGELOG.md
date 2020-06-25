@@ -1,3 +1,11 @@
+7.11.2
+======
+
+*   (improvement) Return `null` for `DeferredRoute::generateValue(null)`.
+*   (internal) Fixed some typos in doc comments.
+*   (improvement) Improve types for `DeferredRoute` and `DeferredTranslation`.
+
+
 7.11.1
 ======
 
