@@ -1,3 +1,10 @@
+7.12.0 (unreleased)
+===================
+
+*   (feature) Add `LinkableInterface`.
+*   (improvement) Implement `LinkableInterface` in `DeferredRoute`.
+
+
 7.11.2
 ======
 

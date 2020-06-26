@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  * Instead the generation can be deferred to a later point in time (this way you don't need a dependency on the router
  * right away).
  */
-class DeferredRoute
+class DeferredRoute implements LinkableInterface
 {
     public const OPTIONAL = true;
     public const REQUIRED = false;
