@@ -1,5 +1,5 @@
-next
-====
+7.12.1
+======
 
 *   (bug) Fix form error translations being in the wrong translation domain, so e.g. Gluggi would render an incorrect error message.
 
