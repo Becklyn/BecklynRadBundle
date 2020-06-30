@@ -1,3 +1,9 @@
+7.13.1
+======
+
+*   (improvement) Add search mode to search helper + query tokenizer.
+
+
 7.13.0
 ======
 
