@@ -1,3 +1,9 @@
+7.13.0
+======
+
+*   (feature) Add `SimpleEntitySearchHelper::applyJsonSearch()`.
+
+
 7.12.1
 ======
 
