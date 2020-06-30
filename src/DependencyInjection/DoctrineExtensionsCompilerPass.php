@@ -11,6 +11,7 @@ use DoctrineExtensions\Query\Mysql\Rand;
 use DoctrineExtensions\Query\Mysql\Week;
 use DoctrineExtensions\Query\Mysql\Year;
 use Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonExtract;
+use Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonSearch;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -31,6 +32,7 @@ class DoctrineExtensionsCompilerPass implements CompilerPassInterface
                     ->addMethodCall("addCustomStringFunction", ["IFELSE", IfElse::class])
                     ->addMethodCall("addCustomStringFunction", ["IFNULL", IfNull::class])
                     ->addMethodCall("addCustomStringFunction", ["JSON_EXTRACT", JsonExtract::class])
+                    ->addMethodCall("addCustomStringFunction", ["JSON_SEARCH", JsonSearch::class])
                     ->addMethodCall("addCustomStringFunction", ["LPAD", Lpad::class])
 
                     // numeric functions

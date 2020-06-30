@@ -1,3 +1,10 @@
+7.13.0
+======
+
+*   (feature) Add `SimpleEntitySearchHelper::applyJsonSearch()`.
+*   (improvement) Also automatically enable `JSON_SEARCH()` MySQL function in Doctrine.
+
+
 7.12.1
 ======
 
