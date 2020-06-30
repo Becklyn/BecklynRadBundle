@@ -72,7 +72,7 @@ final class SimpleEntitySearchHelper
                     new Func("JSON_SEARCH", [
                         $field,
                         "'one'",
-                        ":__searchTerm"
+                        ":__searchTerm",
                     ]),
                     "IS NOT",
                     "NULL"
