@@ -1,3 +1,9 @@
+7.13.3 (unreleased)
+======
+
+*   (deprecation) Deprecate `BundleExtension` and `ConfigurableBundleExtension`. Please use the respective versions from `becklyn/rad-bundles` instead.
+
+
 7.13.2
 ======
 

@@ -4,6 +4,7 @@
 *   The entity usage integration was removed. Migrate to `becklyn/entity-admin`.
 *   `StatsCounter::log()` was removed. Use `StatsCounter::debug/warning/critical()` instead.
 *   The `InvalidSortOperationException` exception was removed. There is no replacement.
+*   The classes `BundleExtension` and `ConfigurableBundleExtension` have been removed. Please use the respective versions from `becklyn/rad-bundles` instead.
 
 
 6.x to 7.0
