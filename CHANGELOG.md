@@ -1,3 +1,9 @@
+7.13.2
+======
+
+*   (bug) Add `.form-row` to top level form errors.
+
+
 7.13.1
 ======
 
