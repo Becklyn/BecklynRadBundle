@@ -12,6 +12,11 @@ use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
 if (\class_exists(NewBundleExtension::class))
 {
+    /**
+     * Base class to use in your bundle to easily create an extension.
+     *
+     * @deprecated Please use the version from `becklyn/rad-bundles` instead.
+     */
     class BundleExtension extends NewBundleExtension
     {
     }

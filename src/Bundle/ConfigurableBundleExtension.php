@@ -9,6 +9,9 @@ use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
 if (\class_exists(NewConfigurableBundleExtension::class))
 {
+    /**
+     * @deprecated Please use the version from `becklyn/rad-bundles` instead.
+     */
     class ConfigurableBundleExtension extends NewConfigurableBundleExtension
     {
     }
