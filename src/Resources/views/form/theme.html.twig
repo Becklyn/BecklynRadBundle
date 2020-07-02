@@ -114,7 +114,7 @@
 
 {%- block form_errors -%}
     {%- if errors|length > 0 -%}
-        <ul class="form-errors">
+        <ul class="form-errors {{ form is rootform ? "form-row" }}">
             {%- for error in errors -%}
                 <li>{{ "form.error.message" | trans({error: error.message}) }}</li>
             {%- endfor -%}
