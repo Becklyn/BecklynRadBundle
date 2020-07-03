@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Sortable;
+namespace Tests\Becklyn\Rad\Sortable;
 
-use Becklyn\RadBundle\Sortable\PropertiesSortableHandler;
+use Becklyn\Rad\Sortable\PropertiesSortableHandler;
 use PHPUnit\Framework\TestCase;
 
 class PropertiesSortableHandlerTest extends TestCase

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Integration;
+namespace Becklyn\Rad\Integration;
 
 use Symfony\Component\HttpKernel\Profiler\Profiler as SymfonyProfiler;
 

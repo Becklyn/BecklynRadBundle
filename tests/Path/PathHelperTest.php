@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Path;
+namespace Tests\Becklyn\Rad\Path;
 
-use Becklyn\RadBundle\Path\PathHelper;
+use Becklyn\Rad\Path\PathHelper;
 use PHPUnit\Framework\TestCase;
 
 class PathHelperTest extends TestCase

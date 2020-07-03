@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Route;
+namespace Tests\Becklyn\Rad\Route;
 
-use Becklyn\RadBundle\Entity\Interfaces\EntityInterface;
-use Becklyn\RadBundle\Exception\InvalidRouteActionException;
-use Becklyn\RadBundle\Exception\UnexpectedTypeException;
-use Becklyn\RadBundle\Route\DeferredRoute;
+use Becklyn\Rad\Entity\Interfaces\EntityInterface;
+use Becklyn\Rad\Exception\InvalidRouteActionException;
+use Becklyn\Rad\Exception\UnexpectedTypeException;
+use Becklyn\Rad\Route\DeferredRoute;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;

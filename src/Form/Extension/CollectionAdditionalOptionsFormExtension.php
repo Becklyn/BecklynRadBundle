@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Form\Extension;
+namespace Becklyn\Rad\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;

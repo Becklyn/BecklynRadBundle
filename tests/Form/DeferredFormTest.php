@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Form;
+namespace Tests\Becklyn\Rad\Form;
 
-use Becklyn\RadBundle\Form\DeferredForm;
+use Becklyn\Rad\Form\DeferredForm;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;

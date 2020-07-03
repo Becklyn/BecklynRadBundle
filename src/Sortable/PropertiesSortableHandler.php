@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Sortable;
+namespace Becklyn\Rad\Sortable;
 
-use Becklyn\RadBundle\Entity\Interfaces\SortableEntityInterface;
+use Becklyn\Rad\Entity\Interfaces\SortableEntityInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;

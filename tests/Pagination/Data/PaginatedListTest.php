@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Pagination\Data;
+namespace Tests\Becklyn\Rad\Pagination\Data;
 
-use Becklyn\RadBundle\Pagination\Data\PaginatedList;
-use Becklyn\RadBundle\Pagination\Data\Pagination;
+use Becklyn\Rad\Pagination\Data\PaginatedList;
+use Becklyn\Rad\Pagination\Data\Pagination;
 use PHPUnit\Framework\TestCase;
 
 class PaginatedListTest extends TestCase

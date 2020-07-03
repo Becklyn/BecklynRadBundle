@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Controller;
+namespace Becklyn\Rad\Controller;
 
-use Becklyn\RadBundle\Ajax\AjaxResponseBuilder;
-use Becklyn\RadBundle\Exception\EntityRemovalBlockedException;
-use Becklyn\RadBundle\Exception\LabeledEntityRemovalBlockedException;
-use Becklyn\RadBundle\Form\FormErrorMapper;
+use Becklyn\Rad\Ajax\AjaxResponseBuilder;
+use Becklyn\Rad\Exception\EntityRemovalBlockedException;
+use Becklyn\Rad\Exception\LabeledEntityRemovalBlockedException;
+use Becklyn\Rad\Form\FormErrorMapper;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

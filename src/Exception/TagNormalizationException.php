@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Exception;
+namespace Becklyn\Rad\Exception;
 
 class TagNormalizationException extends \InvalidArgumentException implements RadExceptionInterface
 {

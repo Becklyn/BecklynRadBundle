@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Translation;
+namespace Becklyn\Rad\Translation;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 

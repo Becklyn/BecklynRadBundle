@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Pagination;
+namespace Becklyn\Rad\Pagination;
 
-use Becklyn\RadBundle\Pagination\Data\PaginatedList;
-use Becklyn\RadBundle\Pagination\Data\Pagination;
+use Becklyn\Rad\Pagination\Data\PaginatedList;
+use Becklyn\Rad\Pagination\Data\Pagination;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 

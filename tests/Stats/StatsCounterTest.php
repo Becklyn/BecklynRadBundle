@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Stats;
+namespace Tests\Becklyn\Rad\Stats;
 
-use Becklyn\RadBundle\Stats\StatsCounter;
+use Becklyn\Rad\Stats\StatsCounter;
 use PHPUnit\Framework\TestCase;
 
 class StatsCounterTest extends TestCase

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\DependencyInjection;
+namespace Becklyn\Rad\DependencyInjection;
 
 use DoctrineExtensions\Query\Mysql\CharLength;
 use DoctrineExtensions\Query\Mysql\DateFormat;

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Search;
+namespace Becklyn\Rad\Search;
 
 /**
  * Simple query tokenizer, that first tokenizes a search query and then produces

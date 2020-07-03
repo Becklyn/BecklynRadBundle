@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Twig;
+namespace Becklyn\Rad\Twig;
 
-use Becklyn\RadBundle\Html\DataContainer;
+use Becklyn\Rad\Html\DataContainer;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;

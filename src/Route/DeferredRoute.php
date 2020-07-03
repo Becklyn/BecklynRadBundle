@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Route;
+namespace Becklyn\Rad\Route;
 
-use Becklyn\RadBundle\Entity\Interfaces\EntityInterface;
-use Becklyn\RadBundle\Exception\InvalidRouteActionException;
-use Becklyn\RadBundle\Exception\UnexpectedTypeException;
+use Becklyn\Rad\Entity\Interfaces\EntityInterface;
+use Becklyn\Rad\Exception\InvalidRouteActionException;
+use Becklyn\Rad\Exception\UnexpectedTypeException;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;

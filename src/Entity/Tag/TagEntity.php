@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Entity\Tag;
+namespace Becklyn\Rad\Entity\Tag;
 
-use Becklyn\RadBundle\Entity\Interfaces\EntityInterface;
-use Becklyn\RadBundle\Entity\Traits\IdTrait;
-use Becklyn\RadBundle\Tags\TagInterface;
+use Becklyn\Rad\Entity\Interfaces\EntityInterface;
+use Becklyn\Rad\Entity\Traits\IdTrait;
+use Becklyn\Rad\Tags\TagInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;

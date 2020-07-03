@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Twig;
+namespace Tests\Becklyn\Rad\Twig;
 
-use Becklyn\RadBundle\Html\DataContainer;
-use Becklyn\RadBundle\Twig\RadTwigExtension;
+use Becklyn\Rad\Html\DataContainer;
+use Becklyn\Rad\Twig\RadTwigExtension;
 use PHPUnit\Framework\TestCase;
 
 class RadTwigExtensionTest extends TestCase

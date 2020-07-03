@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Entity\Interfaces;
+namespace Becklyn\Rad\Entity\Interfaces;
 
 interface EntityInterface
 {

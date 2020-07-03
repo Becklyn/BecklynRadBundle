@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Ajax;
+namespace Becklyn\Rad\Ajax;
 
-use Becklyn\RadBundle\Exception\Ajax\ResponseBuilderException;
-use Becklyn\RadBundle\Exception\LabeledExceptionInterface;
-use Becklyn\RadBundle\Exception\UnexpectedTypeException;
-use Becklyn\RadBundle\Route\DeferredRoute;
-use Becklyn\RadBundle\Translation\DeferredTranslation;
+use Becklyn\Rad\Exception\Ajax\ResponseBuilderException;
+use Becklyn\Rad\Exception\LabeledExceptionInterface;
+use Becklyn\Rad\Exception\UnexpectedTypeException;
+use Becklyn\Rad\Route\DeferredRoute;
+use Becklyn\Rad\Translation\DeferredTranslation;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;

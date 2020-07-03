@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Ajax;
+namespace Tests\Becklyn\Rad\Ajax;
 
-use Becklyn\RadBundle\Ajax\AjaxResponseBuilder;
-use Becklyn\RadBundle\Exception\Ajax\ResponseBuilderException;
-use Becklyn\RadBundle\Exception\LabeledExceptionInterface;
-use Becklyn\RadBundle\Exception\LabeledExceptionTrait;
-use Becklyn\RadBundle\Route\DeferredRoute;
-use Becklyn\RadBundle\Translation\DeferredTranslation;
+use Becklyn\Rad\Ajax\AjaxResponseBuilder;
+use Becklyn\Rad\Exception\Ajax\ResponseBuilderException;
+use Becklyn\Rad\Exception\LabeledExceptionInterface;
+use Becklyn\Rad\Exception\LabeledExceptionTrait;
+use Becklyn\Rad\Route\DeferredRoute;
+use Becklyn\Rad\Translation\DeferredTranslation;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;

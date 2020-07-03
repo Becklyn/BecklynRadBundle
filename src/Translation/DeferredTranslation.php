@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Translation;
+namespace Becklyn\Rad\Translation;
 
-use Becklyn\RadBundle\Exception\InvalidTranslationActionException;
-use Becklyn\RadBundle\Exception\UnexpectedTypeException;
+use Becklyn\Rad\Exception\InvalidTranslationActionException;
+use Becklyn\Rad\Exception\UnexpectedTypeException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
