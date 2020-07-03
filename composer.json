@@ -1,8 +1,8 @@
 {
-    "name": "becklyn/rad-bundle",
+    "name": "becklyn/rad",
     "type": "symfony-bundle",
     "description": "This bundle provides basic components",
-    "homepage": "https://github.com/Becklyn/RadBundle",
+    "homepage": "https://github.com/Becklyn/rad",
     "license": "BSD-3-Clause",
     "authors": [
         {

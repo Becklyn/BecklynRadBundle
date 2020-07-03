@@ -4,6 +4,12 @@ Becklyn Rad Bundle
 This bundle provides RAD related functionality for the usage in Symfony.
 
 
+⚠️ New Composer package name 
+============================
+
+This bundle has been renamed from `becklyn/rad-bundle` to `becklyn/rad` for v8.0. Versions <=7.x are still available under `becklyn/rad-bundle`.
+
+
 AJAX Protocol
 =============
 

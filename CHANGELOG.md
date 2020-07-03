@@ -5,6 +5,7 @@
 *   (bc) Removed `StatsCounter::log()`.
 *   (bc) Removed `InvalidSortOperationException`.
 *   (bc) Removed `BundleExtension` and `ConfigurableBundleExtension`.
+*   (internal) Renamed Composer package from `becklyn/rad-bundle` to `becklyn/rad`. See README for more information.
 
 
 7.13.2
