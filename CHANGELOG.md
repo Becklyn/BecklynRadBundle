@@ -2,6 +2,7 @@
 ======
 
 *   (improvement) Add search mode to search helper + query tokenizer.
+*   (internal) Require at least PHP 7.4. 
 
 
 7.13.0
