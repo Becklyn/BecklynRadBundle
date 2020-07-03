@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Stats;
+namespace Becklyn\Rad\Stats;
 
 final class NestedStatsCounter implements StatsCounterInterface
 {

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Search;
+namespace Tests\Becklyn\Rad\Search;
 
-use Becklyn\RadBundle\Search\SimpleQueryTokenizer;
+use Becklyn\Rad\Search\SimpleQueryTokenizer;
 use PHPUnit\Framework\TestCase;
 
 final class SimpleQueryTokenizerTest extends TestCase

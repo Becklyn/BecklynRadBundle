@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Exception;
+namespace Becklyn\Rad\Exception;
 
 /**
  * Generic exception that marks, that the entity removal may be blocked by database (foreign keys, etc..) or

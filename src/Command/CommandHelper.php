@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Command;
+namespace Becklyn\Rad\Command;
 
 use Algolia\SearchBundle\EventListener\SearchIndexerSubscriber;
-use Becklyn\RadBundle\Integration\Profiler;
+use Becklyn\Rad\Integration\Profiler;
 use Doctrine\Common\EventManager;
 
 class CommandHelper

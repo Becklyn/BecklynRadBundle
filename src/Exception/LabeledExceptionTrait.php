@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Exception;
+namespace Becklyn\Rad\Exception;
 
-use Becklyn\RadBundle\Translation\DeferredTranslation;
+use Becklyn\Rad\Translation\DeferredTranslation;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
 /**

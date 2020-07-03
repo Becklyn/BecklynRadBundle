@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Path;
+namespace Becklyn\Rad\Path;
 
 /**
  * Several utility functions for manipulation paths.

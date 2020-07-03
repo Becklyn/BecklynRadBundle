@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Translation;
+namespace Tests\Becklyn\Rad\Translation;
 
-use Becklyn\RadBundle\Exception\InvalidTranslationActionException;
-use Becklyn\RadBundle\Exception\UnexpectedTypeException;
-use Becklyn\RadBundle\Translation\DeferredTranslation;
+use Becklyn\Rad\Exception\InvalidTranslationActionException;
+use Becklyn\Rad\Exception\UnexpectedTypeException;
+use Becklyn\Rad\Translation\DeferredTranslation;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
 

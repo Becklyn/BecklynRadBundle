@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Tags;
+namespace Becklyn\Rad\Tags;
 
-use Becklyn\RadBundle\Exception\TagNormalizationException;
+use Becklyn\Rad\Exception\TagNormalizationException;
 use Doctrine\ORM\QueryBuilder;
 
 /**

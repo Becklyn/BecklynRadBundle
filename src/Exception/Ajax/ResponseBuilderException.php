@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Exception\Ajax;
+namespace Becklyn\Rad\Exception\Ajax;
 
-use Becklyn\RadBundle\Exception\RadExceptionInterface;
+use Becklyn\Rad\Exception\RadExceptionInterface;
 
 final class ResponseBuilderException extends \InvalidArgumentException implements RadExceptionInterface
 {

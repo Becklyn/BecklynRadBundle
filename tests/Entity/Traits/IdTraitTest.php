@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Entity\Traits;
+namespace Tests\Becklyn\Rad\Entity\Traits;
 
-use Becklyn\RadBundle\Entity\Traits\IdTrait;
+use Becklyn\Rad\Entity\Traits\IdTrait;
 use PHPUnit\Framework\TestCase;
 
 class IdTraitTest extends TestCase

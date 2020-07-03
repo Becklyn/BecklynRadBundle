@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Sortable;
+namespace Tests\Becklyn\Rad\Sortable;
 
-use Becklyn\RadBundle\Entity\Interfaces\SortableEntityInterface;
-use Becklyn\RadBundle\Exception\InvalidSortOperationException;
-use Becklyn\RadBundle\Sortable\SortableHandler;
+use Becklyn\Rad\Entity\Interfaces\SortableEntityInterface;
+use Becklyn\Rad\Exception\InvalidSortOperationException;
+use Becklyn\Rad\Sortable\SortableHandler;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr;

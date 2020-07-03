@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Sortable;
+namespace Tests\Becklyn\Rad\Sortable;
 
-use Becklyn\RadBundle\Entity\Interfaces\SortableEntityInterface;
+use Becklyn\Rad\Entity\Interfaces\SortableEntityInterface;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr;

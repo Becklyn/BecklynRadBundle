@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Becklyn\RadBundle\Html;
+namespace Tests\Becklyn\Rad\Html;
 
-use Becklyn\RadBundle\Html\DataContainer;
+use Becklyn\Rad\Html\DataContainer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 

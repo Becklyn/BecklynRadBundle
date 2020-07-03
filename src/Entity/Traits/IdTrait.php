@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Entity\Traits;
+namespace Becklyn\Rad\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 

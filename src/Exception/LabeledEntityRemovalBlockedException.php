@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Becklyn\RadBundle\Exception;
+namespace Becklyn\Rad\Exception;
 
 /**
  * Like {@see EntityRemovalBlockedException}, except that this exception carries a frontend message.
