@@ -2,9 +2,9 @@
 
 namespace Becklyn\RadBundle;
 
-use Becklyn\RadBundle\Bundle\BundleExtension;
 use Becklyn\RadBundle\DependencyInjection\DoctrineExtensionsCompilerPass;
 use Becklyn\RadBundle\Usages\EntityUsagesProviderInterface;
+use Becklyn\RadBundles\Bundle\BundleExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
