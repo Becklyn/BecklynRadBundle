@@ -1,3 +1,18 @@
+8.0.0
+=====
+
+*   (BC) Removed everything related to `EntityUsages`.
+*   (BC) Removed `StatsCounter::log()`.
+*   (BC) Removed `InvalidSortOperationException`.
+*   (BC) Removed `BundleExtension` and `ConfigurableBundleExtension`.
+
+
+7.13.2
+======
+
+*   (bug) Add `.form-row` to top level form errors.
+
+
 7.13.1
 ======
 

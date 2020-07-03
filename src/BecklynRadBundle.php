@@ -4,7 +4,6 @@ namespace Becklyn\RadBundle;
 
 use Becklyn\RadBundle\Bundle\BundleExtension;
 use Becklyn\RadBundle\DependencyInjection\DoctrineExtensionsCompilerPass;
-use Becklyn\RadBundle\Usages\EntityUsagesProviderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -27,9 +26,5 @@ class BecklynRadBundle extends Bundle
     public function build (ContainerBuilder $container) : void
     {
         $container->addCompilerPass(new DoctrineExtensionsCompilerPass());
-
-        $container
-            ->registerForAutoconfiguration(EntityUsagesProviderInterface::class)
-            ->addTag("entity_usages.provider");
     }
 }

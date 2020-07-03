@@ -69,16 +69,6 @@ class StatsCounter implements StatsCounterInterface
     /**
      * @inheritDoc
      */
-    public function log (string $message) : void
-    {
-        @\trigger_error("StatsCounter::log() is deprecated, use ->debug(), ->warn(), ->critical() instead.", \E_USER_DEPRECATED);
-        $this->debug[] = $message;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function debug (string $message) : void
     {
         $this->debug[] = $message;
