@@ -1,10 +1,10 @@
 8.0.0
 =====
 
-*   (BC) Removed everything related to `EntityUsages`.
-*   (BC) Removed `StatsCounter::log()`.
-*   (BC) Removed `InvalidSortOperationException`.
-*   (BC) Removed `BundleExtension` and `ConfigurableBundleExtension`.
+*   (bc) Removed everything related to `EntityUsages`.
+*   (bc) Removed `StatsCounter::log()`.
+*   (bc) Removed `InvalidSortOperationException`.
+*   (bc) Removed `BundleExtension` and `ConfigurableBundleExtension`.
 
 
 7.13.2
