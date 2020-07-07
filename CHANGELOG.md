@@ -1,8 +1,13 @@
-7.13.3 (unreleased)
+7.13.4
+======
+
+*   (improvement) Add named constructor `DeferredTranslation::backend()`.
+
+
+7.13.3
 ======
 
 *   (deprecation) Deprecate `BundleExtension` and `ConfigurableBundleExtension`. Please use the respective versions from `becklyn/rad-bundles` instead.
-*   (improvement) Add named constructor `DeferredTranslation::backend()`.
 
 
 7.13.2
