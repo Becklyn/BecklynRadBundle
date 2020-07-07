@@ -2,6 +2,7 @@
 ======
 
 *   (deprecation) Deprecate `BundleExtension` and `ConfigurableBundleExtension`. Please use the respective versions from `becklyn/rad-bundles` instead.
+*   (improvement) Add named constructor `DeferredTranslation::backend()`.
 
 
 7.13.2
