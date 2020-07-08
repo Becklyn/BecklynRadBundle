@@ -122,7 +122,7 @@ final class SimpleEntitySearchHelper
                                 $field,
                                 "'one'",
                                 ":__searchTerm",
-                                "''",
+                                "NULL",
                                 "'{$jsonPath}'",
                             ]),
                             "IS NOT",
