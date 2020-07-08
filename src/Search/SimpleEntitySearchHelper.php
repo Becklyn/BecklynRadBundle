@@ -60,6 +60,20 @@ final class SimpleEntitySearchHelper
     /**
      * Applies the search to the given query builder.
      * Searches a JSON structure for strings matching the query.
+     *
+     * The $fields parameter accepts the following values:
+     *
+     * - An indexed array will search through an entire JSON: `0 => "queryTableAlias.dbJsonField"`
+     *
+     * - An associative array with a single JSON path: `"queryTableAlias.dbJsonField" => "$.email"`
+     *
+     * - An associative array with multiple JSON paths: `"queryTableAlias.dbJsonField" => ["$.email", "$.firstName", "$.lastName", "$**some-nested-key", …]`
+     *
+     * Please see {@see https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-search}
+     * and {@see https://dev.mysql.com/doc/refman/8.0/en/json.html#json-path-syntax} to learn more about the JSON path syntax.
+     *
+     * @param array $fields An indexed based array to search the entire JSON, or an associative array where the key is the database field
+     *                      and the value a JSON path (e.g. „$.email”), or an array of JSON paths, to search in specific paths.
      */
     public function applyJsonSearch (
         QueryBuilder $queryBuilder,
@@ -78,19 +92,45 @@ final class SimpleEntitySearchHelper
         $tokenized = $this->tokenizer->transformToQuery($query, $mode);
         $expr = new Orx();
 
-        foreach ($fields as $field)
+        foreach ($fields as $field => $jsonPaths)
         {
-            $expr->add(
-                new Comparison(
-                    new Func("JSON_SEARCH", [
-                        $field,
-                        "'one'",
-                        ":__searchTerm",
-                    ]),
-                    "IS NOT",
-                    "NULL"
-                )
-            );
+            if (\is_int($field))
+            {
+                $expr->add(
+                    new Comparison(
+                        new Func("JSON_SEARCH", [
+                            $jsonPaths,
+                            "'one'",
+                            ":__searchTerm",
+                        ]),
+                        "IS NOT",
+                        "NULL"
+                    )
+                );
+            }
+            else
+            {
+                $jsonPaths = !\is_array($jsonPaths)
+                    ? [$jsonPaths]
+                    : $jsonPaths;
+
+                foreach ($jsonPaths as $jsonPath)
+                {
+                    $expr->add(
+                        new Comparison(
+                            new Func("JSON_SEARCH", [
+                                $field,
+                                "'one'",
+                                ":__searchTerm",
+                                "''",
+                                "'{$jsonPath}'",
+                            ]),
+                            "IS NOT",
+                            "NULL"
+                        )
+                    );
+                }
+            }
         }
 
         return $queryBuilder
