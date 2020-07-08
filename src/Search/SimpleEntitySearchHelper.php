@@ -116,6 +116,15 @@ final class SimpleEntitySearchHelper
 
                 foreach ($jsonPaths as $jsonPath)
                 {
+                    if (\strpos($jsonPath, "'") !== false)
+                    {
+                        throw new \InvalidArgumentException(\sprintf(
+                            "Received pre-escaped JSON path argument „%s” for field alias „%s”. The calling code must not pre-escape the JSON path, as that is done during query building.",
+                            $jsonPath,
+                            $field
+                        ));
+                    }
+
                     $expr->add(
                         new Comparison(
                             new Func("JSON_SEARCH", [
