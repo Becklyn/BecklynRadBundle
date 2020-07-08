@@ -8,7 +8,6 @@ git:
     depth: 1
 
 php:
-    - "7.3"
     - "7.4"
 
 before_install:
