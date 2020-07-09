@@ -1,7 +1,8 @@
-7.13.5 (unreleased)
+7.14.0 (unreleased)
 ======
 
 *   (internal) Require at least PHP 7.4.
+*   (feature) Add support for passing in JSON paths into `SimpleEntitySearchHelper::applyJsonSearch()`. 
 
 
 7.13.4
