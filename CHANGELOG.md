@@ -1,3 +1,9 @@
+8.1.0 (unreleased)
+=====
+
+*   (feature) Add support for passing in JSON paths into `SimpleEntitySearchHelper::applyJsonSearch()`. 
+
+
 8.0.0
 =====
 
