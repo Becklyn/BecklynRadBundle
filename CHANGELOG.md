@@ -1,4 +1,4 @@
-7.14.0 (unreleased)
+7.14.0
 ======
 
 *   (internal) Require at least PHP 7.4.
