@@ -2,8 +2,8 @@
 
 namespace Becklyn\Rad\Exception\Ajax;
 
-use Becklyn\Rad\Exception\RadExceptionInterface;
+use Becklyn\Rad\Exception\RadException;
 
-final class ResponseBuilderException extends \InvalidArgumentException implements RadExceptionInterface
+final class ResponseBuilderException extends \InvalidArgumentException implements RadException
 {
 }

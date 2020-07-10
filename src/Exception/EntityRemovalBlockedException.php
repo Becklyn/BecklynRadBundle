@@ -6,12 +6,10 @@ namespace Becklyn\Rad\Exception;
  * Generic exception that marks, that the entity removal may be blocked by database (foreign keys, etc..) or
  * semantic constraints (e.g. "can't remove main category").
  */
-class EntityRemovalBlockedException extends RadException
+class EntityRemovalBlockedException extends \InvalidArgumentException implements RadException
 {
-    /**
-     * @var object[]
-     */
-    private $entities;
+    /** @var object[] */
+    private array $entities;
 
 
     /**

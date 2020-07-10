@@ -2,6 +2,6 @@
 
 namespace Becklyn\Rad\Exception;
 
-class InvalidRouteActionException extends RadException
+class InvalidRouteActionException extends \InvalidArgumentException implements RadException
 {
 }

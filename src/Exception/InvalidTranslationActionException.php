@@ -2,6 +2,6 @@
 
 namespace Becklyn\Rad\Exception;
 
-class InvalidTranslationActionException extends RadException
+class InvalidTranslationActionException extends \InvalidArgumentException implements RadException
 {
 }

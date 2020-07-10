@@ -2,12 +2,11 @@
 
 namespace Becklyn\Rad\Exception;
 
-use Symfony\Component\Form\Exception\InvalidArgumentException;
 
 /**
  * Generic exception that represents a type error.
  */
-final class UnexpectedTypeException extends InvalidArgumentException
+final class UnexpectedTypeException extends \InvalidArgumentException implements RadException
 {
     /**
      * @param mixed $value

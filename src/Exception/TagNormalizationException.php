@@ -2,6 +2,6 @@
 
 namespace Becklyn\Rad\Exception;
 
-class TagNormalizationException extends \InvalidArgumentException implements RadExceptionInterface
+class TagNormalizationException extends \InvalidArgumentException implements RadException
 {
 }

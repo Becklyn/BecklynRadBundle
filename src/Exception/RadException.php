@@ -2,13 +2,11 @@
 
 namespace Becklyn\Rad\Exception;
 
-class RadException extends \Exception
+/**
+ * Base interface for all RAD bundle exceptions.
+ *
+ * @internal
+ */
+interface RadException extends \Throwable
 {
-    /**
-     */
-    public function __construct (string $message, ?\Throwable $previous = null, int $code = 0)
-    {
-        parent::__construct($message, $code, $previous);
-    }
-
 }

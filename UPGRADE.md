@@ -6,6 +6,7 @@
 *   The `InvalidSortOperationException` exception was removed. There is no replacement.
 *   Update all imported namespaces from `Becklyn\RadBundle\` to `Becklyn\Rad\`.
 *   The classes `BundleExtension` and `ConfigurableBundleExtension` have been removed. Please use the respective versions from `becklyn/rad-bundles` instead.
+*   `RadExceptionInterface` was removed, and `RadException` is now an interface. Just use `RadException` in your catch instead.
 
 
 6.x to 7.0
