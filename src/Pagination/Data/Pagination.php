@@ -2,6 +2,8 @@
 
 namespace Becklyn\Rad\Pagination\Data;
 
+use Becklyn\Rad\Exception\InvalidPaginationException;
+
 /**
  * Generic pagination calculator.
  */
@@ -24,12 +26,12 @@ class Pagination
     {
         if ($perPage <= 0)
         {
-            throw new \InvalidArgumentException("Pagination can only be created for at least 1 item per page.");
+            throw new InvalidPaginationException("Pagination can only be created for at least 1 item per page.");
         }
 
         if ($numberOfItems < 0)
         {
-            throw new \InvalidArgumentException("Pagination can only be created for a positive number of items");
+            throw new InvalidPaginationException("Pagination can only be created for a positive number of items");
         }
 
         $this->currentPage = $currentPage;
