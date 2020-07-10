@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+
+    Becklyn\RadBundle\:
+        resource: ../src/*
+        exclude: ../src/{Entity,Exception,Pagination/Data,Resources,BecklynRadBundle.php}
+
+    Becklyn\Rad\Command\CommandHelper:
+        $eventManager: "@doctrine.dbal.default_connection.event_manager"
