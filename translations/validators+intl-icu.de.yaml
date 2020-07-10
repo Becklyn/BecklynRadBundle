@@ -1,5 +1,5 @@
-becklyn_rad:
-    tag:
-        duplicate: Dieser Tag existiert bereits.
+becklyn:
+    rad:
         tag:
+            duplicate: Dieser Tag existiert bereits.
             pattern: 'Es dürfen nur die folgenden Zeichen verwendet werden: a-z, A-Z, 0-9, Bindestrich, Unterstrich, Punkt, Komma und Leerzeichen'
