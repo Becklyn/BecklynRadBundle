@@ -3,7 +3,7 @@ services:
         autoconfigure: true
         autowire: true
 
-    Becklyn\RadBundle\:
+    Becklyn\Rad\:
         resource: ../src/*
         exclude: ../src/{Entity,Exception,Pagination/Data,Resources,BecklynRadBundle.php}
 
