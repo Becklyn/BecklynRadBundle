@@ -10,10 +10,8 @@ use Symfony\Component\Form\FormInterface;
  */
 final class DeferredForm
 {
-    /** @var string */
-    private $type;
-    /** @var array */
-    private $options;
+    private string $type;
+    private array $options;
 
 
     /**

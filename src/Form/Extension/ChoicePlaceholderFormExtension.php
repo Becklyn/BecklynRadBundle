@@ -14,8 +14,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class ChoicePlaceholderFormExtension extends AbstractTypeExtension
 {
-    /** @var TranslatorInterface */
-    private $translator;
+    private TranslatorInterface $translator;
 
     /**
      */

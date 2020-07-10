@@ -10,10 +10,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 abstract class Model implements ModelInterface
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $entityManager;
+    protected EntityManagerInterface $entityManager;
 
 
     /**

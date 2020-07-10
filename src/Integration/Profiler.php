@@ -6,10 +6,7 @@ use Symfony\Component\HttpKernel\Profiler\Profiler as SymfonyProfiler;
 
 class Profiler
 {
-    /**
-     * @var SymfonyProfiler|null
-     */
-    private $profiler;
+    private ?SymfonyProfiler $profiler;
 
 
     public function __construct (?SymfonyProfiler $profiler)

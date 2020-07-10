@@ -12,7 +12,7 @@ class PathHelper
      *
      * @param string[] ...$paths
      */
-    public static function join (...$paths) : string
+    public static function join (string ...$paths) : string
     {
         $normalized = [];
 

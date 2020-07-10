@@ -11,10 +11,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class FormErrorMapper
 {
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
+    private TranslatorInterface $translator;
 
 
     /**

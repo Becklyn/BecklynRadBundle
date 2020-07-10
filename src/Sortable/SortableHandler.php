@@ -8,10 +8,7 @@ use Doctrine\ORM\QueryBuilder;
 
 final class SortableHandler
 {
-    /**
-     * @var EntityRepository
-     */
-    private $repository;
+    private EntityRepository $repository;
 
 
     /**

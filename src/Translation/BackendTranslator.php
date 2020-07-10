@@ -9,10 +9,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class BackendTranslator
 {
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
+    private TranslatorInterface $translator;
 
 
     /**

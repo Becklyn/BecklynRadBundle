@@ -11,9 +11,7 @@ final class SimpleEntitySearchHelper
 {
     public const MODE_PREFIX = SimpleQueryTokenizer::MODE_PREFIX;
     public const MODE_EVERYWHERE = SimpleQueryTokenizer::MODE_EVERYWHERE;
-
-    /** @var SimpleQueryTokenizer */
-    private $tokenizer;
+    private SimpleQueryTokenizer $tokenizer;
 
     /**
      */

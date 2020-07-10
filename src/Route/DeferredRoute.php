@@ -22,14 +22,9 @@ class DeferredRoute implements LinkableInterface
     public const OPTIONAL = true;
     public const REQUIRED = false;
 
-    /** @var string */
-    private $route;
-
-    /** @var array */
-    private $parameters;
-
-    /** @var int */
-    private $referenceType;
+    private string $route;
+    private array $parameters;
+    private int $referenceType;
 
 
     /**

@@ -25,6 +25,7 @@ class Paginator
             $queryBuilder
                 ->setFirstResult($newPagination->getOffset())
                 ->setMaxResults($pagination->getPerPage());
+
             $list = \iterator_to_array(new DoctrinePaginator($queryBuilder->getQuery()));
         }
         else

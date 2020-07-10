@@ -13,17 +13,11 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
  */
 final class PropertiesSortableHandler
 {
-    /** @var EntityRepository */
-    private $repository;
-
-    /** @var SortableHandler */
-    private $nested;
-
+    private EntityRepository $repository;
+    private SortableHandler $nested;
     /** @var string[] */
-    private $properties;
-
-    /** @var PropertyAccessor */
-    private $accessor;
+    private array $properties;
+    private PropertyAccessor $accessor;
 
 
     /**

@@ -9,16 +9,8 @@ namespace Becklyn\Rad\Pagination\Data;
  */
 class PaginatedList
 {
-    /**
-     * @var iterable
-     */
-    private $list;
-
-
-    /**
-     * @var Pagination
-     */
-    private $pagination;
+    private iterable $list;
+    private Pagination $pagination;
 
 
     public function __construct (iterable $list, Pagination $pagination)

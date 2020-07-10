@@ -9,10 +9,7 @@ use Twig\TwigFunction;
 
 class RadTwigExtension extends AbstractExtension
 {
-    /**
-     * @var DataContainer
-     */
-    private $dataContainer;
+    private DataContainer $dataContainer;
 
 
     /**

@@ -18,14 +18,9 @@ class DeferredTranslation
     public const OPTIONAL = true;
     public const REQUIRED = false;
 
-    /** @var string */
-    private $id;
-
-    /** @var array */
-    private $parameters;
-
-    /** @var string */
-    private $domain;
+    private string $id;
+    private array $parameters;
+    private string $domain;
 
 
     /**

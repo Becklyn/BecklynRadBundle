@@ -13,17 +13,10 @@ class TagMatcher
     public const HAS_ANY_TAG = false;
     public const HAS_ALL_TAGS = true;
 
-    /** @var array */
-    private $tags;
-
-    /** @var string */
-    private $selector;
-
-    /** @var bool */
-    private $selectionMode;
-
-    /** @var bool */
-    private $mustJoin = true;
+    private array $tags;
+    private string $selector;
+    private bool $selectionMode;
+    private bool $mustJoin = true;
 
 
     public function __construct (iterable $tags, string $selector, bool $selectionMode = self::HAS_ALL_TAGS)

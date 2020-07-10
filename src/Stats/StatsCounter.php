@@ -7,19 +7,19 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class StatsCounter implements StatsCounterInterface
 {
     /** @var array[] */
-    private $labels = [];
+    private array $labels = [];
 
     /** @var int[] */
-    private $counts = [];
+    private array $counts = [];
 
     /** @var string[] */
-    private $debug = [];
+    private array $debug = [];
 
     /** @var string[] */
-    private $warnings = [];
+    private array $warnings = [];
 
     /** @var string[] */
-    private $critical = [];
+    private array $critical = [];
 
 
     /**

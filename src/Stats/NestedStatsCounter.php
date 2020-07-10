@@ -4,11 +4,8 @@ namespace Becklyn\Rad\Stats;
 
 final class NestedStatsCounter implements StatsCounterInterface
 {
-    /** @var StatsCounterInterface */
-    private $base;
-
-    /** @var string */
-    private $prefix;
+    private StatsCounterInterface $base;
+    private string $prefix;
 
     /**
      */
