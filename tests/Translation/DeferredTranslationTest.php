@@ -180,4 +180,14 @@ class DeferredTranslationTest extends TestCase
             self::assertTrue(true);
         }
     }
+
+
+    /**
+     *
+     */
+    public function testDomainsOfNamedConstructors () : void
+    {
+        self::assertSame("backend", DeferredTranslation::backend("test")->getDomain());
+        self::assertSame("messages", DeferredTranslation::messages("test")->getDomain());
+    }
 }

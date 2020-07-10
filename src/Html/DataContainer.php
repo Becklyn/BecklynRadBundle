@@ -8,11 +8,14 @@ class DataContainer
 {
     /**
      * Renders the data container to HTML.
-     *
-     * @return string
      */
-    public function renderToHtml (array $data, string $className, ?string $id = null)
+    public function renderToHtml (?array $data, string $className, ?string $id = null) : string
     {
+        if (null === $data)
+        {
+            return "";
+        }
+
         return \sprintf(
             '<script%s class="_data-container %s" type="application/json">%s</script>',
             null !== $id ? ' id="' . \htmlspecialchars($id, \ENT_QUOTES) . '"' : "",
@@ -26,7 +29,7 @@ class DataContainer
      * Renders the data container as a direct response.
      * Convenient to use in embedded controllers.
      */
-    public function createResponse (array $data, string $className, ?string $id = null) : Response
+    public function createResponse (?array $data, string $className, ?string $id = null) : Response
     {
         return new Response($this->renderToHtml($data, $className, $id));
     }

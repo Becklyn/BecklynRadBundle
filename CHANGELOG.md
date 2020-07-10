@@ -1,10 +1,4 @@
-8.1.0 (unreleased)
-=====
-
-*   (feature) Add support for passing in JSON paths into `SimpleEntitySearchHelper::applyJsonSearch()`. 
-
-
-8.0.0
+8.0.0 (unreleased)
 =====
 
 *   (bc) Removed everything related to `EntityUsages`.
@@ -13,6 +7,33 @@
 *   (bc) Removed `BundleExtension` and `ConfigurableBundleExtension`.
 *   (internal) Renamed Composer package from `becklyn/rad-bundle` to `becklyn/rad`. See README for more information.
 *   (bc) Rename namespace `Becklyn\RadBundle` to `Becklyn\Rad`.
+*   (feature) Add support for passing in JSON paths into `SimpleEntitySearchHelper::applyJsonSearch()`. 
+
+
+7.14.1
+======
+
+*   (improvement) Allow passing `null` to `DataContainer` methods (to not embed anything).
+
+
+7.14.0
+======
+
+*   (internal) Require at least PHP 7.4.
+*   (feature) Add support for passing in JSON paths into `SimpleEntitySearchHelper::applyJsonSearch()`. 
+
+
+7.13.4
+======
+
+*   (improvement) Add named constructor `DeferredTranslation::backend()`.
+
+
+7.13.3
+======
+
+*   (deprecation) Deprecate `BundleExtension` and `ConfigurableBundleExtension`. Please use the respective versions from `becklyn/rad-bundles` instead.
+>>>>>>> 7.x
 
 
 7.13.2

@@ -166,6 +166,14 @@ class DeferredTranslation
 
     //region Named Constructors
     /**
+     * Special named constructor for the domain "messages"
+     */
+    public static function messages (string $id, array $parameters = []) : self
+    {
+        return new self($id, $parameters, "messages");
+    }
+
+    /**
      * Special named constructor for the domain "backend"
      */
     public static function backend (string $id, array $parameters = []) : self
