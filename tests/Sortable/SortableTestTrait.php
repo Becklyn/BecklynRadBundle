@@ -36,6 +36,12 @@ trait SortableTestTrait
             }
 
 
+            public function isNew () : bool
+            {
+                return false;
+            }
+
+
             public function getSortOrder () : ?int
             {
                 return $this->sortOrder;
@@ -78,6 +84,12 @@ trait SortableTestTrait
             public function getId () : ?int
             {
                 return $this->id;
+            }
+
+
+            public function isNew () : bool
+            {
+                return null !== $this->id;
             }
 
 

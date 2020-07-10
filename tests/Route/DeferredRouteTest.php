@@ -81,6 +81,7 @@ class DeferredRouteTest extends TestCase
         $entity = new class implements EntityInterface
         {
             public function getId () : ?int { return 123; }
+            public function isNew () : bool { return false; }
         };
 
         $route = new DeferredRoute("route_name", ["page" => $entity]);
@@ -106,11 +107,13 @@ class DeferredRouteTest extends TestCase
         $entity1 = new class implements EntityInterface
         {
             public function getId () : ?int { return 123; }
+            public function isNew () : bool { return false; }
         };
 
         $entity2 = new class implements EntityInterface
         {
             public function getId () : ?int { return 234; }
+            public function isNew () : bool { return false; }
         };
 
         $route1 = new DeferredRoute("route_name", ["page" => $entity1]);
