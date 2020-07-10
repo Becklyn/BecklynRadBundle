@@ -5,6 +5,7 @@
 *   `StatsCounter::log()` was removed. Use `StatsCounter::debug/warning/critical()` instead.
 *   The `InvalidSortOperationException` exception was removed. There is no replacement.
 *   Update all imported namespaces from `Becklyn\RadBundle\` to `Becklyn\Rad\`.
+*   The classes `BundleExtension` and `ConfigurableBundleExtension` have been removed. Please use the respective versions from `becklyn/rad-bundles` instead.
 
 
 6.x to 7.0
