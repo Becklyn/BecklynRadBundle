@@ -7,7 +7,6 @@
 *   (bc) Removed `BundleExtension` and `ConfigurableBundleExtension`.
 *   (internal) Renamed Composer package from `becklyn/rad-bundle` to `becklyn/rad`. See README for more information.
 *   (bc) Rename namespace `Becklyn\RadBundle` to `Becklyn\Rad`.
-*   (feature) Add support for passing in JSON paths into `SimpleEntitySearchHelper::applyJsonSearch()`. 
 
 
 7.14.1
@@ -33,7 +32,6 @@
 ======
 
 *   (deprecation) Deprecate `BundleExtension` and `ConfigurableBundleExtension`. Please use the respective versions from `becklyn/rad-bundles` instead.
->>>>>>> 7.x
 
 
 7.13.2
