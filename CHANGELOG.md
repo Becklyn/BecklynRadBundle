@@ -1,3 +1,9 @@
+7.14.1
+======
+
+*   (improvement) Allow passing `null` to `DataContainer` methods (to not embed anything).
+
+
 7.14.0
 ======
 
