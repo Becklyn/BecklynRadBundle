@@ -2,6 +2,7 @@
 
 namespace Becklyn\Rad\Search;
 
+use Becklyn\Rad\Exception\Search\InvalidSearchArgumentsException;
 use Doctrine\ORM\Query\Expr\Comparison;
 use Doctrine\ORM\Query\Expr\Func;
 use Doctrine\ORM\Query\Expr\Orx;
@@ -116,7 +117,7 @@ final class SimpleEntitySearchHelper
                 {
                     if (false !== \strpos($jsonPath, "'"))
                     {
-                        throw new \InvalidArgumentException(\sprintf(
+                        throw new InvalidSearchArgumentsException(\sprintf(
                             "Received pre-escaped JSON path argument „%s” for field alias „%s”. The calling code must not pre-escape the JSON path, as that is done during query building.",
                             $jsonPath,
                             $field
