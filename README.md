@@ -3,6 +3,8 @@ Becklyn Rad Bundle
 
 This bundle provides RAD related functionality for the usage in Symfony.
 
+> **`becklyn/rad-bundle <= v7` is deprecated and was replaced by [`becklyn/rad v8+`](https://github.com/Becklyn/rad)**
+
 
 AJAX Protocol
 =============
