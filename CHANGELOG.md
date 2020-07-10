@@ -7,6 +7,7 @@
 *   (bc) Removed `BundleExtension` and `ConfigurableBundleExtension`.
 *   (internal) Renamed Composer package from `becklyn/rad-bundle` to `becklyn/rad`. See README for more information.
 *   (bc) Rename namespace `Becklyn\RadBundle` to `Becklyn\Rad`.
+*   (improvement) Move `isNew()` to `EntityInterface` as well (is automatically implemented by `IdTrait`).
 
 
 7.14.1
