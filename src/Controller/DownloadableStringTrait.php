@@ -2,7 +2,7 @@
 
 namespace Becklyn\Rad\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -11,7 +11,7 @@ trait DownloadableStringTrait
     /**
      * Sends a string as download.
      *
-     * If you want to send a file, use {@see ControllerTrait::file()} instead.
+     * If you want to send a file, use {@see AbstractController::file()} instead.
      */
     private function stringAsDownload (string $content, string $filename, string $contentType) : Response
     {
