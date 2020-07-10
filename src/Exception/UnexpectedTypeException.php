@@ -2,7 +2,6 @@
 
 namespace Becklyn\Rad\Exception;
 
-
 /**
  * Generic exception that represents a type error.
  */
