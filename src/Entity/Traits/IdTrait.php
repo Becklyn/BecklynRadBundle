@@ -13,10 +13,8 @@ trait IdTrait
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(name="id", type="integer")
-     *
-     * @var int|null
      */
-    private $id;
+    private ?int $id = null;
 
 
 

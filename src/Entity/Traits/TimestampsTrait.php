@@ -10,17 +10,15 @@ use Doctrine\ORM\Mapping as ORM;
 trait TimestampsTrait
 {
     /**
-     * @var \DateTimeImmutable
      * @ORM\Column(name="time_created", type="datetime_immutable")
      */
-    private $timeCreated;
+    private \DateTimeImmutable $timeCreated;
 
 
     /**
-     * @var \DateTimeImmutable|null
      * @ORM\Column(name="time_modified", type="datetime_immutable", nullable=true)
      */
-    private $timeModified;
+    private ?\DateTimeImmutable $timeModified = null;
 
 
 

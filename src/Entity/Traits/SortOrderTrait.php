@@ -10,10 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 trait SortOrderTrait
 {
     /**
-     * @var int
      * @ORM\Column(name="sort_order", type="integer")
      */
-    private $sortOrder;
+    private ?int $sortOrder = null;
 
 
 
