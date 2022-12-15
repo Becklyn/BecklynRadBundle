@@ -6,6 +6,8 @@ use Becklyn\RadBundles\Bundle\ConfigurableBundleExtension as NewConfigurableBund
 
 /**
  * @deprecated Please use the version from `becklyn/rad-bundles` instead.
+ *
+ * @phpstan-ignore-next-line
  */
 class ConfigurableBundleExtension extends NewConfigurableBundleExtension
 {

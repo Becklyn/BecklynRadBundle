@@ -26,7 +26,7 @@ abstract class BaseController extends AbstractController
      */
     protected function trans (string $id, array $parameters = [], ?string $domain = null, ?string $locale = null) : string
     {
-        return $this->get(TranslatorInterface::class)->trans($id, $parameters, $domain, $locale);
+        return $this->container->get(TranslatorInterface::class)->trans($id, $parameters, $domain, $locale);
     }
 
 
@@ -56,7 +56,7 @@ abstract class BaseController extends AbstractController
                 // -> use generic error message
                 $message = "entity_removal.failed.generic";
                 // -> log the error
-                $this->get(LoggerInterface::class)->error("Removal of an entity failed due to unspecified reasons.", [
+                $this->container->get(LoggerInterface::class)->error("Removal of an entity failed due to unspecified reasons.", [
                     "exception" => $exception,
                 ]);
                 break;
@@ -71,7 +71,7 @@ abstract class BaseController extends AbstractController
      */
     protected function getFormErrorMapping (FormInterface $form) : array
     {
-        $mapper = new FormErrorMapper($this->get(TranslatorInterface::class));
+        $mapper = new FormErrorMapper($this->container->get(TranslatorInterface::class));
         return $mapper->generate($form);
     }
 
@@ -81,7 +81,7 @@ abstract class BaseController extends AbstractController
      */
     protected function getLogger () : LoggerInterface
     {
-        return $this->get(LoggerInterface::class);
+        return $this->container->get(LoggerInterface::class);
     }
 
 
@@ -126,8 +126,8 @@ abstract class BaseController extends AbstractController
     protected function ajaxResponse (bool $ok, ?string $status = null) : AjaxResponseBuilder
     {
         return new AjaxResponseBuilder(
-            $this->get(TranslatorInterface::class),
-            $this->get(RouterInterface::class),
+            $this->container->get(TranslatorInterface::class),
+            $this->container->get(RouterInterface::class),
             $ok,
             $status
         );
@@ -137,7 +137,7 @@ abstract class BaseController extends AbstractController
     /**
      * @inheritDoc
      */
-    public static function getSubscribedServices ()
+    public static function getSubscribedServices () : array
     {
         $services = parent::getSubscribedServices();
         $services[] = LoggerInterface::class;

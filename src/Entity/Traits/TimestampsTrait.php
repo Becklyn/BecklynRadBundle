@@ -11,6 +11,7 @@ trait TimestampsTrait
 {
     /**
      * @var \DateTimeImmutable
+     *
      * @ORM\Column(name="time_created", type="datetime_immutable")
      */
     private $timeCreated;
@@ -18,6 +19,7 @@ trait TimestampsTrait
 
     /**
      * @var \DateTimeImmutable|null
+     *
      * @ORM\Column(name="time_modified", type="datetime_immutable", nullable=true)
      */
     private $timeModified;
