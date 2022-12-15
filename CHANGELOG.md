@@ -1,3 +1,10 @@
+7.15.0
+======
+
+*   (internal) Add Support for PHP 8.1 and Symfony 6.
+*   (BC) Drop Support for SF4 and SF5.
+
+
 7.14.1
 ======
 
