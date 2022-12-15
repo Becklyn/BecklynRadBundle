@@ -20,6 +20,9 @@ class PathHelper
         {
             if (0 !== $index)
             {
+                /**
+                 * @phpstan-ignore-next-line
+                 */
                 $path = \ltrim($path, "/");
             }
 
@@ -31,6 +34,9 @@ class PathHelper
             $normalized[] = $path;
         }
 
+        /**
+         * @phpstan-ignore-next-line
+         */
         return \implode("/", $normalized);
     }
 }

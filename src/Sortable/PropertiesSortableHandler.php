@@ -13,25 +13,23 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
  */
 final class PropertiesSortableHandler
 {
-    /** @var EntityRepository */
-    private $repository;
-
-    /** @var SortableHandler */
-    private $nested;
+    /**  */
+    private SortableHandler $nested;
 
     /** @var string[] */
-    private $properties;
+    private array $properties;
 
-    /** @var PropertyAccessor */
-    private $accessor;
+    /**  */
+    private PropertyAccessor $accessor;
 
 
     /**
      * @param string ...$properties The properties that should be used for generating the `$where` sortable filter array.
+     *
+     * @phpstan-ignore-next-line
      */
-    public function __construct (EntityRepository $repository, string ...$properties)
+    public function __construct (private readonly EntityRepository $repository, string ...$properties)
     {
-        $this->repository = $repository;
         $this->nested = new SortableHandler($repository);
         $this->properties = $properties;
         $this->accessor = PropertyAccess::createPropertyAccessor();
@@ -68,9 +66,7 @@ final class PropertiesSortableHandler
      */
     public function sortElementBefore (SortableEntityInterface $entity, ?SortableEntityInterface $before) : bool
     {
-        return $this->areCompatible($entity, $before)
-            ? $this->nested->sortElementBefore($entity, $before, $this->buildWhere($entity))
-            : false;
+        return $this->areCompatible($entity, $before) && $this->nested->sortElementBefore($entity, $before, $this->buildWhere($entity));
     }
 
 
