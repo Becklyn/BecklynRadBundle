@@ -5,7 +5,7 @@ namespace Becklyn\RadBundle\Model;
 use Becklyn\RadBundle\Helper\ClassNameTransformer;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 
 /**
@@ -26,10 +26,7 @@ abstract class DoctrineModel
 
 
 
-    /**
-     * @param RegistryInterface $doctrine
-     */
-    public function __construct (RegistryInterface $doctrine)
+    public function __construct (ManagerRegistry $doctrine)
     {
         $this->doctrine             = $doctrine;
         $this->classNameTransformer = new ClassNameTransformer();
