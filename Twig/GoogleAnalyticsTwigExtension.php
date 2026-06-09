@@ -3,6 +3,8 @@
 namespace Becklyn\RadBundle\Twig;
 
 
+use Twig\TwigFunction;
+
 /**
  *
  */
@@ -44,13 +46,11 @@ EOD;
 
     /**
      * Returns all defined functions
-     *
-     * @return \Twig_SimpleFunction[]
      */
-    public function getFunctions ()
+    public function getFunctions () : array
     {
         return [
-            new \Twig_SimpleFunction("analyticsTracking", [$this, "analyticsTracking"], ["is_safe" => ["html"]]),
+            new TwigFunction("analyticsTracking", [$this, "analyticsTracking"], ["is_safe" => ["html"]]),
         ];
     }
 }

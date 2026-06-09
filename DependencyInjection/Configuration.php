@@ -15,10 +15,9 @@ class Configuration implements ConfigurationInterface
     /**
      * {@inheritDoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder() : TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('becklyn_rad');
+        $treeBuilder = new TreeBuilder("becklyn_rad");
 
         return $treeBuilder;
     }

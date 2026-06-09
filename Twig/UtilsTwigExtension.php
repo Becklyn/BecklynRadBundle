@@ -3,6 +3,8 @@
 namespace Becklyn\RadBundle\Twig;
 
 
+use Twig\TwigFunction;
+
 /**
  *
  */
@@ -30,13 +32,11 @@ class UtilsTwigExtension extends AbstractTwigExtension
 
     /**
      * Returns all defined functions
-     *
-     * @return \Twig_SimpleFunction[]
      */
-    public function getFunctions ()
+    public function getFunctions () : array
     {
         return [
-            new \Twig_SimpleFunction("renderDateTime", [$this, "renderDateTime"], ["is_safe" => ["html"]]),
+            new TwigFunction("renderDateTime", [$this, "renderDateTime"], ["is_safe" => ["html"]]),
         ];
     }
 }

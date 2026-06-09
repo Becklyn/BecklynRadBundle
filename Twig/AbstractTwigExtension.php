@@ -3,10 +3,12 @@
 namespace Becklyn\RadBundle\Twig;
 
 
+use Twig\Extension\AbstractExtension;
+
 /**
  *
  */
-class AbstractTwigExtension extends \Twig_Extension
+class AbstractTwigExtension extends AbstractExtension
 {
     /**
      * {@inheritdoc}

@@ -28,4 +28,3 @@ services:
         class: Becklyn\RadBundle\Security\AuthenticationHelper
         arguments:
             - "@security.token_storage"
-            - "@session"

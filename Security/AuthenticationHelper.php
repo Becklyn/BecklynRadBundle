@@ -2,6 +2,7 @@
 
 namespace Becklyn\RadBundle\Security;
 
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -13,27 +14,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class AuthenticationHelper
 {
-    /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
+    private TokenStorageInterface $tokenStorage;
+    private RequestStack $requestStack;
+    private SessionInterface $session;
 
-
-    /**
-     * @var SessionInterface
-     */
-    private $session;
-
-
-
-    /**
-     * @param TokenStorageInterface $tokenStorage
-     * @param SessionInterface      $session
-     */
-    public function __construct (TokenStorageInterface $tokenStorage, SessionInterface $session)
+    public function __construct (TokenStorageInterface $tokenStorage, RequestStack $requestStack)
     {
         $this->tokenStorage = $tokenStorage;
-        $this->session = $session;
+        $this->requestStack = $requestStack;
+        $this->session = $this->requestStack->getSession();
     }
 
 
