@@ -8,26 +8,11 @@ use Becklyn\RadBundle\Entity\SortableEntityInterface;
 class SortableHandler
 {
     /**
-     * @var \Doctrine\ORM\EntityRepository
-     */
-    private $repository;
-
-
-    /**
-     * @var array
-     */
-    private $globalWhere;
-
-
-
-    /**
      * @param EntityRepository $repository
      * @param array $globalWhere
      */
-    public function __construct (EntityRepository $repository, array $globalWhere = array())
+    public function __construct(private readonly EntityRepository $repository, private readonly array $globalWhere = [])
     {
-        $this->repository = $repository;
-        $this->globalWhere = $globalWhere;
     }
 
 
@@ -39,7 +24,7 @@ class SortableHandler
      *
      * @return int
      */
-    public function getNextSortOrder (array $where = array())
+    public function getNextSortOrder (array $where = [])
     {
         $queryBuild = $this->repository->createQueryBuilder("t")
             ->select("MAX(t.sortOrder)");
@@ -47,7 +32,7 @@ class SortableHandler
         // apply the where clauses
         if (0 < count($completeWhere = $this->getCompleteWhere($where)))
         {
-            $queryParts = array();
+            $queryParts = [];
             $index = 0;
 
             foreach ($completeWhere as $key => $value)
@@ -85,9 +70,9 @@ class SortableHandler
      *
 *@return SortableEntityInterface[]
      */
-    private function getAllEntities (array $where = array())
+    private function getAllEntities (array $where = [])
     {
-        return $this->repository->findBy($this->getCompleteWhere($where), array("sortOrder" => "asc"));
+        return $this->repository->findBy($this->getCompleteWhere($where), ["sortOrder" => "asc"]);
     }
 
 
@@ -95,9 +80,9 @@ class SortableHandler
     /**
      * Fixes the sort ordering
      */
-    public function fixSortOrdering (array $where = array())
+    public function fixSortOrdering (array $where = [])
     {
-        $this->prependEntities(array(), $where);
+        $this->prependEntities([], $where);
     }
 
 
@@ -109,7 +94,7 @@ class SortableHandler
 *@param SortableEntityInterface[] $prepended
      * @param array               $where
      */
-    public function prependEntities (array $prepended, array $where = array())
+    public function prependEntities (array $prepended, array $where = [])
     {
         $all = $this->getAllEntities($where);
         $index = 0;
@@ -147,7 +132,7 @@ class SortableHandler
      *
      * @return bool
      */
-    public function applySorting ($sortMapping, array $where = array())
+    public function applySorting ($sortMapping, array $where = [])
     {
         if (!is_array($sortMapping))
         {
@@ -166,7 +151,7 @@ class SortableHandler
         }
 
         // check item ids
-        $allIds = array_map(function (SortableEntityInterface $entity) { return $entity->getId(); }, $all);
+        $allIds = array_map(fn(SortableEntityInterface $entity) => $entity->getId(), $all);
         if (!$this->arraysAreIdentical($allIds, array_keys($sortMapping)))
         {
             // the given item ids are wrong

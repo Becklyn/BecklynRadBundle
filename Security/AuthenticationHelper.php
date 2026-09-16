@@ -14,14 +14,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class AuthenticationHelper
 {
-    private TokenStorageInterface $tokenStorage;
-    private RequestStack $requestStack;
-    private SessionInterface $session;
+    private readonly SessionInterface $session;
 
-    public function __construct (TokenStorageInterface $tokenStorage, RequestStack $requestStack)
+    public function __construct (private readonly TokenStorageInterface $tokenStorage, private readonly RequestStack $requestStack)
     {
-        $this->tokenStorage = $tokenStorage;
-        $this->requestStack = $requestStack;
         $this->session = $this->requestStack->getSession();
     }
 

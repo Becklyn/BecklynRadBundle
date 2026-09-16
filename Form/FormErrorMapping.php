@@ -35,7 +35,7 @@ class FormErrorMapping
      */
     private function generateMapping (FormInterface $form)
     {
-        $allErrors   = array();
+        $allErrors   = [];
         $formName    = $form->getName();
         $fieldPrefix = !empty($formName) ? "{$formName}_" : "";
 
@@ -71,10 +71,7 @@ class FormErrorMapping
             if (0 < count($childErrors))
             {
                 $allErrors[$fieldName] = array_map(
-                    function (FormError $error)
-                    {
-                        return $error->getMessage();
-                    },
+                    fn(FormError $error) => $error->getMessage(),
                     is_array($childErrors) ? $childErrors : iterator_to_array($childErrors)
                 );
             }

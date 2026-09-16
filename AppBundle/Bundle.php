@@ -41,7 +41,7 @@ class Bundle extends BaseBundle
     /**
      * @inheritdoc
      */
-    public function getContainerExtension ()
+    public function getContainerExtension () : ?\Symfony\Component\DependencyInjection\Extension\ExtensionInterface
     {
         return new BundleExtension($this);
     }

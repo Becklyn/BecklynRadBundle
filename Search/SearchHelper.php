@@ -11,12 +11,6 @@ use Doctrine\ORM\QueryBuilder;
 class SearchHelper
 {
     /**
-     * @var string[]
-     */
-    private $searchFields;
-
-
-    /**
      * Flag, whether the search is strict or not.
      *
      * strict     = must match ALL query tokens
@@ -32,9 +26,8 @@ class SearchHelper
      * @param string[] $searchFields
      * @param bool $strictSearch
      */
-    public function __construct (array $searchFields, $strictSearch = true)
+    public function __construct (private readonly array $searchFields, $strictSearch = true)
     {
-        $this->searchFields = $searchFields;
         $this->strictSearch = (bool) $strictSearch;
     }
 
@@ -60,7 +53,7 @@ class SearchHelper
 
                 foreach ($this->searchFields as $searchField)
                 {
-                    $fieldName = (false !== strpos($searchField, ".")) ? $searchField : "{$table}.{$searchField}";
+                    $fieldName = (str_contains($searchField, ".")) ? $searchField : "{$table}.{$searchField}";
                     $alternativeFields[] = $queryBuilder->expr()->like($fieldName, ":token{$tokenId}");
                 }
 

@@ -10,6 +10,14 @@ use Twig\TwigFunction;
  */
 class GoogleAnalyticsTwigExtension extends AbstractTwigExtension
 {
+    public function getFunctions () : array
+    {
+        return [
+            new TwigFunction("analyticsTracking", $this->analyticsTracking(...), ["is_safe" => ["html"]]),
+        ];
+    }
+
+
     /**
      * Renders all blocks of code required to initialize Google Analytics tracking
      *
@@ -41,16 +49,5 @@ ga('create', gaProperty, 'auto'); ga('set', 'anonymizeIp', true); ga('send', 'pa
 EOD;
 
         return sprintf($analyticsScript, $trackingCode);
-    }
-
-
-    /**
-     * Returns all defined functions
-     */
-    public function getFunctions () : array
-    {
-        return [
-            new TwigFunction("analyticsTracking", [$this, "analyticsTracking"], ["is_safe" => ["html"]]),
-        ];
     }
 }

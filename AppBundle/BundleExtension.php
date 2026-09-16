@@ -16,25 +16,17 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 class BundleExtension extends Extension
 {
     /**
-     * @var Bundle
-     */
-    private $bundle;
-
-
-
-    /**
      * @param Bundle $bundle
      */
-    public function __construct (Bundle $bundle)
+    public function __construct(private readonly Bundle $bundle)
     {
-        $this->bundle = $bundle;
     }
 
 
     /**
      * {@inheritDoc}
      */
-    public function load (array $config, ContainerBuilder $container)
+    public function load (array $config, ContainerBuilder $container) : void
     {
         $configuration = new BundleConfiguration($this->bundle, $this->getAlias());
         $processedConfig = $this->processConfiguration($configuration, $config);
@@ -82,10 +74,10 @@ class BundleExtension extends Extension
      * @return string
      * @throws BadMethodCallException
      */
-    public function getAlias ()
+    public function getAlias (): string
     {
-        $className = get_class($this->bundle);
-        if (substr($className, -6) != 'Bundle') {
+        $className = $this->bundle::class;
+        if (!str_ends_with($className, 'Bundle')) {
             throw new BadMethodCallException('This extension does not follow the naming convention; you must overwrite the getAlias() method.');
         }
 

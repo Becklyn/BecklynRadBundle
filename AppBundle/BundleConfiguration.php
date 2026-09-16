@@ -12,28 +12,17 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class BundleConfiguration implements ConfigurationInterface
 {
     /**
-     * @var Bundle
-     */
-    private $bundle;
-
-
-    /**
-     * The bundle name alias
-     *
-     * @var string
-     */
-    private $alias;
-
-
-
-    /**
      * @param Bundle $bundle
      * @param string $alias
      */
-    public function __construct (Bundle $bundle, $alias)
+    public function __construct(
+        private readonly Bundle $bundle,
+        /**
+         * The bundle name alias
+         */
+        private $alias
+    )
     {
-        $this->bundle = $bundle;
-        $this->alias  = $alias;
     }
 
 

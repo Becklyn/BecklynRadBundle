@@ -12,8 +12,8 @@ trait SortOrderTrait
 {
     /**
      * @var int
-     * @ORM\Column(name="sort_order", type="integer")
      */
+    #[ORM\Column(name: 'sort_order', type: 'integer')]
     private $sortOrder;
 
 

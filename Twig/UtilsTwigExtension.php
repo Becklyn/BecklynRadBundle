@@ -10,6 +10,14 @@ use Twig\TwigFunction;
  */
 class UtilsTwigExtension extends AbstractTwigExtension
 {
+    public function getFunctions () : array
+    {
+        return [
+            new TwigFunction("renderDateTime", $this->renderDateTime(...), ["is_safe" => ["html"]]),
+        ];
+    }
+
+
     /**
      * Renders a date as a HTML5 <time> tag
      *
@@ -19,7 +27,7 @@ class UtilsTwigExtension extends AbstractTwigExtension
      *
      * @return string
      */
-    public function renderDateTime (\DateTime $dateTime = null, $displayFormat = "d.m.Y H:i", $emptyContent = "&ndash;")
+    public function renderDateTime (?\DateTime $dateTime = null, $displayFormat = "d.m.Y H:i", $emptyContent = "&ndash;")
     {
         if (is_null($dateTime))
         {
@@ -27,16 +35,5 @@ class UtilsTwigExtension extends AbstractTwigExtension
         }
 
         return '<time datetime="' . $dateTime->format("c") . '">' . $dateTime->format($displayFormat) . '</time>';
-    }
-
-
-    /**
-     * Returns all defined functions
-     */
-    public function getFunctions () : array
-    {
-        return [
-            new TwigFunction("renderDateTime", [$this, "renderDateTime"], ["is_safe" => ["html"]]),
-        ];
     }
 }

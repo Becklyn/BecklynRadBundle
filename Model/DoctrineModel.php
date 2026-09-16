@@ -88,7 +88,7 @@ abstract class DoctrineModel
      */
     protected function getFullEntityName ()
     {
-        $modelClassName = get_class($this);
+        $modelClassName = static::class;
         $entityClass    = $this->classNameTransformer->transformModelToEntity($modelClassName);
 
         if (!class_exists($entityClass))
@@ -131,7 +131,7 @@ abstract class DoctrineModel
         }
 
         $entityManager = $this->getEntityManager();
-        array_map([$entityManager, "remove"], $entities);
+        array_map($entityManager->remove(...), $entities);
         $entityManager->flush();
     }
 

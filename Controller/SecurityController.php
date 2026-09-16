@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Base security implementations
  */
-class SecurityController extends Controller
+class SecurityController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
 {
     /**
      * Handles the generic login

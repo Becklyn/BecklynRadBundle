@@ -12,15 +12,15 @@ trait TimestampsTrait
 {
     /**
      * @var \DateTime
-     * @ORM\Column(name="time_created", type="datetime")
      */
+    #[ORM\Column(name: 'time_created', type: 'datetime')]
     private $timeCreated;
 
 
     /**
      * @var \DateTime|null
-     * @ORM\Column(name="time_modified", type="datetime", nullable=true)
      */
+    #[ORM\Column(name: 'time_modified', type: 'datetime', nullable: true)]
     private $timeModified;
 
 
